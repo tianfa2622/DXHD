@@ -74,6 +74,10 @@ textarea {
   font-size: 100%;
   -webkit-appearance: none;
   appearance: none;
+  color: #fff !important;
+}
+input::placeholder{
+  color: #fff !important; 
 }
 table {
   border-collapse: collapse;
