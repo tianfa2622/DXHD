@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store'
+import { showLoading, hideLoading } from '../components/loading'
 import Home from '../views/home'
 import Administration from '../views/administration'
 import Admin from '../views/administration/adminChildren/admin'
@@ -36,10 +38,12 @@ const routes = [
   },
   {
     path: '/home',
+    name: '首页',
     component: Home
   },
   {
     path: '/admin',
+    name: '系统管理',
     component: Administration,
     children: [
       {
@@ -58,6 +62,7 @@ const routes = [
   },
   {
     path: '/fnc',
+    name: '接入功能',
     component: Fnc,
     children: [
       {
@@ -72,6 +77,7 @@ const routes = [
   },
   {
     path: '/control',
+    name: '布控管理',
     component: Control,
     children: [
       {
@@ -94,6 +100,7 @@ const routes = [
   },
   {
     path: '/management',
+    name: '数据管理',
     component: Management,
     children: [
       {
@@ -128,6 +135,7 @@ const routes = [
   },
   {
     path: '/business',
+    name: '业务协同',
     component: Business,
     children: [
       {
@@ -145,5 +153,12 @@ const routes = [
 const router = new VueRouter({
   routes
 })
-
+router.beforeEach((to, from, next) => {
+  store.commit('setRouterName', to.matched[0].name)
+  showLoading()
+  setTimeout(() => {
+    hideLoading()
+  }, 888)
+  next()
+})
 export default router

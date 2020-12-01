@@ -10,10 +10,10 @@
             <span>活动管理</span>
           </li>
           <li class="menu_list">
-            <span @click="goBusiness">业务协同</span>
+            <span @click="goBusiness" :class="{ li_hover: isBusiness }">业务协同</span>
           </li>
           <li class="menu_list">
-            <span @click="goManagement">数据管理</span>
+            <span @click="goManagement" :class="{ li_hover: isManagement }">数据管理</span>
           </li>
         </ul>
       </div>
@@ -26,17 +26,17 @@
       <div class="header_right">
         <ul class="header_menu">
           <li class="menu_list">
-            <span @click="goControl">布控管理</span>
+            <span @click="goControl" :class="{ li_hover: isControl }">布控管理</span>
           </li>
           <li class="menu_list">
-            <span @click="goFnc">接入功能</span>
+            <span @click="goFnc" :class="{ li_hover: isFnc }">接入功能</span>
           </li>
-          <li class="menu_list" :class="{ li_hover: isClick }">
-            <span @click="goAdmin">系统管理</span>
+          <li class="menu_list">
+            <span @click="goAdmin" :class="{ li_hover: isAdmin }">系统管理</span>
           </li>
           <li class="menu_list last_list">
             <div class="btn">
-              <button class="btn_home">
+              <button class="btn_home" @click="goHome">
                 <img src="./assets/app_img/u40.svg" alt="" />
               </button>
               <button class="btn_me">
@@ -57,26 +57,80 @@
 </template>
 <script>
 export default {
-  data: () => ({
-    isClick: false
-  }),
-  created () { },
+  data () {
+    return {
+      isAdmin: false,
+      isFnc: false,
+      isControl: false,
+      isBusiness: false,
+      isManagement: false,
+      routerName: this.$store.state.routerName
+    }
+  },
+  created () {
+    this.whoClick(this.routerName)
+  },
   methods: {
     goAdmin () {
-      this.isClick = true
+      this.isFnc = false
+      this.isControl = false
+      this.isBusiness = false
+      this.isManagement = false
+      this.isAdmin = true
       this.$router.push('/admin/role')
     },
     goFnc () {
+      this.isAdmin = false
+      this.isControl = false
+      this.isBusiness = false
+      this.isManagement = false
+      this.isFnc = true
       this.$router.push('/fnc/ticket')
     },
     goControl () {
+      this.isFnc = false
+      this.isAdmin = false
+      this.isBusiness = false
+      this.isManagement = false
+      this.isControl = true
       this.$router.push('/control/note')
     },
     goManagement () {
+      this.isFnc = false
+      this.isAdmin = false
+      this.isBusiness = false
+      this.isControl = false
+      this.isManagement = true
       this.$router.push('/management/policeDisplay')
     },
     goBusiness () {
+      this.isFnc = false
+      this.isAdmin = false
+      this.isControl = false
+      this.isManagement = false
+      this.isBusiness = true
       this.$router.push('/business/scene')
+    },
+    goHome () {
+      this.$router.push('/home')
+    },
+    whoClick (name) {
+      if (name === '系统管理') {
+        this.isAdmin = true
+      } else if (name === '接入功能') {
+        this.isFnc = true
+      } else if (name === '布控管理') {
+        this.isControl = true
+      } else if (name === '数据管理') {
+        this.isManagement = true
+      } else if (name === '业务协同') {
+        this.isBusiness = true
+      }
+    }
+  },
+  watch: {
+    '$store.state.routerName': function (newVal) {
+      this.whoClick(newVal)
     }
   }
 }
@@ -165,7 +219,6 @@ $pa: absolute;
       .menu_list {
         list-style: none;
         cursor: pointer;
-        line-height: 0.94rem;
         white-space: nowrap;
         height: 0.94rem;
         span {
@@ -173,6 +226,13 @@ $pa: absolute;
           font-weight: bold;
           color: #6aeff4;
           font-size: 0.28rem;
+          height: 0.5rem;
+          display: block;
+          position: relative;
+          top: 50%;
+          transform: translateY(-50%);
+          padding: 0.1rem;
+          box-sizing: border-box;
         }
       }
     }

@@ -5,8 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    routerName: ''
   },
   mutations: {
+    setRouterName (state, name) {
+      state.routerName = name
+    }
   },
   actions: {
   },

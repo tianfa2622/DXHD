@@ -33,7 +33,7 @@ export default {
     }),
     searchSettings: [
       { placeholder: '活动编号', type: 'input' },
-      { placeholder: '情报类型', type: 'input' },
+      { placeholder: '情报类型', type: 'select' },
       { placeholder: '请输入情报条目，公安机关机构代码', type: 'input' }
     ],
     dialogs: [

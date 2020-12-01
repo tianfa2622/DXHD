@@ -37,7 +37,7 @@ export default {
   width: 100%;
   height: 100%;
   .business_left {
-    width: 16%;
+    width: 10%;
     height: 100%;
     text-align: center;
     .list_title {
@@ -62,6 +62,7 @@ export default {
     }
   }
   .business_right {
+    width: calc(100% - 10%);
     overflow-y: auto;
     padding-bottom: 1rem;
     box-sizing: border-box;
