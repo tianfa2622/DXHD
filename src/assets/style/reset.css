@@ -76,8 +76,8 @@ textarea {
   appearance: none;
   color: #fff !important;
 }
-input::placeholder{
-  color: #fff !important; 
+input::placeholder {
+  color: #fff !important;
 }
 table {
   border-collapse: collapse;

@@ -1,12 +1,12 @@
 <template>
-  <div class="management">
-    <dl class="management_left">
+  <div class="business">
+    <dl class="business_left">
       <dt class="list_title">{{ title }}</dt>
       <dd class="list_content" v-for="item in adminLeft" :key="item.id" @click="goList(item.title, item.path)">
         {{ item.title }}
       </dd>
     </dl>
-    <div class="management_right">
+    <div class="business_right">
       <router-view></router-view>
     </div>
   </div>
@@ -14,15 +14,12 @@
 <script>
 export default {
   data: () => ({
-    title: '警力展示',
+    title: '现场管理',
     adminLeft: [
-      { title: '警力展示', id: 0, path: '/management/policeDisplay' },
-      { title: '安保路线管理', id: 1, path: '/management/policeRoute' },
-      { title: '重点人员管理', id: 2, path: '/management/pointPeople' },
-      { title: '安保人员管理', id: 3, path: '/management/policeMan' },
-      { title: '重点车辆统计信息管理', id: 4, path: '/management/stressCar' },
-      { title: '重点车辆位置信息', id: 5, path: '/management/positionCar' },
-      { title: '社会车辆管理', id: 6, path: '/management/sociologyCar' }
+      { title: '现场管理', id: 0, path: 'scene' },
+      { title: '情报研判', id: 1, path: 'study' },
+      { title: '低慢小管理', id: 2 },
+      { title: '圈层管理', id: 3 }
     ]
   }),
   created () { },
@@ -35,12 +32,12 @@ export default {
 }
 </script>
 <style lang="scss">
-.management {
+.business {
   display: flex;
   width: 100%;
   height: 100%;
-  .management_left {
-    width: 10%;
+  .business_left {
+    width: 16%;
     height: 100%;
     text-align: center;
     .list_title {
@@ -64,9 +61,8 @@ export default {
       white-space: nowrap;
     }
   }
-  .management_right {
+  .business_right {
     overflow-y: auto;
-    flex: 1;
     padding-bottom: 1rem;
     box-sizing: border-box;
   }

@@ -1,7 +1,5 @@
 <template>
   <baidu-map class="bm-view" :center="center" :zoom="zoom" ak="bGitCiolqteL4cZhVWhBNIdpSNRgNiyA"> </baidu-map>
-  <!-- <baidu-map class="bm-view" :center='{lng: 112.98941034779713, lat: 28.18392487724562}' :zoom="16" ak="bGitCiolqteL4cZhVWhBNIdpSNRgNiyA">
-  </baidu-map> -->
 </template>
 <script>
 import BaiduMap from 'vue-baidu-map/components/map/Map.vue'

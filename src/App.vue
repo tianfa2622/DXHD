@@ -10,7 +10,7 @@
             <span>活动管理</span>
           </li>
           <li class="menu_list">
-            <span>业务协同</span>
+            <span @click="goBusiness">业务协同</span>
           </li>
           <li class="menu_list">
             <span @click="goManagement">数据管理</span>
@@ -74,6 +74,9 @@ export default {
     },
     goManagement () {
       this.$router.push('/management/policeDisplay')
+    },
+    goBusiness () {
+      this.$router.push('/business/scene')
     }
   }
 }
@@ -135,7 +138,7 @@ $pa: absolute;
         .last_list {
           line-height: 100% !important;
           .btn {
-            padding-top:0.3rem;
+            padding-top: 0.3rem;
             box-sizing: border-box;
             button {
               width: 0.35rem;

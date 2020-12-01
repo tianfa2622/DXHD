@@ -15,7 +15,7 @@ export default {
         title: {
           show: true,
           text: '安\n保\n人\n员\n区\n域\n百\n分\n比',
-          left: 60,
+          left: 20,
           top: 100,
           padding: 5,
           textStyle: {

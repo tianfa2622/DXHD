@@ -2,6 +2,7 @@
   <el-form ref="form" :model="form">
     <el-input v-model="form.name" :placeholder="item.placeholder" :type="item.type" v-for="(item, index) in searchSettings" :key="index"></el-input>
     <el-button type="primary">查询</el-button>
+    <el-button type="primary" @click="add">新增</el-button>
   </el-form>
 </template>
 <script>
@@ -12,7 +13,11 @@ export default {
   }),
   created () {
   },
-  methods: {}
+  methods: {
+    add () {
+      this.$emit('add')
+    }
+  }
 }
 </script>
 <style lang="scss">

@@ -18,6 +18,12 @@ import PoliceDisplay from '../views/management/managementChildren/policeDisplay'
 import PoliceRoute from '../views/management/managementChildren/policeRoute'
 import PointPeople from '../views/management/managementChildren/pointPeople'
 import PoliceMan from '../views/management/managementChildren/policeMan'
+import StressCar from '../views/management/managementChildren/stressCar'
+import PositionCar from '../views/management/managementChildren/positionCar'
+import SociologyCar from '../views/management/managementChildren/sociologyCar'
+import Business from '../views/business'
+import Scene from '../views/business/businessChildren/scene'
+import Study from '../views/business/businessChildren/study'
 Vue.use(VueRouter)
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push (location) {
@@ -105,6 +111,32 @@ const routes = [
       {
         path: 'policeMan',
         component: PoliceMan
+      },
+      {
+        path: 'stressCar',
+        component: StressCar
+      },
+      {
+        path: 'positionCar',
+        component: PositionCar
+      },
+      {
+        path: 'sociologyCar',
+        component: SociologyCar
+      }
+    ]
+  },
+  {
+    path: '/business',
+    component: Business,
+    children: [
+      {
+        path: 'scene',
+        component: Scene
+      },
+      {
+        path: 'study',
+        component: Study
       }
     ]
   }
