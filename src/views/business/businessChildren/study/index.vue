@@ -1,10 +1,10 @@
 <template>
   <div class="study">
     <div class="study_head">
-      <Elsearch :searchSettings="searchSettings" @add="add"></Elsearch>
+      <Elsearch :searchSettings="searchSettings" :searchBtn="searchBtn" @add="add"></Elsearch>
     </div>
     <div class="study_table">
-      <Eltable :tableHead="tableHead" :tableDatas="tableDatas" @modify="modify" @del="del" @detailed="detailed"></Eltable>
+      <Eltable :tableHead="tableHead" :tableSettings="tableSettings" :tableDatas="tableDatas" @modify="modify" @del="del" @detailed="detailed"></Eltable>
     </div>
     <Dialog :title="title" :isShow="isShow" :readOnly="readOnly" :dialogs="dialogs" @close="close"></Dialog>
   </div>
@@ -31,10 +31,19 @@ export default {
     tableDatas: Array(5).fill({
       input: '123'
     }),
+    tableSettings: [
+      { name: '修改', type: 'modify' },
+      { name: '删除', type: 'delete' },
+      { name: '详情', type: 'detailed' }
+    ],
     searchSettings: [
       { placeholder: '活动编号', type: 'input' },
       { placeholder: '情报类型', type: 'select' },
       { placeholder: '请输入情报条目，公安机关机构代码', type: 'input' }
+    ],
+    searchBtn: [
+      { name: '查询', type: 'search' },
+      { name: '新增', type: 'add' }
     ],
     dialogs: [
       { label: '活动编码', type: 'input' },
@@ -97,23 +106,6 @@ export default {
   .study_table {
     margin-top: 0.2rem;
     width: 100%;
-  }
-  .el-dialog__wrapper {
-    .el-dialog {
-      .el-dialog__body {
-        .el-form {
-          .el-form-item {
-            width: 50%;
-            .el-form-item__label {
-              width: 1.4rem !important;
-            }
-            .el-form-item__content {
-              margin-left: 1.4rem !important;
-            }
-          }
-        }
-      }
-    }
   }
   .study_ring {
     width: 100%;

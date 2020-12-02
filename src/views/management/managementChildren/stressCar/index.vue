@@ -104,23 +104,6 @@ export default {
     margin-top: 0.2rem;
     width: 100%;
   }
-  .el-dialog__wrapper {
-    .el-dialog {
-      .el-dialog__body {
-        .el-form {
-          .el-form-item {
-            width: 50%;
-            .el-form-item__label {
-              width: 1.4rem !important;
-            }
-            .el-form-item__content {
-              margin-left: 1.4rem !important;
-            }
-          }
-        }
-      }
-    }
-  }
   .stressCar_left {
     width: 50%;
     height: 4rem;

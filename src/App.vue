@@ -7,7 +7,7 @@
             <span>态势感知</span>
           </li>
           <li class="menu_list">
-            <span>活动管理</span>
+            <span @click="goActivity" :class="{ li_hover: isActivity }">活动管理</span>
           </li>
           <li class="menu_list">
             <span @click="goBusiness" :class="{ li_hover: isBusiness }">业务协同</span>
@@ -64,6 +64,7 @@ export default {
       isControl: false,
       isBusiness: false,
       isManagement: false,
+      isActivity: false,
       routerName: this.$store.state.routerName
     }
   },
@@ -76,6 +77,7 @@ export default {
       this.isControl = false
       this.isBusiness = false
       this.isManagement = false
+      this.isActivity = false
       this.isAdmin = true
       this.$router.push('/admin/role')
     },
@@ -84,6 +86,7 @@ export default {
       this.isControl = false
       this.isBusiness = false
       this.isManagement = false
+      this.isActivity = false
       this.isFnc = true
       this.$router.push('/fnc/ticket')
     },
@@ -92,6 +95,7 @@ export default {
       this.isAdmin = false
       this.isBusiness = false
       this.isManagement = false
+      this.isActivity = false
       this.isControl = true
       this.$router.push('/control/note')
     },
@@ -100,6 +104,7 @@ export default {
       this.isAdmin = false
       this.isBusiness = false
       this.isControl = false
+      this.isActivity = false
       this.isManagement = true
       this.$router.push('/management/policeDisplay')
     },
@@ -108,8 +113,18 @@ export default {
       this.isAdmin = false
       this.isControl = false
       this.isManagement = false
+      this.isActivity = false
       this.isBusiness = true
       this.$router.push('/business/scene')
+    },
+    goActivity () {
+      this.isFnc = false
+      this.isAdmin = false
+      this.isControl = false
+      this.isManagement = false
+      this.isBusiness = false
+      this.isActivity = true
+      this.$router.push('/activity/apply')
     },
     goHome () {
       this.$router.push('/home')
@@ -125,6 +140,14 @@ export default {
         this.isManagement = true
       } else if (name === '业务协同') {
         this.isBusiness = true
+      } else if (name === '首页') {
+        this.isFnc = false
+        this.isControl = false
+        this.isBusiness = false
+        this.isManagement = false
+        this.isAdmin = false
+      } else if (name === '活动管理') {
+        this.Activity = true
       }
     }
   },

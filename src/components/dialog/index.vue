@@ -1,31 +1,43 @@
 <template>
   <el-dialog :title="title" :visible.sync="show" center @close="close">
-    <el-form ref="form" :model="form" label-width="1.2rem">
+    <el-form ref="form" :model="form" label-width="auto">
       <el-form-item :label="item.label" v-for="(item, index) in dialogs" :key="index">
         <el-input v-model="form.name" :readonly="readOnly" :type="item.type"></el-input>
       </el-form-item>
     </el-form>
+    <Eltable v-if="tableShow" :tableHead="tableHead" :tableSettings="tableSettings" :tableDatas="tableDatas"></Eltable>
   </el-dialog>
 </template>
 <script>
+import Eltable from '@/components/table'
 export default {
-  props: ['title', 'isShow', 'readOnly', 'dialogs'],
+  props: ['title', 'isShow', 'readOnly', 'dialogs', 'tableHead', 'tableSettings', 'tableDatas'],
   data: () => ({
     show: false,
+    tableShow: false,
     form: {}
   }),
   created () {
+    this.isTable()
   },
   methods: {
     close (e) {
       this.$emit('close', false)
+    },
+    isTable () {
+      if (this.tableHead !== undefined) {
+        this.tableShow = true
+      } else {
+        this.tableShow = false
+      }
     }
   },
   watch: {
     isShow () {
       this.show = this.isShow
     }
-  }
+  },
+  components: { Eltable }
 }
 </script>
 <style lang="scss">
@@ -43,12 +55,16 @@ export default {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        height: auto;
         .el-form-item {
-          width: 30%;
+          width: 40% !important;
+          margin-right: 0;
+          margin-bottom: 0.2rem;
           .el-form-item__label {
             color: #fff;
           }
           .el-form-item__content {
+            width: auto;
             .el-input {
               width: 100%;
               input {

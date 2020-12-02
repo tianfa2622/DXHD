@@ -19,9 +19,12 @@
       <el-table-column :prop="item.prop" :label="item.label" v-for="(item, index) in tableHead" :key="index"> </el-table-column>
       <el-table-column label="操作" width="200">
         <template slot-scope="scope">
-          <el-button size="mini" type="text" @click="handleModify(scope.row)">修改</el-button>
-          <el-button size="mini" type="text" @click="handleDelete(scope.row)">删除</el-button>
-          <el-button size="mini" type="text" @click="handleDetailed(scope.row)">详情</el-button>
+          <div v-for="(item, index) in tableSettings" :key="index">
+            <el-button size="mini" type="text" v-if="item.type === 'modify'" @click="handleModify(scope.row)">{{ item.name }}</el-button>
+            <el-button size="mini" type="text" v-if="item.type === 'delete'" @click="handleDelete(scope.row)">{{ item.name }}</el-button>
+            <el-button size="mini" type="text" v-if="item.type === 'detailed'" @click="handleDetailed(scope.row)">{{ item.name }}</el-button>
+            <el-button size="mini" type="text" v-if="item.type === 'download'" @click="handleDownload(scope.row)">{{ item.name }}</el-button>
+          </div>
         </template>
       </el-table-column>
     </el-table>
@@ -41,7 +44,7 @@
 </template>
 <script>
 export default {
-  props: ['tableHead', 'tableDatas'],
+  props: ['tableHead', 'tableDatas', 'tableSettings'],
   data: () => ({
   }),
   created () { },
@@ -54,6 +57,9 @@ export default {
     },
     handleDetailed (row) {
       this.$emit('detailed', row)
+    },
+    handleDownload (row) {
+      this.$emit('download', row)
     },
     handleSizeChange (val) {
       console.log(`每页 ${val} 条`)
@@ -68,7 +74,12 @@ export default {
 .el-table__row > td {
   border: none !important;
 }
-
+.el-table__row td:last-of-type {
+  .cell {
+    display: flex;
+    justify-content: space-around;
+  }
+}
 .el-table::before {
   height: 0px !important;
 }

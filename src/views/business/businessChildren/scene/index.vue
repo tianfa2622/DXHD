@@ -179,7 +179,9 @@ export default {
         display: flex;
         flex-wrap: wrap;
         .el-form-item {
-          width: 50%;
+          width: 50% !important;
+          margin-right: 0;
+          margin-bottom: 0.2rem;
           .el-form-item__label {
             color: #fff;
           }
@@ -201,23 +203,6 @@ export default {
         img {
           width: 100%;
           height: 100%;
-        }
-      }
-    }
-  }
-  .el-dialog__wrapper {
-    .el-dialog {
-      .el-dialog__body {
-        .el-form {
-          .el-form-item {
-            width: 50%;
-            .el-form-item__label {
-              width: 1.4rem !important;
-            }
-            .el-form-item__content {
-              margin-left: 1.4rem !important;
-            }
-          }
         }
       }
     }

@@ -66,7 +66,7 @@ export default {
   }
   .management_right {
     overflow-y: auto;
-    flex: 1;
+    width: calc(100% - 10%);
     padding-bottom: 1rem;
     box-sizing: border-box;
   }

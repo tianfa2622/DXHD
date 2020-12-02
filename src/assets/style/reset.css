@@ -79,6 +79,22 @@ textarea {
 input::placeholder {
   color: #fff !important;
 }
+input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  font-size: 0.12rem;
+}
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  font-size: 0.12rem;
+}
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  font-size: 0.12rem;
+}
+input :-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  font-size: 0.12rem;
+}
 table {
   border-collapse: collapse;
   border-spacing: 0;

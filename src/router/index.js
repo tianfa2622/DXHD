@@ -26,6 +26,10 @@ import SociologyCar from '../views/management/managementChildren/sociologyCar'
 import Business from '../views/business'
 import Scene from '../views/business/businessChildren/scene'
 import Study from '../views/business/businessChildren/study'
+import Regulated from '../views/business/businessChildren/regulated'
+import Activity from '../views/activity'
+import Apply from '../views/activity/activityChildren/apply'
+import Approval from '../views/activity/activityChildren/approval'
 Vue.use(VueRouter)
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push (location) {
@@ -145,6 +149,25 @@ const routes = [
       {
         path: 'study',
         component: Study
+      },
+      {
+        path: 'regulated',
+        component: Regulated
+      }
+    ]
+  },
+  {
+    name: '活动管理',
+    path: '/activity',
+    component: Activity,
+    children: [
+      {
+        path: 'apply',
+        component: Apply
+      },
+      {
+        path: 'approval',
+        component: Approval
       }
     ]
   }
