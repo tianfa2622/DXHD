@@ -18,11 +18,10 @@ export default {
     adminLeft: [
       { title: '活动申请', id: 0, path: '/activity/apply' },
       { title: '活动审批', id: 1, path: '/activity/approval' },
-      { title: '安保方案', id: 2, path: '/admin/journal' },
-      { title: '人员背审', id: 3, path: '/admin/journal' },
-      { title: '安保方案', id: 4, path: '/admin/journal' },
-      { title: '活动归档', id: 5, path: '/admin/journal' },
-      { title: '战果统计报表', id: 6, path: '/admin/journal' }]
+      { title: '安保方案', id: 2, path: '/activity/programme' },
+      { title: '人员背审', id: 3, path: '/activity/trial' },
+      { title: '活动归档', id: 5, path: '/activity/file/activityArchives' },
+      { title: '战果统计报表', id: 6, path: '/activity/statistics/checkpoint' }]
   }),
   created () { },
   methods: {

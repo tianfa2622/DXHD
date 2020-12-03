@@ -17,7 +17,7 @@
       }"
     >
       <el-table-column :prop="item.prop" :label="item.label" v-for="(item, index) in tableHead" :key="index"> </el-table-column>
-      <el-table-column label="操作" width="200">
+      <el-table-column label="操作" width="200" v-if="operationShow">
         <template slot-scope="scope">
           <div v-for="(item, index) in tableSettings" :key="index">
             <el-button size="mini" type="text" v-if="item.type === 'modify'" @click="handleModify(scope.row)">{{ item.name }}</el-button>
@@ -44,11 +44,20 @@
 </template>
 <script>
 export default {
-  props: ['tableHead', 'tableDatas', 'tableSettings'],
+  props: ['tableHead', 'tableDatas', 'tableSettings', 'operateShow'],
   data: () => ({
+    operationShow: true
   }),
-  created () { },
+  created () {
+    this.isShow()
+  },
   methods: {
+    isShow () {
+      console.log(this.tableDatas)
+      if (this.operateShow !== undefined) {
+        this.operationShow = this.operateShow
+      }
+    },
     handleModify (row) {
       this.$emit('modify', row)
     },
@@ -82,6 +91,18 @@ export default {
 }
 .el-table::before {
   height: 0px !important;
+}
+
+/* 解决饿了么ui 滚动闪烁BOG */
+.el-table__footer-wrapper,
+.dkcard .el-table {
+  /* overflow: auto !important; */
+  width: calc(100% - 2px) !important;
+}
+.el-table__body,
+.el-table__footer,
+.el-table__header{
+  width: calc(100% - 2px) !important;
 }
 .el-table th.gutter {
   /*解决el-table加了gutter后 边框出现白边*/

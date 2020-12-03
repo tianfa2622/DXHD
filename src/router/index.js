@@ -30,6 +30,15 @@ import Regulated from '../views/business/businessChildren/regulated'
 import Activity from '../views/activity'
 import Apply from '../views/activity/activityChildren/apply'
 import Approval from '../views/activity/activityChildren/approval'
+import Programme from '../views/activity/activityChildren/programme'
+import ProgrammeDetailed from '../views/activity/activityChildren/programme/detailed'
+import Trial from '../views/activity/activityChildren/trial'
+import File from '../views/activity/activityChildren/file'
+import ActivityArchives from '../views/activity/activityChildren/file/fileChildren/activityArchives'
+import VenueArchives from '../views/activity/activityChildren/file/fileChildren/venueArchives'
+import ActivityJournal from '../views/activity/activityChildren/file/fileChildren/activityJournal'
+import Statistics from '../views/activity/activityChildren/statistics'
+import Checkpoint from '../views/activity/activityChildren/statistics/statisticsChildren/checkpoint'
 Vue.use(VueRouter)
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push (location) {
@@ -168,6 +177,46 @@ const routes = [
       {
         path: 'approval',
         component: Approval
+      },
+      {
+        path: 'programme',
+        component: Programme
+      },
+      {
+        path: 'programme/:id',
+        component: ProgrammeDetailed
+      },
+      {
+        path: 'Trial',
+        component: Trial
+      },
+      {
+        path: 'file',
+        component: File,
+        children: [
+          {
+            path: 'activityArchives',
+            component: ActivityArchives
+          },
+          {
+            path: 'venueArchives',
+            component: VenueArchives
+          },
+          {
+            path: 'activityJournal',
+            component: ActivityJournal
+          }
+        ]
+      },
+      {
+        path: 'statistics',
+        component: Statistics,
+        children: [
+          {
+            path: 'checkpoint',
+            component: Checkpoint
+          }
+        ]
       }
     ]
   }
@@ -183,5 +232,6 @@ router.beforeEach((to, from, next) => {
     hideLoading()
   }, 888)
   next()
+  console.log('%c ', 'background: url(https://pic1.zhimg.com/v2-edd414d01c4c0d838f5fd6530c91ea09_r.jpg?source=1940ef5c) no-repeat center;padding-left:800px;padding-bottom: 500px;background-size: 100% 100%;')
 })
 export default router

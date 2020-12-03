@@ -4,18 +4,44 @@
       <el-form-item :label="item.label" v-for="(item, index) in dialogs" :key="index">
         <el-input v-model="form.name" :readonly="readOnly" :type="item.type"></el-input>
       </el-form-item>
+      <el-form-item label="" v-if="uploadBtn == true ? true : false">
+        <el-upload
+          class="upload-demo"
+          action="https://jsonplaceholder.typicode.com/posts/"
+          :on-preview="handlePreview"
+          :on-remove="handleRemove"
+          :before-remove="beforeRemove"
+          multiple
+          :limit="3"
+          :on-exceed="handleExceed"
+          :file-list="fileList"
+        >
+          <el-button size="small" type="primary">点击上传</el-button>
+        </el-upload>
+      </el-form-item>
     </el-form>
     <Eltable v-if="tableShow" :tableHead="tableHead" :tableSettings="tableSettings" :tableDatas="tableDatas"></Eltable>
+    <el-form class="elFormDialog" v-if="elFormShow" ref="form" :model="form" label-width="auto">
+      <el-form-item label="审批人">
+        <el-input v-model="form.name" placeholder="请输入内容"></el-input>
+      </el-form-item>
+      <el-form-item label="审批意见">
+        <el-button type="primary">审批通过</el-button>
+        <el-button type="primary" @click="examineNo">审批不通过</el-button>
+        <el-input type="textarea" v-model="form.name" placeholder="不通过原因" ref="textarea"></el-input>
+      </el-form-item>
+    </el-form>
   </el-dialog>
 </template>
 <script>
 import Eltable from '@/components/table'
 export default {
-  props: ['title', 'isShow', 'readOnly', 'dialogs', 'tableHead', 'tableSettings', 'tableDatas'],
+  props: ['title', 'isShow', 'readOnly', 'dialogs', 'tableHead', 'tableSettings', 'tableDatas', 'elFormShow', 'uploadBtn'],
   data: () => ({
     show: false,
     tableShow: false,
-    form: {}
+    form: {},
+    fileList: []
   }),
   created () {
     this.isTable()
@@ -30,6 +56,21 @@ export default {
       } else {
         this.tableShow = false
       }
+    },
+    examineNo () {
+      this.$refs.textarea.focus()
+    },
+    handleRemove (file, fileList) {
+      console.log(file, fileList)
+    },
+    handlePreview (file) {
+      console.log(file)
+    },
+    handleExceed (files, fileList) {
+      this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`)
+    },
+    beforeRemove (file, fileList) {
+      return this.$confirm(`确定移除 ${file.name}？`)
     }
   },
   watch: {

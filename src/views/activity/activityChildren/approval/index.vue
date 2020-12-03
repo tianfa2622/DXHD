@@ -7,6 +7,7 @@
     <Dialog
       :title="title"
       :isShow="isShow"
+      :elFormShow="true"
       :tableHead="dialogsTableHead"
       :tableSettings="dialogsTableSettings"
       :tableDatas="dialogsTableDatas"
@@ -142,6 +143,23 @@ export default {
         .el-form {
           .el-form-item:last-child {
             width: 100% !important;
+          }
+        }
+        .elFormDialog {
+          margin-top: 0.2rem;
+          .el-form-item:last-child {
+            margin-bottom: 0;
+            .el-form-item__content {
+              display: flex;
+              height: 0.4rem;
+              .el-textarea {
+                margin-left: 0.2rem;
+                height: 100%;
+                textarea {
+                  height: 100%;
+                }
+              }
+            }
           }
         }
       }
