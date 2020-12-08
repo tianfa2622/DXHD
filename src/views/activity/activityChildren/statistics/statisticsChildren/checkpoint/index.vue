@@ -2,13 +2,19 @@
   <div class="checkpoint">
     <Eltable :tableHead="tableHead" :operateShow="false" :tableDatas="tableDatas"></Eltable>
     <div class="bar">
+      <h3>危险品数量</h3>
       <Bar></Bar>
+    </div>
+    <div class="pie bar">
+      <h3>危险品数量</h3>
+      <Pie></Pie>
     </div>
   </div>
 </template>
 <script>
 import Eltable from '@/components/table'
 import Bar from '@/components/activity_com/statistics/bar'
+import Pie from '@/components/activity_com/statistics/pie'
 export default {
   data: () => ({
     tableHead: [
@@ -23,7 +29,7 @@ export default {
   methods: {
 
   },
-  components: { Eltable, Bar }
+  components: { Eltable, Bar, Pie }
 }
 </script>
 <style lang="scss">
@@ -35,6 +41,19 @@ export default {
   .bar {
     width: 50%;
     height: 4rem;
+    margin-top: 0.2rem;
+    float: left;
+    h3 {
+      color: #fff;
+      width: 2rem;
+      height: 0.4rem;
+      line-height: 0.4rem;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+    }
+  }
+  .pie {
+    float: right;
   }
 }
 </style>

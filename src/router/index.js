@@ -17,12 +17,16 @@ import Personnel from '../views/control/controlChildren/personnel'
 import Release from '../views/control/controlChildren/release'
 import Management from '../views/management'
 import PoliceDisplay from '../views/management/managementChildren/policeDisplay'
+import PoliceDisplayCar from '../views/management/managementChildren/policeDisplay/policeDisplayChildren/car'
+import PoliceDisplayPolic from '../views/management/managementChildren/policeDisplay/policeDisplayChildren/polic'
 import PoliceRoute from '../views/management/managementChildren/policeRoute'
 import PointPeople from '../views/management/managementChildren/pointPeople'
 import PoliceMan from '../views/management/managementChildren/policeMan'
 import StressCar from '../views/management/managementChildren/stressCar'
-import PositionCar from '../views/management/managementChildren/positionCar'
+import StatisticsCar from '../views/management/managementChildren/stressCar/stressCarChildren/statisticsCar'
+import PositionCar from '../views/management/managementChildren/stressCar/stressCarChildren/positionCar'
 import SociologyCar from '../views/management/managementChildren/sociologyCar'
+import PoliceDatas from '../views/management/managementChildren/policeDatas'
 import Business from '../views/business'
 import Scene from '../views/business/businessChildren/scene'
 import Study from '../views/business/businessChildren/study'
@@ -39,6 +43,10 @@ import VenueArchives from '../views/activity/activityChildren/file/fileChildren/
 import ActivityJournal from '../views/activity/activityChildren/file/fileChildren/activityJournal'
 import Statistics from '../views/activity/activityChildren/statistics'
 import Checkpoint from '../views/activity/activityChildren/statistics/statisticsChildren/checkpoint'
+import PreventionControl from '../views/activity/activityChildren/statistics/statisticsChildren/control'
+import Watchman from '../views/activity/activityChildren/statistics/statisticsChildren/watchman'
+import Situation from '../views/situation'
+import SituationMap from '../views/situation/situationChildren/map'
 Vue.use(VueRouter)
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push (location) {
@@ -118,7 +126,18 @@ const routes = [
     children: [
       {
         path: 'policeDisplay',
-        component: PoliceDisplay
+        component: PoliceDisplay,
+        children:
+          [
+            {
+              path: 'policeDisplayCar',
+              component: PoliceDisplayCar
+            },
+            {
+              path: 'policeDisplayPolic',
+              component: PoliceDisplayPolic
+            }
+          ]
       },
       {
         path: 'policeRoute',
@@ -134,15 +153,26 @@ const routes = [
       },
       {
         path: 'stressCar',
-        component: StressCar
-      },
-      {
-        path: 'positionCar',
-        component: PositionCar
+        component: StressCar,
+        children:
+          [
+            {
+              path: 'statisticsCar',
+              component: StatisticsCar
+            },
+            {
+              path: 'positionCar',
+              component: PositionCar
+            }
+          ]
       },
       {
         path: 'sociologyCar',
         component: SociologyCar
+      },
+      {
+        path: 'policeDatas',
+        component: PoliceDatas
       }
     ]
   },
@@ -215,8 +245,27 @@ const routes = [
           {
             path: 'checkpoint',
             component: Checkpoint
+          },
+          {
+            path: 'control',
+            component: PreventionControl
+          },
+          {
+            path: 'watchman',
+            component: Watchman
           }
         ]
+      }
+    ]
+  },
+  {
+    name: '态势感知',
+    path: '/situation',
+    component: Situation,
+    children: [
+      {
+        path: 'situationMap',
+        component: SituationMap
       }
     ]
   }

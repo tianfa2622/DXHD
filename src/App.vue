@@ -4,7 +4,7 @@
       <div class="header_left">
         <ul class="header_menu">
           <li class="menu_list">
-            <span>态势感知</span>
+            <span @click="goSituation" :class="{ li_hover: isSituation }">态势感知</span>
           </li>
           <li class="menu_list">
             <span @click="goActivity" :class="{ li_hover: isActivity }">活动管理</span>
@@ -65,6 +65,7 @@ export default {
       isBusiness: false,
       isManagement: false,
       isActivity: false,
+      isSituation: false,
       routerName: this.$store.state.routerName
     }
   },
@@ -78,6 +79,7 @@ export default {
       this.isBusiness = false
       this.isManagement = false
       this.isActivity = false
+      this.isSituation = false
       this.isAdmin = true
       this.$router.push('/admin/role')
     },
@@ -87,6 +89,7 @@ export default {
       this.isBusiness = false
       this.isManagement = false
       this.isActivity = false
+      this.isSituation = false
       this.isFnc = true
       this.$router.push('/fnc/ticket')
     },
@@ -96,6 +99,7 @@ export default {
       this.isBusiness = false
       this.isManagement = false
       this.isActivity = false
+      this.isSituation = false
       this.isControl = true
       this.$router.push('/control/note')
     },
@@ -105,8 +109,9 @@ export default {
       this.isBusiness = false
       this.isControl = false
       this.isActivity = false
+      this.isSituation = false
       this.isManagement = true
-      this.$router.push('/management/policeDisplay')
+      this.$router.push('/management/policeDisplay/policeDisplayCar')
     },
     goBusiness () {
       this.isFnc = false
@@ -114,6 +119,7 @@ export default {
       this.isControl = false
       this.isManagement = false
       this.isActivity = false
+      this.isSituation = false
       this.isBusiness = true
       this.$router.push('/business/scene')
     },
@@ -123,8 +129,19 @@ export default {
       this.isControl = false
       this.isManagement = false
       this.isBusiness = false
+      this.isSituation = false
       this.isActivity = true
       this.$router.push('/activity/apply')
+    },
+    goSituation () {
+      this.isFnc = false
+      this.isAdmin = false
+      this.isControl = false
+      this.isManagement = false
+      this.isBusiness = false
+      this.isActivity = false
+      this.isSituation = true
+      this.$router.push('/situation/situationMap')
     },
     goHome () {
       this.$router.push('/home')
@@ -147,7 +164,9 @@ export default {
         this.isManagement = false
         this.isAdmin = false
       } else if (name === '活动管理') {
-        this.Activity = true
+        this.isActivity = true
+      } else if (name === '态势感知') {
+        this.isSituation = true
       }
     }
   },

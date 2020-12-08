@@ -1,5 +1,5 @@
 <template>
-  <div id="Bar_rt" :style="{ width: '100%', height: '100%' }"></div>
+  <div id="Bar_rt1" :style="{ width: '100%', height: '100%' }"></div>
 </template>
 <script>
 export default {
@@ -10,12 +10,13 @@ export default {
   },
   methods: {
     Bar () {
-      const Bar = this.$echarts.init(document.getElementById('Bar_rt'))
+      const Bar = this.$echarts.init(document.getElementById('Bar_rt1'))
       Bar.setOption({
         color: ['#61A5E8'],
         xAxis: {
           type: 'category',
-          data: ['管制刀具', '有毒危险品', '易燃易爆物品', '金属机械', '枪支,子弹', '爆炸物品类', '毒害品', '腐蚀性物品'],
+          name: '小时',
+          data: ['12', '14', '16', '18', '20', '22', '24', '02', '04'],
           axisLine: {
             lineStyle: {
               color: '#fff'
@@ -28,7 +29,8 @@ export default {
         },
         yAxis: {
           type: 'value',
-          max: 100,
+          max: 300,
+          name: '人数',
           axisLine: {
             lineStyle: {
               color: '#fff'

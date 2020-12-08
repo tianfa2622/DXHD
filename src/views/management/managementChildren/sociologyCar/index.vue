@@ -1,28 +1,20 @@
 <template>
   <div class="sociologyCar">
     <div class="sociologyCar_head">
-      <Elsearch :searchSettings="searchSettings" @add="add"></Elsearch>
+      <Elsearch :searchSettings="searchSettings" @add="add" :searchBtn="searchBtn"></Elsearch>
     </div>
     <div class="sociologyCar_table">
-      <Eltable :tableHead="tableHead" :tableDatas="tableDatas" @modify="modify" @del="del" @detailed="detailed"></Eltable>
+      <Eltable :tableHead="tableHead" :tableSettings="tableSettings" :tableDatas="tableDatas" @modify="modify" @del="del" @detailed="detailed"></Eltable>
     </div>
     <Dialog :title="title" :isShow="isShow" :readOnly="readOnly" :dialogs="dialogs" @close="close"></Dialog>
-    <div class="sociologyCar_ring">
-      <h3>今日共进出车辆1000辆</h3>
-      <div class="ring">
-        <Ring></Ring>
-      </div>
-    </div>
   </div>
 </template>
 <script>
 import Eltable from '@/components/table'
 import Elsearch from '@/components/search'
 import Dialog from '@/components/dialog'
-import Ring from '@/components/management_com/sociologyCar'
 export default {
   data: () => ({
-    input: '',
     title: '',
     isShow: false,
     readOnly: true,
@@ -42,6 +34,15 @@ export default {
       { placeholder: '车辆负责人', type: 'input' },
       { placeholder: '车辆司机', type: 'input' },
       { placeholder: '请输人机动车车牌号码，车辆型号', type: 'input' }
+    ],
+    searchBtn: [
+      { name: '查询', type: 'search' },
+      { name: '新增', type: 'add' }
+    ],
+    tableSettings: [
+      { name: '修改', type: 'modify' },
+      { name: '删除', type: 'delete' },
+      { name: '详情', type: 'detailed' }
     ],
     dialogs: [
       { label: '编号', type: 'input' },
@@ -88,14 +89,13 @@ export default {
     }
   },
   components: {
-    Eltable, Elsearch, Dialog, Ring
+    Eltable, Elsearch, Dialog
   }
 }
 </script>
 <style lang="scss">
 .sociologyCar {
   border: 1px solid rgb(62, 85, 104);
-  margin: 0.7rem auto 0;
   width: 98%;
   padding: 0.3rem 0.2rem;
   box-sizing: border-box;

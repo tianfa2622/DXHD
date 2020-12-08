@@ -13,19 +13,13 @@ export default {
       const Ring = this.$echarts.init(document.getElementById('Ring'))
       Ring.setOption({
         title: {
-          show: false,
-          text: '',
-          subtext: '',
+          text: '活动重点人员出现百分比',
           left: 20,
           top: 30,
           itemGap: 50,
           textStyle: {
-            color: '#3294BB',
-            fontSize: 18
-          },
-          subtextStyle: {
             color: '#fff',
-            lineHeight: 15
+            fontSize: 18
           }
         },
         tooltip: {
@@ -33,8 +27,8 @@ export default {
         },
         legend: {
           orient: 'vertical',
-          right: 0,
-          bottom: 0,
+          right: '5%',
+          bottom: '5%',
           itemWidth: 10,
           itemHeight: 10,
           formatter: '{name}',
@@ -51,7 +45,7 @@ export default {
             name: '战果统计数量',
             type: 'pie',
             radius: ['0%', '70%'],
-            center: ['50%', '45%'], // 饼图的位置
+            center: ['50%', '50%'], // 饼图的位置
             label: { // 饼图图形上的文本标签
               normal: {
                 show: true,

@@ -15,7 +15,8 @@ export default {
         color: ['#61A5E8'],
         xAxis: {
           type: 'category',
-          data: ['管制刀具', '有毒危险品', '易燃易爆物品', '金属机械', '枪支,子弹', '爆炸物品类', '毒害品', '腐蚀性物品'],
+          name: '小时',
+          data: ['12', '14', '16', '18', '20', '22', '24', '02', '04'],
           axisLine: {
             lineStyle: {
               color: '#fff'
@@ -28,7 +29,8 @@ export default {
         },
         yAxis: {
           type: 'value',
-          max: 100,
+          max: 300,
+          name: '人数',
           axisLine: {
             lineStyle: {
               color: '#fff'
@@ -37,7 +39,7 @@ export default {
         },
         series: [{
           barWidth: '50%',
-          data: [40, 20, 60, 80, 70, 110, 130, 100],
+          data: [40, 20, 60, 80, 70, 110, 130, 100, 12],
           type: 'bar'
         }]
       })

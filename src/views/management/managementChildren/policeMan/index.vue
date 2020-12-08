@@ -2,10 +2,10 @@
   <div class="policeMan">
     <div class="policeMan_left">
       <div class="policeMan_head">
-        <Elsearch :searchSettings="searchSettings"></Elsearch>
+        <Elsearch :searchSettings="searchSettings" :searchBtn="searchBtn" @add="add"></Elsearch>
       </div>
       <div class="policeMan_table">
-        <Eltable :tableHead="tableHead" :tableDatas="tableDatas" @add="add" @modify="modify" @del="del" @detailed="detailed"></Eltable>
+        <Eltable :tableHead="tableHead" :tableSettings="tableSettings" :tableDatas="tableDatas" @modify="modify" @del="del" @detailed="detailed"></Eltable>
       </div>
     </div>
     <div class="policeMan_right">
@@ -34,6 +34,11 @@ export default {
       { label: '常用证件代码', prop: 'input' },
       { label: '证件号码', prop: 'input' }
     ],
+    tableSettings: [
+      { name: '修改', type: 'modify' },
+      { name: '删除', type: 'delete' },
+      { name: '详情', type: 'detailed' }
+    ],
     tableDatas: Array(5).fill({
       input: '123'
     }),
@@ -42,6 +47,10 @@ export default {
       { placeholder: '证件号码', type: 'input' },
       { placeholder: '联系电话', type: 'input' },
       { placeholder: '请输入曾用名，单位名称，联系电话', type: 'input' }
+    ],
+    searchBtn: [
+      { name: '查询', type: 'search' },
+      { name: '新增', type: 'add' }
     ],
     dialogs: [
       { label: '信息标识', type: 'input' },
@@ -103,7 +112,6 @@ export default {
 <style lang="scss">
 .policeMan {
   border: 1px solid rgb(62, 85, 104);
-  margin: 0.7rem auto 0;
   width: 98%;
   padding: 0.3rem 0.2rem;
   box-sizing: border-box;

@@ -1,7 +1,6 @@
 <template>
   <div class="management">
     <dl class="management_left">
-      <dt class="list_title">{{ title }}</dt>
       <dd class="list_content" v-for="item in adminLeft" :key="item.id" @click="goList(item.title, item.path)">
         {{ item.title }}
       </dd>
@@ -14,21 +13,19 @@
 <script>
 export default {
   data: () => ({
-    title: '警力展示',
     adminLeft: [
-      { title: '警力展示', id: 0, path: '/management/policeDisplay' },
+      { title: '警力展示', id: 0, path: '/management/policeDisplay/policeDisplayCar' },
       { title: '安保路线管理', id: 1, path: '/management/policeRoute' },
       { title: '重点人员管理', id: 2, path: '/management/pointPeople' },
       { title: '安保人员管理', id: 3, path: '/management/policeMan' },
-      { title: '重点车辆统计信息管理', id: 4, path: '/management/stressCar' },
-      { title: '重点车辆位置信息', id: 5, path: '/management/positionCar' },
-      { title: '社会车辆管理', id: 6, path: '/management/sociologyCar' }
+      { title: '重点车辆信息管理', id: 4, path: '/management/stressCar/statisticsCar' },
+      { title: '社会车辆管理', id: 5, path: '/management/sociologyCar' },
+      { title: '警情数据信息', id: 6, path: '/management/policeDatas' }
     ]
   }),
   created () { },
   methods: {
     goList (title, path) {
-      this.title = title
       this.$router.push(path)
     }
   }
@@ -43,14 +40,6 @@ export default {
     width: 10%;
     height: 100%;
     text-align: center;
-    .list_title {
-      padding: 0.1rem;
-      font-size: 0.18rem;
-      color: #00ffff;
-      font-family: 'Arial Normal', 'Arial';
-      border-bottom: 2px solid rgb(121, 121, 121);
-      white-space: nowrap;
-    }
     .list_content {
       width: 90%;
       height: 0.6rem;
@@ -69,6 +58,7 @@ export default {
     width: calc(100% - 10%);
     padding-bottom: 1rem;
     box-sizing: border-box;
+    margin: 0.3rem 0 0 0.2rem;
   }
 }
 </style>

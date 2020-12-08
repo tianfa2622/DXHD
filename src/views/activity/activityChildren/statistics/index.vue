@@ -9,8 +9,8 @@ export default {
   data: () => ({
     adminLeft: [
       { title: '接入检查站', id: 0, path: '/activity/statistics/checkpoint' },
-      { title: '圈层防控', id: 1, path: '/activity/statistics/venueArchives' },
-      { title: '街面巡防', id: 2, path: '/activity/statistics/activityJournal' }]
+      { title: '圈层防控', id: 1, path: '/activity/statistics/control' },
+      { title: '街面巡防', id: 2, path: '/activity/statistics/watchman' }]
   }),
   created () { },
   methods: {

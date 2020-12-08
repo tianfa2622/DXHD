@@ -20,7 +20,7 @@
         </el-upload>
       </el-form-item>
     </el-form>
-    <Eltable v-if="tableShow" :tableHead="tableHead" :tableSettings="tableSettings" :tableDatas="tableDatas"></Eltable>
+    <Eltable v-if="tableShow" :tableHead="tableHead" :tableSettings="tableSettings" :tableDatas="tableDatas" @detailed="detailed"></Eltable>
     <el-form class="elFormDialog" v-if="elFormShow" ref="form" :model="form" label-width="auto">
       <el-form-item label="审批人">
         <el-input v-model="form.name" placeholder="请输入内容"></el-input>
@@ -31,14 +31,22 @@
         <el-input type="textarea" v-model="form.name" placeholder="不通过原因" ref="textarea"></el-input>
       </el-form-item>
     </el-form>
+    <el-dialog width="30%" center :title="innerVisibleTitle" :visible.sync="innerDialog" append-to-body @close="innerClose">
+      <el-form ref="form" :model="form" label-width="auto">
+        <el-form-item :label="item.label" v-for="(item, index) in innerVisibleDiologs" :key="index">
+          <el-input v-model="form.name" :readonly="readOnly" :type="item.type"></el-input>
+        </el-form-item>
+      </el-form>
+    </el-dialog>
   </el-dialog>
 </template>
 <script>
 import Eltable from '@/components/table'
 export default {
-  props: ['title', 'isShow', 'readOnly', 'dialogs', 'tableHead', 'tableSettings', 'tableDatas', 'elFormShow', 'uploadBtn'],
+  props: ['title', 'isShow', 'readOnly', 'dialogs', 'tableHead', 'tableSettings', 'tableDatas', 'elFormShow', 'uploadBtn', 'innerVisible', 'innerVisibleDiologs', 'innerVisibleTitle'],
   data: () => ({
     show: false,
+    innerDialog: false,
     tableShow: false,
     form: {},
     fileList: []
@@ -49,6 +57,9 @@ export default {
   methods: {
     close (e) {
       this.$emit('close', false)
+    },
+    innerClose (e) {
+      this.$emit('innerClose', false)
     },
     isTable () {
       if (this.tableHead !== undefined) {
@@ -71,11 +82,20 @@ export default {
     },
     beforeRemove (file, fileList) {
       return this.$confirm(`确定移除 ${file.name}？`)
+    },
+    detailed (e) {
+      this.$emit('detailed', e)
     }
   },
   watch: {
     isShow () {
       this.show = this.isShow
+    },
+    innerVisible (val) {
+      this.innerDialog = this.innerVisible
+    },
+    innerVisibleDiologs (val) {
+      console.log(val)
     }
   },
   components: { Eltable }
