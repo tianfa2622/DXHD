@@ -1,12 +1,12 @@
 <template>
-  <div class="admin">
-    <dl class="admin_left">
+  <div class="activity">
+    <dl class="activity_left">
       <dt class="list_title">{{ title }}</dt>
       <dd class="list_content" v-for="item in adminLeft" :key="item.id" @click="goList(item.title, item.path)">
         {{ item.title }}
       </dd>
     </dl>
-    <div class="admin_right">
+    <div class="activity_right">
       <router-view></router-view>
     </div>
   </div>
@@ -33,11 +33,11 @@ export default {
 }
 </script>
 <style lang="scss">
-.admin {
+.activity {
   display: flex;
   width: 100%;
   height: 100%;
-  .admin_left {
+  .activity_left {
     width: 10%;
     height: 100%;
     text-align: center;
@@ -60,7 +60,7 @@ export default {
       cursor: pointer;
     }
   }
-  .admin_right {
+  .activity_right {
     flex: 1;
     border-top: 1px solid rgb(90, 92, 98);
     margin: 1rem 0.5rem 0 0;

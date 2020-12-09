@@ -1,7 +1,7 @@
 <template>
-  <div class="note">
-    <Elsearch :searchSettings="searchSettings" :searchBtn="searchBtn" @add="add"></Elsearch>
-    <Eltable :tableHead="tableHead" :tableDatas="tableDatas" :tableSettings="tableSettings" @modify="modify" @del="del" @detailed="detailed"></Eltable>
+  <div class="releasePeople">
+    <Elsearch :searchSettings="searchSettings" :searchBtn="searchBtn"></Elsearch>
+    <Eltable :tableHead="tableHead" :tableDatas="tableDatas" :tableSettings="tableSettings" @del="del"></Eltable>
     <Dialog :title="title" :isShow="isShow" :readOnly="readOnly" :dialogs="dialogs" @close="close"></Dialog>
   </div>
 </template>
@@ -15,29 +15,26 @@ export default {
     isShow: false,
     readOnly: true,
     searchSettings: [
-      { placeholder: '请选择被布控人姓名', type: 'input' },
-      { placeholder: '请输入民族', type: 'input' },
-      { placeholder: '请输入证件号码', type: 'input' }
+      { placeholder: '请输入被布控人姓名', type: 'input' },
+      { placeholder: '', type: 'datas' },
+      { placeholder: '请输被布控人证件号码', type: 'input' },
+      { placeholder: '请输入布控姓名', type: 'input' }
     ],
     searchBtn: [
-      { name: '查询', type: 'search' },
-      { name: '新增', type: 'add' }
+      { name: '查询', type: 'search' }
     ],
     tableHead: [
+      { label: '序号', prop: 'input' },
       { label: '被布控人姓名', prop: 'input' },
-      { label: '民族', prop: 'input' },
-      { label: '出生日期', prop: 'input' },
-      { label: '证件号码', prop: 'input' },
-      { label: '籍贯', prop: 'input' },
-      { label: '住址', prop: 'input' }
+      { label: '被布控人证件号', prop: 'input' },
+      { label: '布控时间', prop: 'input' },
+      { label: '布控人姓名', prop: 'input' }
     ],
     tableDatas: Array(5).fill({
       input: '123'
     }),
     tableSettings: [
-      { name: '修改', type: 'modify' },
-      { name: '删除', type: 'delete' },
-      { name: '详情', type: 'detailed' }
+      { name: '解控', type: 'delete' }
     ],
     dialogs: [
       { label: '被布控人姓名', type: 'input' },
@@ -53,28 +50,14 @@ export default {
       { label: '体型特征', type: 'input' },
       { label: '口音', type: 'input' },
       { label: '绰号', type: 'input' },
-      { label: '化名', type: 'input' }
+      { label: '化名', type: 'input' },
+      { label: '取消人员布控原因', type: 'textarea' }
     ]
   }),
   created () { },
   methods: {
-    add (row) {
-      this.title = '被布控人基础信息新增'
-      this.readOnly = false
-      this.isShow = true
-    },
-    modify () {
-      this.title = '被布控人基础信息修改'
-      this.readOnly = false
-      this.isShow = true
-    },
     del (row) {
       console.log(row)
-    },
-    detailed () {
-      this.title = '被布控人基础信息详情'
-      this.readOnly = true
-      this.isShow = true
     },
     close () {
       this.isShow = false
@@ -84,10 +67,9 @@ export default {
 }
 </script>
 <style lang="scss">
-.note {
+.releasePeople {
   width: 100%;
-  padding-right: 0.2rem;
-  box-sizing: border-box;
+  margin-top: 0.2rem;
   .table {
     margin-top: 0.2rem;
   }

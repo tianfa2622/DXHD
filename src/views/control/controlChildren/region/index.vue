@@ -1,5 +1,5 @@
 <template>
-  <div class="personnel">
+  <div class="region">
     <Elsearch :searchSettings="searchSettings" :searchBtn="searchBtn" @add="add"></Elsearch>
     <Eltable :tableHead="tableHead" :tableDatas="tableDatas" :tableSettings="tableSettings" @modify="modify" @del="del" @detailed="detailed"></Eltable>
     <Dialog :title="title" :isShow="isShow" :readOnly="readOnly" :dialogs="dialogs" @close="close"></Dialog>
@@ -15,23 +15,22 @@ export default {
     isShow: false,
     readOnly: true,
     searchSettings: [
-      { placeholder: '选择所属分局', type: 'input' },
-      { placeholder: '请选择派出所', type: 'input' },
-      { placeholder: '请输入预警类型', type: 'input' },
-      { placeholder: '请输入姓名', type: 'input' },
-      { placeholder: '请输入手机号', type: 'input' }
+      { placeholder: '所属区域', type: 'input' },
+      { placeholder: '布控人', type: 'input' },
+      { placeholder: '布控事件', type: 'input' },
+      { placeholder: '请输入布控电话，地球经度及纬度', type: 'input' }
     ],
     searchBtn: [
       { name: '查询', type: 'search' },
       { name: '新增', type: 'add' }
     ],
     tableHead: [
-      { label: '所属分局', prop: 'input' },
-      { label: '所属派出所', prop: 'input' },
-      { label: '预警类型', prop: 'input' },
-      { label: '姓名', prop: 'input' },
-      { label: '手机号码', prop: 'input' },
-      { label: '备注', prop: 'input' }
+      { label: '所属区域', prop: 'input' },
+      { label: '布控人', prop: 'input' },
+      { label: '布控人电话', prop: 'input' },
+      { label: '布控事件', prop: 'input' },
+      { label: '地球经度', prop: 'input' },
+      { label: '地球纬度', prop: 'input' }
     ],
     tableDatas: Array(5).fill({
       input: '123'
@@ -42,23 +41,31 @@ export default {
       { name: '详情', type: 'detailed' }
     ],
     dialogs: [
-      { label: '所属分局', type: 'input' },
-      { label: '所属派出所', type: 'input' },
-      { label: '预警类型', type: 'input' },
-      { label: '姓名', type: 'input' },
-      { label: '手机号', type: 'input' },
-      { label: '备注', type: 'input' }
+      { label: '所属区域', type: 'input' },
+      { label: '区域名称', type: 'input' },
+      { label: '布控开始时间', type: 'input' },
+      { label: '布控结束时间', type: 'input' },
+      { label: '布控事件', type: 'input' },
+      { label: '布控人', type: 'input' },
+      { label: '布控人电话', type: 'input' },
+      { label: '联系人一', type: 'input' },
+      { label: '联系人电话一', type: 'input' },
+      { label: '联系人二', type: 'input' },
+      { label: '联系人电话二', type: 'input' },
+      { label: '事由详情', type: 'input' },
+      { label: '地球经度', type: 'input' },
+      { label: '地球纬度', type: 'input' }
     ]
   }),
   created () { },
   methods: {
     add (row) {
-      this.title = '预警信息新增'
+      this.title = '民警信息新增'
       this.readOnly = false
       this.isShow = true
     },
     modify () {
-      this.title = '预警信息修改'
+      this.title = '民警信息修改'
       this.readOnly = false
       this.isShow = true
     },
@@ -66,7 +73,7 @@ export default {
       console.log(row)
     },
     detailed () {
-      this.title = '预警信息详情'
+      this.title = '民警信息详情'
       this.readOnly = true
       this.isShow = true
     },
@@ -78,15 +85,12 @@ export default {
 }
 </script>
 <style lang="scss">
-.personnel {
+.region {
   width: 100%;
   padding-right: 0.2rem;
   box-sizing: border-box;
   .table {
     margin-top: 0.2rem;
-    border: 1px solid #3e5568;
-    padding: 0.2rem;
-    box-sizing: border-box;
   }
 }
 </style>

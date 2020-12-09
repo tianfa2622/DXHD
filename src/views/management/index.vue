@@ -20,7 +20,9 @@ export default {
       { title: '安保人员管理', id: 3, path: '/management/policeMan' },
       { title: '重点车辆信息管理', id: 4, path: '/management/stressCar/statisticsCar' },
       { title: '社会车辆管理', id: 5, path: '/management/sociologyCar' },
-      { title: '警情数据信息', id: 6, path: '/management/policeDatas' }
+      { title: '警情数据信息', id: 6, path: '/management/policeDatas' },
+      { title: '人员背审信息', id: 7, path: '/management/peopleTrial' },
+      { title: '参会人员信息', id: 8, path: '/management/meeting' }
     ]
   }),
   created () { },
@@ -36,10 +38,13 @@ export default {
   display: flex;
   width: 100%;
   height: 100%;
+  padding-bottom: 1rem;
+  box-sizing: border-box;
   .management_left {
     width: 10%;
     height: 100%;
     text-align: center;
+    overflow: auto;
     .list_content {
       width: 90%;
       height: 0.6rem;
@@ -51,13 +56,12 @@ export default {
       color: #fff;
       cursor: pointer;
       white-space: nowrap;
+      font-size: 0.14rem;
     }
   }
   .management_right {
-    overflow-y: auto;
+    overflow: auto;
     width: calc(100% - 10%);
-    padding-bottom: 1rem;
-    box-sizing: border-box;
     margin: 0.3rem 0 0 0.2rem;
   }
 }

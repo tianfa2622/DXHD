@@ -10,11 +10,16 @@ import Journal from '../views/administration/adminChildren/journal'
 import Fnc from '../views/fnc'
 import Ticket from '../views/fnc/fncChildren/ticket'
 import Papers from '../views/fnc/fncChildren/papers'
+import VideoAccess from '../views/fnc/fncChildren/videoAccess'
 import Control from '../views/control'
 import Note from '../views/control/controlChildren/note'
 import Car from '../views/control/controlChildren/car'
 import Personnel from '../views/control/controlChildren/personnel'
+import Region from '../views/control/controlChildren/region'
 import Release from '../views/control/controlChildren/release'
+import ReleaseCar from '../views/control/controlChildren/release/releaseChildren/releaseCar'
+import ReleasePeople from '../views/control/controlChildren/release/releaseChildren/releasePeople'
+import ReleaseRegion from '../views/control/controlChildren/release/releaseChildren/releaseRegion'
 import Management from '../views/management'
 import PoliceDisplay from '../views/management/managementChildren/policeDisplay'
 import PoliceDisplayCar from '../views/management/managementChildren/policeDisplay/policeDisplayChildren/car'
@@ -27,10 +32,13 @@ import StatisticsCar from '../views/management/managementChildren/stressCar/stre
 import PositionCar from '../views/management/managementChildren/stressCar/stressCarChildren/positionCar'
 import SociologyCar from '../views/management/managementChildren/sociologyCar'
 import PoliceDatas from '../views/management/managementChildren/policeDatas'
+import PeopleTrial from '../views/management/managementChildren/peopleTrial'
+import Meeting from '../views/management/managementChildren/meeting'
 import Business from '../views/business'
 import Scene from '../views/business/businessChildren/scene'
 import Study from '../views/business/businessChildren/study'
 import Regulated from '../views/business/businessChildren/regulated'
+import CircleManagement from '../views/business/businessChildren/circleManagement'
 import Activity from '../views/activity'
 import Apply from '../views/activity/activityChildren/apply'
 import Approval from '../views/activity/activityChildren/approval'
@@ -93,6 +101,10 @@ const routes = [
       {
         path: 'papers',
         component: Papers
+      },
+      {
+        path: 'videoAccess',
+        component: VideoAccess
       }
     ]
   },
@@ -114,8 +126,27 @@ const routes = [
         component: Personnel
       },
       {
+        path: 'region',
+        component: Region
+      },
+      {
         path: 'release',
-        component: Release
+        component: Release,
+        children:
+          [
+            {
+              path: 'releaseCar',
+              component: ReleaseCar
+            },
+            {
+              path: 'releasePeople',
+              component: ReleasePeople
+            },
+            {
+              path: 'releaseRegion',
+              component: ReleaseRegion
+            }
+          ]
       }
     ]
   },
@@ -173,6 +204,14 @@ const routes = [
       {
         path: 'policeDatas',
         component: PoliceDatas
+      },
+      {
+        path: 'peopleTrial',
+        component: PeopleTrial
+      },
+      {
+        path: 'meeting',
+        component: Meeting
       }
     ]
   },
@@ -192,6 +231,10 @@ const routes = [
       {
         path: 'regulated',
         component: Regulated
+      },
+      {
+        path: 'circleManagement',
+        component: CircleManagement
       }
     ]
   },

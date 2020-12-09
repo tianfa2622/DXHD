@@ -24,6 +24,7 @@
             <el-button size="mini" type="text" v-if="item.type === 'delete'" @click="handleDelete(scope.row)">{{ item.name }}</el-button>
             <el-button size="mini" type="text" v-if="item.type === 'detailed'" @click="handleDetailed(scope.row)">{{ item.name }}</el-button>
             <el-button size="mini" type="text" v-if="item.type === 'download'" @click="handleDownload(scope.row)">{{ item.name }}</el-button>
+            <el-button size="mini" type="text" v-if="item.type === 'custom'" @click="handleCustom(scope.row)">{{ item.name }}</el-button>
           </div>
         </template>
       </el-table-column>
@@ -70,6 +71,9 @@ export default {
     handleDownload (row) {
       this.$emit('download', row)
     },
+    handleCustom (row) {
+      this.$emit('custom', row)
+    },
     handleSizeChange (val) {
       console.log(`每页 ${val} 条`)
     },
@@ -101,7 +105,7 @@ export default {
 }
 .el-table__body,
 .el-table__footer,
-.el-table__header{
+.el-table__header {
   width: calc(100% - 2px) !important;
 }
 .el-table th.gutter {

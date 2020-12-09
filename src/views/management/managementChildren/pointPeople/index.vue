@@ -226,7 +226,7 @@ export default {
 <style lang="scss">
 .pointPeople {
   width: 100%;
-  padding: 0.2rem;
+  padding-right: 0.2rem;
   box-sizing: border-box;
   .t {
     width: 100%;
@@ -234,11 +234,11 @@ export default {
     display: flex;
     justify-content: space-between;
     .ring {
-      width: 40%;
+      width: 45%;
       border: 1px solid #797979;
     }
     .line {
-      width: 40%;
+      width: 45%;
     }
   }
   .el-form,
