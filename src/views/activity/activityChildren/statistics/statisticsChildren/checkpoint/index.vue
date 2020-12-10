@@ -6,7 +6,7 @@
       <Bar></Bar>
     </div>
     <div class="pie bar">
-      <h3>危险品数量</h3>
+      <h3>危险品总数统计</h3>
       <Pie></Pie>
     </div>
   </div>

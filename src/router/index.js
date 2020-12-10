@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../store'
-import { showLoading, hideLoading } from '../components/loading'
+// import { showLoading, hideLoading } from '../components/loading'
 import Home from '../views/home'
 import Administration from '../views/administration'
 import Admin from '../views/administration/adminChildren/admin'
@@ -319,10 +319,10 @@ const router = new VueRouter({
 })
 router.beforeEach((to, from, next) => {
   store.commit('setRouterName', to.matched[0].name)
-  showLoading()
-  setTimeout(() => {
-    hideLoading()
-  }, 888)
+  // showLoading()
+  // setTimeout(() => {
+  //   hideLoading()
+  // }, 888)
   next()
   console.log('%c ', 'background: url(https://pic1.zhimg.com/v2-edd414d01c4c0d838f5fd6530c91ea09_r.jpg?source=1940ef5c) no-repeat center;padding-left:800px;padding-bottom: 500px;background-size: 100% 100%;')
 })

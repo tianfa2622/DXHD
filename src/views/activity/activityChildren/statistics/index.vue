@@ -22,6 +22,8 @@ export default {
 </script>
 <style lang="scss">
 .statistics {
+   padding-right: 0.2rem;
+  box-sizing: border-box;
   .el-button {
     background-color: #07275b;
     border: none;

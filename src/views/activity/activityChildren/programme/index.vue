@@ -1,7 +1,7 @@
 <template>
   <div class="programme">
-    <Elsearch :searchSettings="searchSettings" :searchBtn="searchBtn"></Elsearch>
-    <Eltable :tableHead="tableHead" :tableSettings="tableSettings" :tableDatas="tableDatas" @detailed="detailed"></Eltable>
+    <Elsearch :searchSettings="searchSettings" :searchBtn="searchBtn" @add="add"></Elsearch>
+    <Eltable :tableHead="tableHead" :tableSettings="tableSettings" :tableDatas="tableDatas" @detailed="detailed" @modify="modify" @del="del"></Eltable>
   </div>
 </template>
 <script>
@@ -17,7 +17,8 @@ export default {
       { placeholder: '请输入活动编码、活动名称、场馆名称', type: 'input' }
     ],
     searchBtn: [
-      { name: '查询', type: 'search' }
+      { name: '查询', type: 'search' },
+      { name: '新增', type: 'add' }
     ],
     tableHead: [
       { label: '所属分局', prop: 'input' },
@@ -34,6 +35,8 @@ export default {
       input: '123'
     }),
     tableSettings: [
+      { name: '修改', type: 'modify' },
+      { name: '删除', type: 'delete' },
       { name: '详情', type: 'detailed' }
     ]
   }),
@@ -43,6 +46,19 @@ export default {
       this.$router.push({
         path: `/activity/programme/${row}`
       })
+    },
+    add (row) {
+      this.$router.push({
+        path: `/activity/programme/${row}`
+      })
+    },
+    modify (row) {
+      this.$router.push({
+        path: `/activity/programme/${row}`
+      })
+    },
+    del (row) {
+      console.log(row)
     }
   },
   components: { Elsearch, Eltable }
@@ -51,6 +67,8 @@ export default {
 <style lang="scss">
 .programme {
   width: 100%;
+   padding-right: 0.2rem;
+  box-sizing: border-box;
   .table {
     margin-top: 0.2rem;
     width: 100%;

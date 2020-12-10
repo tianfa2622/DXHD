@@ -18,7 +18,37 @@
             <el-input v-model="input" readonly></el-input>
             <el-input v-model="input" readonly></el-input>
           </div>
-          <div class="goBack">
+          <div class="goBack"  v-if="!clickRight">
+            <div class="go">
+              <div class="img">
+                <img src="@/assets/business/u1175.png" alt="" />
+                <span>进</span>
+              </div>
+              <span>4564</span>
+            </div>
+            <div class="back">
+              <div class="img">
+                <img src="@/assets/business/u1397.png" alt="" />
+                <span>出</span>
+              </div>
+              <span>4564</span>
+            </div>
+          </div>
+          <div class="sums"  v-if="clickRight">
+            <div class="sum">
+              共有安保人员<span>90</span>人
+            </div>
+          </div>
+        </div>
+        <div class="region_cen">
+          <div class="time">
+            <el-input v-model="input" readonly></el-input>
+            <el-input v-model="input" readonly></el-input>
+            :
+            <el-input v-model="input" readonly></el-input>
+            <el-input v-model="input" readonly></el-input>
+          </div>
+          <div class="goBack" v-if="!clickRight">
             <div class="go">
               <div class="img">
                 <img src="@/assets/business/u1175.png" alt="" />
@@ -35,7 +65,7 @@
             </div>
           </div>
         </div>
-        <h3>A区：可疑人员人数为 0人</h3>
+        <h3  v-if="!clickRight">A区：可疑人员人数为 <span>0</span> 人</h3>
       </div>
       <div class="region">
         <h3>B区</h3>
@@ -47,7 +77,37 @@
             <el-input v-model="input" readonly></el-input>
             <el-input v-model="input" readonly></el-input>
           </div>
-          <div class="goBack">
+          <div class="goBack"  v-if="!clickRight" >
+            <div class="go">
+              <div class="img">
+                <img src="@/assets/business/u1175.png" alt="" />
+                <span>进</span>
+              </div>
+              <span>4564</span>
+            </div>
+            <div class="back">
+              <div class="img">
+                <img src="@/assets/business/u1397.png" alt="" />
+                <span>出</span>
+              </div>
+              <span>4564</span>
+            </div>
+          </div>
+          <div class="sums"  v-if="clickRight">
+            <div class="sum">
+              共有安保人员<span>90</span>人
+            </div>
+          </div>
+        </div>
+         <div class="region_cen">
+          <div class="time">
+            <el-input v-model="input" readonly></el-input>
+            <el-input v-model="input" readonly></el-input>
+            :
+            <el-input v-model="input" readonly></el-input>
+            <el-input v-model="input" readonly></el-input>
+          </div>
+          <div class="goBack"  v-if="!clickRight">
             <div class="go">
               <div class="img">
                 <img src="@/assets/business/u1175.png" alt="" />
@@ -64,7 +124,7 @@
             </div>
           </div>
         </div>
-        <h3>B区：可疑人员人数为 0人</h3>
+        <h3  v-if="!clickRight">B区：可疑人员人数为 <span>0</span> 人</h3>
       </div>
       <div class="region">
         <h3>C区</h3>
@@ -76,7 +136,37 @@
             <el-input v-model="input" readonly></el-input>
             <el-input v-model="input" readonly></el-input>
           </div>
-          <div class="goBack">
+          <div class="goBack"  v-if="!clickRight">
+            <div class="go">
+              <div class="img">
+                <img src="@/assets/business/u1175.png" alt="" />
+                <span>进</span>
+              </div>
+              <span>4564</span>
+            </div>
+            <div class="back">
+              <div class="img">
+                <img src="@/assets/business/u1397.png" alt="" />
+                <span>出</span>
+              </div>
+              <span>4564</span>
+            </div>
+          </div>
+          <div class="sums"  v-if="clickRight">
+            <div class="sum">
+              共有安保人员<span>90</span>人
+            </div>
+          </div>
+        </div>
+         <div class="region_cen">
+          <div class="time">
+            <el-input v-model="input" readonly></el-input>
+            <el-input v-model="input" readonly></el-input>
+            :
+            <el-input v-model="input" readonly></el-input>
+            <el-input v-model="input" readonly></el-input>
+          </div>
+          <div class="goBack"  v-if="!clickRight">
             <div class="go">
               <div class="img">
                 <img src="@/assets/business/u1175.png" alt="" />
@@ -93,7 +183,7 @@
             </div>
           </div>
         </div>
-        <h3>B区：可疑人员人数为 0人</h3>
+        <h3  v-if="!clickRight">C区：可疑人员人数为 <span>0</span> 人</h3>
       </div>
       <h2>{{ dialogs.title }}</h2>
       <div class="bar">
@@ -109,6 +199,7 @@ export default {
     title: '',
     Show: false,
     input: '0',
+    clickRight: false,
     dialogs: {}
   }),
   created () { },
@@ -116,16 +207,19 @@ export default {
     leftShow () {
       this.title = '各区域演唱会人流量统计'
       this.dialogs.title = '场馆24小时人流量总量'
+      this.clickRight = false
       this.Show = true
     },
     centerShow () {
       this.title = '各区域演唱会车流量统计'
       this.dialogs.title = '场馆24小时车  流量总量'
+      this.clickRight = false
       this.Show = true
     },
     rightShow () {
       this.title = '各区域安保圈层管理'
       this.dialogs.title = '场馆24小安保总量'
+      this.clickRight = true
       this.Show = true
     }
   },
@@ -160,6 +254,9 @@ export default {
           h3 {
             color: #fff;
             font-size: 0.16rem;
+            span{
+              border-bottom: 1px solid #fff;
+            }
           }
           .region_cen {
             display: flex;
@@ -168,6 +265,7 @@ export default {
               width: 50%;
               display: flex;
               color: #fff;
+              line-height: 0.3rem;
               .el-input {
                 width: 0.4rem;
                 height: 0.3rem;
@@ -211,6 +309,19 @@ export default {
                   color: #fff;
                   margin-left: 0.02rem;
                 }
+              }
+            }
+            .sums{
+              width: 50%;
+              position: relative;
+              .sum{
+                width: 100%;
+                height: 0.6rem;
+                line-height: 0.6rem;
+                text-align: center;
+                background-color: #050B19;
+                position: absolute;
+                color: #fff;
               }
             }
           }

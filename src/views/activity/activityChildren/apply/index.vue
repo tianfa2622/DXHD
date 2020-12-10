@@ -120,6 +120,9 @@ export default {
           width: auto;
         }
       }
+      .el-form-item:last-child{
+        width: 100%;
+      }
     }
     .apply_upload {
       width: 100%;

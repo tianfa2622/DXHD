@@ -120,6 +120,8 @@ export default {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  padding-right: 0.2rem;
+  box-sizing: border-box;
   .el-form {
     height: 0.4rem;
   }

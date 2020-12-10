@@ -39,6 +39,8 @@ export default {
 <style lang="scss">
 .trial {
   width: 100%;
+   padding-right: 0.2rem;
+  box-sizing: border-box;
   .el-form {
     margin-bottom: 0.2rem;
   }
