@@ -1,13 +1,12 @@
 <template>
   <div class="detailed">
-    <div class="backBtn" @click="$router.go(-1)">
-      <img src="@/assets/activity/fh.png" alt="" />
-      <span>返回上一页</span>
+    <div class="detailed_titleDiv">
+      <h3 class="detailed_title divTitle">
+        <img src="@/assets/business/u2785.svg" alt="" />
+        <span>安保方案</span>
+      </h3>
+      <img class="titleDivImg" @click="$router.go(-1)" src="@/assets/activity/fh.png" alt="" />
     </div>
-    <h3 class="detailed_title">
-      <img src="@/assets/business/u2785.svg" alt="" />
-      <span>安保方案</span>
-    </h3>
     <Elsearch :searchSettings="searchSettings[0]" :searchLabelWidth="searchLabelWidth"></Elsearch>
     <h3 class="detailed_title body_title">
       <span>安保任务基本信息</span>
@@ -122,19 +121,21 @@ export default {
   padding-bottom: 1rem;
   box-sizing: border-box;
   overflow: auto;
-  .backBtn {
-    width: 100%;
-    height: 0.2rem;
-    color: #fff;
-    cursor: pointer;
-    img {
-      width: 0.3rem;
-      height: 100%;
+  .detailed_titleDiv {
+    width: 98%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.01rem solid #3e5568;
+    .divTitle {
+      border-bottom: none;
     }
-    span {
-      height: 0.2rem;
-      display: inline-block;
-      vertical-align: middle;
+    .titleDivImg {
+      width: 0.8rem;
+      height: 0.6rem;
+      cursor: pointer;
+      padding:0.1rem;
+      box-sizing: border-box;
     }
   }
   .detailed_title {

@@ -248,6 +248,7 @@ export default {
   }
   .el-dialog__wrapper {
     .el-dialog {
+      left: -20%;
       .el-dialog__body {
         .region {
           margin-bottom: 0.2rem;

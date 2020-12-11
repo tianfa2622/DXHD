@@ -38,7 +38,6 @@ export default {
           type: 'category',
           data: ['08:00', '11:00', '13:00', '15:00', '17:00'],
           axisLine: {
-            show: true,
             lineStyle: {
               color: '#fff',
               width: '2'

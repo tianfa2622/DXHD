@@ -15,6 +15,7 @@
         textAlign: 'center',
         background: 'rgb(5,33,73)',
       }"
+      @cell-click="cellClick"
     >
       <el-table-column :prop="item.prop" :label="item.label" v-for="(item, index) in tableHead" :key="index"> </el-table-column>
       <el-table-column label="操作" width="200" v-if="operationShow">
@@ -79,6 +80,9 @@ export default {
     },
     handleCurrentChange (val) {
       console.log(`当前页: ${val}`)
+    },
+    cellClick (row, column, cell, event) {
+      this.$emit('cellClick', row, column)
     }
   }
 }

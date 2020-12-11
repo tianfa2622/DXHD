@@ -13,58 +13,21 @@
     <el-dialog :title="title" :visible.sync="isShow" center>
       <h3>基础信息</h3>
       <el-form ref="form" :model="form" label-width="auto">
-        <el-form-item :label="item.label" v-for="(item, index) in dialogs[0]" :key="index">
-          <el-input v-model="form.name" :readonly="readOnly" :type="item.type"></el-input>
+        <el-form-item :label="item.label" v-for="(item, index) in dialogsTitle" :key="index">
+          <el-input v-if="item.type == 'input'" v-model="form.name" :readonly="readOnly" :type="item.type"></el-input>
+          <el-select v-if="item.type == 'select'" v-model="form.lx" :readonly="readOnly" placeholder="请选择" @change="clickSelect">
+            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          </el-select>
         </el-form-item>
       </el-form>
-      <h3>民航出行</h3>
-      <el-form ref="form" :model="form" label-width="auto">
-        <el-form-item :label="item.label" v-for="(item, index) in dialogs[1]" :key="index">
-          <el-input v-model="form.name" :readonly="readOnly" :type="item.type"></el-input>
-        </el-form-item>
-      </el-form>
-      <h3>铁路出行</h3>
-      <el-form ref="form" :model="form" label-width="auto">
-        <el-form-item :label="item.label" v-for="(item, index) in dialogs[2]" :key="index">
-          <el-input v-model="form.name" :readonly="readOnly" :type="item.type"></el-input>
-        </el-form-item>
-      </el-form>
-      <h3>公路客运</h3>
-      <el-form ref="form" :model="form" label-width="auto">
-        <el-form-item :label="item.label" v-for="(item, index) in dialogs[3]" :key="index">
-          <el-input v-model="form.name" :readonly="readOnly" :type="item.type"></el-input>
-        </el-form-item>
-      </el-form>
-      <h3>轮渡出行</h3>
-      <el-form ref="form" :model="form" label-width="auto">
-        <el-form-item :label="item.label" v-for="(item, index) in dialogs[4]" :key="index">
-          <el-input v-model="form.name" :readonly="readOnly" :type="item.type"></el-input>
-        </el-form-item>
-      </el-form>
-      <h3>公安检查站</h3>
-      <el-form ref="form" :model="form" label-width="auto">
-        <el-form-item :label="item.label" v-for="(item, index) in dialogs[5]" :key="index">
-          <el-input v-model="form.name" :readonly="readOnly" :type="item.type"></el-input>
-        </el-form-item>
-      </el-form>
-      <h3>旅馆住宿</h3>
-      <el-form ref="form" :model="form" label-width="auto">
-        <el-form-item :label="item.label" v-for="(item, index) in dialogs[6]" :key="index">
-          <el-input v-model="form.name" :readonly="readOnly" :type="item.type"></el-input>
-        </el-form-item>
-      </el-form>
-      <h3>网吧上网</h3>
-      <el-form ref="form" :model="form" label-width="auto">
-        <el-form-item :label="item.label" v-for="(item, index) in dialogs[7]" :key="index">
-          <el-input v-model="form.name" :readonly="readOnly" :type="item.type"></el-input>
-        </el-form-item>
-      </el-form>
-      <h3>人像识别</h3>
-      <el-form ref="form" :model="form" label-width="auto">
-        <el-form-item :label="item.label" v-for="(item, index) in dialogs[8]" :key="index">
-          <el-input v-model="form.name" :readonly="readOnly" :type="item.type"></el-input>
-        </el-form-item>
-      </el-form>
+      <div v-show="Show">
+        <h3>{{ h3 }}</h3>
+        <el-form ref="form" :model="form" label-width="auto">
+          <el-form-item :label="item.label" v-for="(item, index) in dialogs" :key="index">
+            <el-input v-model="form.name" :readonly="readOnly" :type="item.type"></el-input>
+          </el-form-item>
+        </el-form>
+      </div>
     </el-dialog>
   </div>
 </template>
@@ -76,6 +39,8 @@ import BrokenLine from '@/components/management_com/pointPeople/line'
 export default {
   data: () => ({
     title: '',
+    h3: '',
+    Show: false,
     isShow: false,
     readOnly: true,
     searchSettings: [
@@ -102,101 +67,63 @@ export default {
       { name: '删除', type: 'delete' },
       { name: '详情', type: 'detailed' }
     ],
-    dialogs: [
-      [
-        { label: '常用证件代码', type: 'input' },
-        { label: '证件号码', type: 'input' },
-        { label: '公民身份证号码', type: 'input' },
-        { label: '姓名', type: 'input' },
-        { label: '性别代码', type: 'input' },
-        { label: '国籍代码', type: 'input' },
-        { label: '民族代码', type: 'input' },
-        { label: '动态信息类型', type: 'select' }
-      ],
-      [
-        { label: '民航出行', type: 'input' },
-        { label: '航班号', type: 'input' },
-        { label: '座位号', type: 'input' },
-        { label: '出发日期', type: 'input' },
-        { label: '出发时间', type: 'input' },
-        { label: '机场代码', type: 'input' },
-        { label: '到达日期', type: 'input' },
-        { label: '到达时间', type: 'input' },
-        { label: '机场代码', type: 'input' }
-      ],
-      [
-        { label: '铁路出行', type: 'input' },
-        { label: '车次', type: 'input' },
-        { label: '车厢号', type: 'input' },
-        { label: '座位号', type: 'input' },
-        { label: '出发日期', type: 'input' },
-        { label: '出发时间', type: 'input' },
-        { label: '出发车站', type: 'input' },
-        { label: '到达日期', type: 'input' },
-        { label: '到达时间', type: 'input' },
-        { label: '到达车站', type: 'input' }
-      ],
-      [
-        { label: '公路客运', type: 'input' },
-        { label: '客运站', type: 'input' },
-        { label: '客运编号', type: 'input' },
-        { label: '座位号', type: 'input' },
-        { label: '出发日期', type: 'input' },
-        { label: '出发时间', type: 'input' },
-        { label: '客运站', type: 'input' },
-        { label: '到达日期', type: 'input' },
-        { label: '到达时间', type: 'input' },
-        { label: '客运站', type: 'input' }
-      ],
-      [
-        { label: '轮渡出行', type: 'input' },
-        { label: '轮渡号', type: 'input' },
-        { label: '出发日期', type: 'input' },
-        { label: '出发时间', type: 'input' },
-        { label: '出发码头', type: 'input' },
-        { label: '到达日期', type: 'input' },
-        { label: '到达时间', type: 'input' },
-        { label: '到达码头', type: 'input' }
-      ],
-      [
-        { label: '公安检查站', type: 'input' },
-        { label: '检查站编码', type: 'input' },
-        { label: '检查站位置', type: 'input' },
-        { label: '查验时间', type: 'input' },
-        { label: '出入类型', type: 'input' }
-      ],
-      [
-        { label: '旅馆住宿', type: 'input' },
-        { label: '旅馆编号', type: 'input' },
-        { label: '旅馆名称', type: 'input' },
-        { label: '入住房号', type: 'input' },
-        { label: '入住时间', type: 'input' },
-        { label: '退房时间', type: 'input' }
-      ],
-      [
-        { label: '网吧上网', type: 'input' },
-        { label: '营业场所代码', type: 'input' },
-        { label: '营业场所', type: 'input' },
-        { label: '单位名称', type: 'input' },
-        { label: '地址名称', type: 'input' },
-        { label: '开始时间', type: 'input' },
-        { label: '结束时间', type: 'input' }
-      ],
-      [
-        { label: '人像识别', type: 'input' },
-        { label: '设备类型', type: 'input' },
-        { label: '视屏设备编码', type: 'input' },
-        { label: '设备名称', type: 'input' },
-        { label: '监视方向', type: 'input' },
-        { label: '设备地址', type: 'input' },
-        { label: '抓拍时间', type: 'input' },
-        { label: '图片URL', type: 'input' },
-        { label: '地球经度', type: 'input' },
-        { label: '地球纬度', type: 'input' },
-        { label: '采集时间', type: 'input' },
-        { label: '信息入库时间', type: 'input' }
-      ]
+    dialogsTitle: [
+      { label: '常用证件代码', type: 'input' },
+      { label: '证件号码', type: 'input' },
+      { label: '公民身份证号码', type: 'input' },
+      { label: '姓名', type: 'input' },
+      { label: '性别代码', type: 'input' },
+      { label: '国籍代码', type: 'input' },
+      { label: '民族代码', type: 'input' },
+      { label: '动态信息类型', type: 'select' }
     ],
+    dialogs: [],
+    options: [{
+      value: '1',
+      label: '民航旅客订票'
+    }, {
+      value: '2',
+      label: '民航旅客离岗'
+    }, {
+      value: '3',
+      label: '民航旅客退票'
+    }, {
+      value: '4',
+      label: '铁路订票'
+    }, {
+      value: '5',
+      label: '铁路乘车'
+    }, {
+      value: '6',
+      label: '铁路退票'
+    }, {
+      value: '7',
+      label: '公路客运购票'
+    }, {
+      value: '8',
+      label: '公路客运退票'
+    }, {
+      value: '9',
+      label: '公路客运验票'
+    }, {
+      value: '10',
+      label: '公安检查站人员检查'
+    }, {
+      value: '11',
+      label: '旅客住宿'
+    }, {
+      value: '12',
+      label: '轮渡订票'
+    }, {
+      value: '13',
+      label: '轮渡退票'
+    }, {
+      value: '14',
+      label: '网吧上网'
+    }, {
+      value: '15',
+      label: '人像识别'
+    }],
     form: {}
   }),
   created () { },
@@ -218,6 +145,137 @@ export default {
       this.title = '重点人员信息详情'
       this.readOnly = true
       this.isShow = true
+    },
+    clickSelect () {
+      console.log(this.form.lx)
+      const dialogs = [
+        [
+          { label: '常用证件代码', type: 'input' },
+          { label: '证件号码', type: 'input' },
+          { label: '公民身份证号码', type: 'input' },
+          { label: '姓名', type: 'input' },
+          { label: '性别代码', type: 'input' },
+          { label: '国籍代码', type: 'input' },
+          { label: '民族代码', type: 'input' },
+          { label: '动态信息类型', type: 'select' }
+        ],
+        [
+          { label: '民航出行', type: 'input' },
+          { label: '航班号', type: 'input' },
+          { label: '座位号', type: 'input' },
+          { label: '出发日期', type: 'input' },
+          { label: '出发时间', type: 'input' },
+          { label: '机场代码', type: 'input' },
+          { label: '到达日期', type: 'input' },
+          { label: '到达时间', type: 'input' },
+          { label: '机场代码', type: 'input' }
+        ],
+        [
+          { label: '铁路出行', type: 'input' },
+          { label: '车次', type: 'input' },
+          { label: '车厢号', type: 'input' },
+          { label: '座位号', type: 'input' },
+          { label: '出发日期', type: 'input' },
+          { label: '出发时间', type: 'input' },
+          { label: '出发车站', type: 'input' },
+          { label: '到达日期', type: 'input' },
+          { label: '到达时间', type: 'input' },
+          { label: '到达车站', type: 'input' }
+        ],
+        [
+          { label: '公路客运', type: 'input' },
+          { label: '客运站', type: 'input' },
+          { label: '客运编号', type: 'input' },
+          { label: '座位号', type: 'input' },
+          { label: '出发日期', type: 'input' },
+          { label: '出发时间', type: 'input' },
+          { label: '客运站', type: 'input' },
+          { label: '到达日期', type: 'input' },
+          { label: '到达时间', type: 'input' },
+          { label: '客运站', type: 'input' }
+        ],
+        [
+          { label: '轮渡出行', type: 'input' },
+          { label: '轮渡号', type: 'input' },
+          { label: '出发日期', type: 'input' },
+          { label: '出发时间', type: 'input' },
+          { label: '出发码头', type: 'input' },
+          { label: '到达日期', type: 'input' },
+          { label: '到达时间', type: 'input' },
+          { label: '到达码头', type: 'input' }
+        ],
+        [
+          { label: '公安检查站', type: 'input' },
+          { label: '检查站编码', type: 'input' },
+          { label: '检查站位置', type: 'input' },
+          { label: '查验时间', type: 'input' },
+          { label: '出入类型', type: 'input' }
+        ],
+        [
+          { label: '旅馆住宿', type: 'input' },
+          { label: '旅馆编号', type: 'input' },
+          { label: '旅馆名称', type: 'input' },
+          { label: '入住房号', type: 'input' },
+          { label: '入住时间', type: 'input' },
+          { label: '退房时间', type: 'input' }
+        ],
+        [
+          { label: '网吧上网', type: 'input' },
+          { label: '营业场所代码', type: 'input' },
+          { label: '营业场所', type: 'input' },
+          { label: '单位名称', type: 'input' },
+          { label: '地址名称', type: 'input' },
+          { label: '开始时间', type: 'input' },
+          { label: '结束时间', type: 'input' }
+        ],
+        [
+          { label: '人像识别', type: 'input' },
+          { label: '设备类型', type: 'input' },
+          { label: '视屏设备编码', type: 'input' },
+          { label: '设备名称', type: 'input' },
+          { label: '监视方向', type: 'input' },
+          { label: '设备地址', type: 'input' },
+          { label: '抓拍时间', type: 'input' },
+          { label: '图片URL', type: 'input' },
+          { label: '地球经度', type: 'input' },
+          { label: '地球纬度', type: 'input' },
+          { label: '采集时间', type: 'input' },
+          { label: '信息入库时间', type: 'input' }
+        ]
+      ]
+      if (this.form.lx === '1' || this.form.lx === '2' || this.form.lx === '3') {
+        this.h3 = '民航出行'
+        this.dialogs = dialogs[1]
+        this.Show = true
+      } else if (this.form.lx === '4' || this.form.lx === '5' || this.form.lx === '6') {
+        this.h3 = '铁路出行'
+        this.dialogs = dialogs[2]
+        this.Show = true
+      } else if (this.form.lx === '7' || this.form.lx === '8' || this.form.lx === '9') {
+        this.h3 = '公路客运'
+        this.dialogs = dialogs[3]
+        this.Show = true
+      } else if (this.form.lx === '10') {
+        this.h3 = '公安检查站人员检查'
+        this.dialogs = dialogs[5]
+        this.Show = true
+      } else if (this.form.lx === '11') {
+        this.h3 = '旅客住宿'
+        this.dialogs = dialogs[6]
+        this.Show = true
+      } else if (this.form.lx === '12' || this.form.lx === '13') {
+        this.h3 = '轮渡订票'
+        this.dialogs = dialogs[4]
+        this.Show = true
+      } else if (this.form.lx === '14') {
+        this.h3 = '网吧上网'
+        this.dialogs = dialogs[7]
+        this.Show = true
+      } else if (this.form.lx === '15') {
+        this.h3 = '人像识别'
+        this.dialogs = dialogs[8]
+        this.Show = true
+      }
     }
   },
   components: { Elsearch, Eltable, Ring, BrokenLine }
@@ -267,7 +325,7 @@ export default {
             width: 30% !important;
             .el-form-item__label-wrap {
               .el-form-item__label {
-                width: 1.4rem !important;
+                width: 1.3rem !important;
               }
             }
           }

@@ -1,7 +1,7 @@
 <template>
   <el-form ref="form" :model="form" :label-width="searchLabelWidth == undefined ? 'auto' : searchLabelWidth">
     <el-form-item v-for="(item, index) in searchSettings" :key="index" :label="item.label != '' ? item.label : ''">
-      <el-input v-model="form.name" :placeholder="item.placeholder" v-if="item.type === 'input'"></el-input>
+      <el-input v-model="form.name" :placeholder="item.placeholder" :readOnly="readOnly" v-if="item.type === 'input'"></el-input>
       <el-select clearable v-if="item.type === 'select'" v-model="form.name" :placeholder="item.placeholder">
         <!-- <el-option v-for="op in items.options" :label="op.label" :value="op.value" :key="op.value"></el-option> -->
       </el-select>
@@ -17,7 +17,7 @@
 </template>
 <script>
 export default {
-  props: ['searchSettings', 'searchBtn', 'searchLabelWidth'],
+  props: ['searchSettings', 'searchBtn', 'searchLabelWidth', 'readOnly'],
   data: () => ({
     form: {}
   }),

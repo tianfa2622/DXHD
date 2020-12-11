@@ -12,7 +12,7 @@ export default {
     Bar () {
       const Bar = this.$echarts.init(document.getElementById('Bar_rt'))
       Bar.setOption({
-        color: ['#333366', '#BCBCBC'],
+        color: ['#333366'],
         title: {
           text: '设\n备\n在\n线\n率\n统\n计',
           textVerticalAlign: 'top',
@@ -52,26 +52,13 @@ export default {
           }
         },
         series: [{
-          name: '贺龙体育馆第一区域',
           type: 'bar',
-          stack: '总量',
           barWidth: '50%',
           label: {
             show: true,
             position: 'inside'
           },
           data: [60, 72, 50, 38, 72]
-        },
-        {
-          name: '贺龙体育馆第二区域',
-          type: 'bar',
-          stack: '总量',
-          barWidth: '50%',
-          label: {
-            show: true,
-            position: 'inside'
-          },
-          data: [40, 38, 50, 72, 38]
         }]
       })
     }

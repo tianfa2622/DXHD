@@ -46,6 +46,8 @@ import Programme from '../views/activity/activityChildren/programme'
 import ProgrammeDetailed from '../views/activity/activityChildren/programme/detailed'
 import Trial from '../views/activity/activityChildren/trial'
 import File from '../views/activity/activityChildren/file'
+import ActivityPoliceMan from '../views/activity/activityChildren/man/policeMan.vue'
+import ActivityWorkMan from '../views/activity/activityChildren/man/workMan.vue'
 import ActivityArchives from '../views/activity/activityChildren/file/fileChildren/activityArchives'
 import VenueArchives from '../views/activity/activityChildren/file/fileChildren/venueArchives'
 import ActivityJournal from '../views/activity/activityChildren/file/fileChildren/activityJournal'
@@ -298,6 +300,14 @@ const routes = [
             component: Watchman
           }
         ]
+      },
+      {
+        path: 'ActivityPoliceMan/:id',
+        component: ActivityPoliceMan
+      },
+      {
+        path: 'ActivityMan/:id',
+        component: ActivityWorkMan
       }
     ]
   },
@@ -315,6 +325,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 router.beforeEach((to, from, next) => {

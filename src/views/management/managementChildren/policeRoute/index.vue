@@ -2,14 +2,19 @@
   <div class="policeRoute">
     <Elsearch :searchSettings="searchSettings" :searchBtn="searchBtn" @add="add"></Elsearch>
     <Eltable :tableHead="tableHead" :tableDatas="tableDatas" :tableSettings="tableSettings" @modify="modify" @del="del" @detailed="detailed"></Eltable>
-    <BdMap :center="center" :zoom="zoom"></BdMap>
-    <Dialog :title="title" :isShow="isShow" :readOnly="readOnly" :dialogs="dialogs" @close="close"></Dialog>
+    <div class="policeRoute_foot" v-show="isShow">
+      <BdMap :center="center" :zoom="zoom"></BdMap>
+      <div class="foot_table">
+        <h3>{{ title }}</h3>
+        <Elsearch :searchSettings="dialogs" :readOnly="readOnly"></Elsearch>
+        <el-button type="primary" v-show="!readOnly" @click="isShow = false">保存</el-button>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 import Elsearch from '@/components/search'
 import Eltable from '@/components/table'
-import Dialog from '@/components/dialog'
 import BdMap from '@/components/management_com/map'
 export default {
   data: () => ({
@@ -56,7 +61,7 @@ export default {
     zoom: 17
   }),
   created () { },
-  components: { Elsearch, Eltable, Dialog, BdMap },
+  components: { Elsearch, Eltable, BdMap },
   methods: {
     add (row) {
       this.title = '安保路线新增'
@@ -91,9 +96,46 @@ export default {
   .table {
     margin: 0.2rem 0;
   }
-  .bm-view {
-    width: 50%;
+  .policeRoute_foot {
+    width: 100%;
     height: 4rem;
+    display: flex;
+    justify-content: space-between;
+    .bm-view,
+    .foot_table {
+      width: 45%;
+    }
+    .foot_table {
+      background-color: #010f2e;
+      text-align: center;
+      h3 {
+        color: #4cbfbf;
+        font-size: 0.16rem;
+        margin-bottom: 0.2rem;
+        background-color: #00173c;
+        height: 0.4rem;
+        line-height: 0.4rem;
+      }
+      .el-form {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 0.2rem;
+        .el-form-item {
+          width: 45%;
+          margin-bottom: 0.2rem;
+          .el-form-item__label-wrap {
+            // margin-left: 28px;
+            .el-form-item__label {
+              width: 1.4rem !important;
+            }
+          }
+          .el-form-item__content {
+            margin-left: 1.4rem;
+            width: auto;
+          }
+        }
+      }
+    }
   }
 }
 </style>
