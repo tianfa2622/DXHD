@@ -25,10 +25,50 @@
       <span>应急处置预案</span>
     </h3>
     <Elsearch :searchSettings="searchSettings[3]" :searchLabelWidth="searchLabelWidth"></Elsearch>
-    <h3 class="detailed_title body_title">
-      <span>查看文件</span>
-    </h3>
-    <Eltable class="downloadTable" :tableHead="tableHead[2]" :tableSettings="tableSettings" :tableDatas="tableDatas" @del="del" @handleDownload="handleDownload"></Eltable>
+    <div class="addDiv" v-if="isAdd">
+      <h3 class="detailed_title body_title">
+        <span>上传文件</span>
+      </h3>
+      <p>(上传安保活动方案及突发事件应急救援预案文档)</p>
+      <el-upload
+        class="upload-demo"
+        action="https://jsonplaceholder.typicode.com/posts/"
+        :on-preview="handlePreview"
+        :on-remove="handleRemove"
+        :before-remove="beforeRemove"
+        multiple
+        :limit="3"
+        :on-exceed="handleExceed"
+        :file-list="fileList"
+      >
+        <el-button size="small" type="primary">点击上传</el-button>
+      </el-upload>
+    </div>
+    <div v-else>
+      <div class="addDiv" v-if="isModify">
+        <h3 class="detailed_title body_title">
+          <span>上传文件</span>
+        </h3>
+        <p>(上传安保活动方案及突发事件应急救援预案文档)</p>
+        <el-upload
+          class="upload-demo"
+          action="https://jsonplaceholder.typicode.com/posts/"
+          :on-preview="handlePreview"
+          :on-remove="handleRemove"
+          :before-remove="beforeRemove"
+          multiple
+          :limit="3"
+          :on-exceed="handleExceed"
+          :file-list="fileList"
+        >
+          <el-button size="small" type="primary">点击上传</el-button>
+        </el-upload>
+      </div>
+      <h3 class="detailed_title body_title">
+        <span>查看文件</span>
+      </h3>
+      <Eltable class="downloadTable" :tableHead="tableHead[2]" :tableSettings="tableSettings" :tableDatas="tableDatas" @del="del" @handleDownload="handleDownload"></Eltable>
+    </div>
   </div>
 </template>
 <script>
@@ -36,7 +76,10 @@ import Elsearch from '@/components/search'
 import Eltable from '@/components/table'
 export default {
   data: () => ({
+    isAdd: false,
+    isModify: false,
     searchLabelWidth: '1.2rem',
+    fileList: [],
     searchSettings: [
       [
         { placeholder: '活动编码', type: 'input', label: '活动编码' },
@@ -99,14 +142,40 @@ export default {
     ]
   }),
   created () {
-    console.log(this.$route.params)
+    this.init(this.$route.params)
   },
   methods: {
+    init (params) {
+      if (params.status === 'add') {
+        this.isAdd = true
+      } else if (params.status === 'modify') {
+        this.isModify = true
+      } else if (params.status === 'detailed') {
+        console.log(params.id)
+      } else {
+        this.$message.error('数据获取失败')
+        setTimeout(() => {
+          this.$router.push('/activity/programme')
+        }, 888)
+      }
+    },
     del (row) {
       console.log(row)
     },
     handleDownload (row) {
       console.log(row)
+    },
+    handleRemove (file, fileList) {
+      console.log(file, fileList)
+    },
+    handlePreview (file) {
+      console.log(file)
+    },
+    handleExceed (files, fileList) {
+      this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`)
+    },
+    beforeRemove (file, fileList) {
+      return this.$confirm(`确定移除 ${file.name}？`)
     }
   },
   components: { Elsearch, Eltable }
@@ -134,7 +203,7 @@ export default {
       width: 0.8rem;
       height: 0.6rem;
       cursor: pointer;
-      padding:0.1rem;
+      padding: 0.1rem;
       box-sizing: border-box;
     }
   }
@@ -189,6 +258,16 @@ export default {
     .table {
       margin-top: 0.1rem;
       width: 100%;
+    }
+  }
+  .addDiv {
+    p {
+      color: #fff;
+      margin: 0.2rem;
+    }
+    .upload-demo {
+      width: 30%;
+      margin: 0.2rem;
     }
   }
   .downloadTable {

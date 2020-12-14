@@ -44,17 +44,28 @@ export default {
   methods: {
     detailed (row) {
       this.$router.push({
-        path: `/activity/programme/${row}`
+        name: 'programmes',
+        params: {
+          status: 'detailed',
+          id: row.input
+        }
       })
     },
-    add (row) {
+    add () {
       this.$router.push({
-        path: `/activity/programme/${row}`
+        name: 'programmes',
+        params: {
+          status: 'add'
+        }
       })
     },
     modify (row) {
       this.$router.push({
-        path: `/activity/programme/${row}`
+        name: 'programmes',
+        params: {
+          status: 'modify',
+          id: row.input
+        }
       })
     },
     del (row) {
@@ -67,7 +78,7 @@ export default {
 <style lang="scss">
 .programme {
   width: 100%;
-   padding-right: 0.2rem;
+  padding-right: 0.2rem;
   box-sizing: border-box;
   .table {
     margin-top: 0.2rem;

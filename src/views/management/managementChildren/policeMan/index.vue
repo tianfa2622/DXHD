@@ -11,18 +11,35 @@
     <div class="policeMan_right">
       <Ring></Ring>
     </div>
-    <Dialog :title="title" :isShow="isShow" :readOnly="readOnly" :dialogs="dialogs" @close="close"></Dialog>
+    <el-dialog :title="title" :visible.sync="isShow" center width="60%">
+      <el-form ref="form" :model="form" label-width="auto">
+        <el-form-item :label="item.label" v-for="(item, index) in dialogs" :key="index">
+          <el-input v-if="item.type" v-model="form.name" :readonly="readOnly" :type="item.type"></el-input>
+          <el-upload
+            v-if="item.upload == 'upload'"
+            class="avatar-uploader"
+            action="https://jsonplaceholder.typicode.com/posts/"
+            :show-file-list="false"
+            :on-success="handleAvatarSuccess"
+            :before-upload="beforeAvatarUpload"
+          >
+            <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+          </el-upload>
+        </el-form-item>
+      </el-form>
+    </el-dialog>
   </div>
 </template>
 <script>
 import Eltable from '@/components/table'
 import Elsearch from '@/components/search'
-import Dialog from '@/components/dialog'
 import Ring from '@/components/management_com/policeMan'
 export default {
   data: () => ({
     input: '',
     title: '',
+    imageUrl: '',
     isShow: false,
     readOnly: true,
     tableHead: [
@@ -55,24 +72,34 @@ export default {
     dialogs: [
       { label: '信息标识', type: 'input' },
       { label: '省市县（区）', type: 'input' },
+      { label: '安保人员照片', upload: 'upload' },
       { label: '出生日期', type: 'input' },
       { label: '姓名', type: 'input' },
+      { label: '', type: '' },
       { label: '区划内详细地址', type: 'input' },
       { label: '联系电话', type: 'input' },
+      { label: '', type: '' },
       { label: '曾用名', type: 'input' },
       { label: '实际居住地', type: 'input' },
+      { label: '', type: '' },
       { label: '婚姻状态代码', type: 'input' },
       { label: '性别代码', type: 'input' },
+      { label: '', type: '' },
       { label: '地址编码', type: 'input' },
       { label: '宗教信仰代码', type: 'input' },
+      { label: '', type: '' },
       { label: '单位名称', type: 'input' },
       { label: '省市县（区）', type: 'input' },
+      { label: '', type: '' },
       { label: '政治面貌代码', type: 'input' },
       { label: '常用证件代码', type: 'input' },
+      { label: '', type: '' },
       { label: '区划内详细地址', type: 'input' },
       { label: '配偶', type: 'input' },
+      { label: '', type: '' },
       { label: '证件号码', type: 'input' },
       { label: '保安证件', type: 'input' },
+      { label: '', type: '' },
       { label: '姓名', type: 'input' }
     ],
     form: {}
@@ -102,10 +129,25 @@ export default {
     },
     close () {
       this.isShow = false
+    },
+    handleAvatarSuccess (res, file) {
+      this.imageUrl = URL.createObjectURL(file.raw)
+    },
+    beforeAvatarUpload (file) {
+      const isJPG = file.type === 'image/jpeg'
+      const isLt2M = file.size / 1024 / 1024 < 2
+
+      if (!isJPG) {
+        this.$message.error('上传头像图片只能是 JPG 格式!')
+      }
+      if (!isLt2M) {
+        this.$message.error('上传头像图片大小不能超过 2MB!')
+      }
+      return isJPG && isLt2M
     }
   },
   components: {
-    Eltable, Ring, Elsearch, Dialog
+    Eltable, Ring, Elsearch
   }
 }
 </script>
@@ -128,9 +170,50 @@ export default {
       margin-top: 0.2rem;
     }
   }
+  .el-dialog__wrapper {
+    .el-dialog {
+      .el-dialog__body {
+        .el-form {
+          .el-form-item {
+            width: 30% !important;
+            position: relative;
+            .el-form-item__content {
+              .avatar-uploader {
+                position: absolute;
+                z-index: 100;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
   .policeMan_right {
     width: 20%;
     height: 4rem;
+  }
+  .avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409eff;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
   }
 }
 </style>

@@ -26,6 +26,14 @@ import PoliceDisplayCar from '../views/management/managementChildren/policeDispl
 import PoliceDisplayPolic from '../views/management/managementChildren/policeDisplay/policeDisplayChildren/polic'
 import PoliceRoute from '../views/management/managementChildren/policeRoute'
 import PointPeople from '../views/management/managementChildren/pointPeople'
+import PointPeopleAviation from '../views/management/managementChildren/pointPeople/pointPeopleChildren/aviation.vue'
+import PointPeopleRailway from '../views/management/managementChildren/pointPeople/pointPeopleChildren/railway.vue'
+import PointPeopleBus from '../views/management/managementChildren/pointPeople/pointPeopleChildren/bus.vue'
+import PointPeopleCheckpoint from '../views/management/managementChildren/pointPeople/pointPeopleChildren/checkpoint.vue'
+import PointPeopleHotel from '../views/management/managementChildren/pointPeople/pointPeopleChildren/hotel.vue'
+import PointPeopleShip from '../views/management/managementChildren/pointPeople/pointPeopleChildren/ship.vue'
+import PointPeopleInternetBar from '../views/management/managementChildren/pointPeople/pointPeopleChildren/internetBar.vue'
+import PointPeoplePortrait from '../views/management/managementChildren/pointPeople/pointPeopleChildren/portrait.vue'
 import PoliceMan from '../views/management/managementChildren/policeMan'
 import StressCar from '../views/management/managementChildren/stressCar'
 import StatisticsCar from '../views/management/managementChildren/stressCar/stressCarChildren/statisticsCar'
@@ -178,7 +186,42 @@ const routes = [
       },
       {
         path: 'pointPeople',
-        component: PointPeople
+        component: PointPeople,
+        children:
+          [
+            {
+              path: 'pointPeopleAviation',
+              component: PointPeopleAviation
+            },
+            {
+              path: 'pointPeopleRailway',
+              component: PointPeopleRailway
+            },
+            {
+              path: 'pointPeopleBus',
+              component: PointPeopleBus
+            },
+            {
+              path: 'pointPeopleCheckpoint',
+              component: PointPeopleCheckpoint
+            },
+            {
+              path: 'pointPeopleHotel',
+              component: PointPeopleHotel
+            },
+            {
+              path: 'pointPeopleShip',
+              component: PointPeopleShip
+            },
+            {
+              path: 'pointPeopleInternetBar',
+              component: PointPeopleInternetBar
+            },
+            {
+              path: 'pointPeoplePortrait',
+              component: PointPeoplePortrait
+            }
+          ]
       },
       {
         path: 'policeMan',
@@ -258,7 +301,8 @@ const routes = [
         component: Programme
       },
       {
-        path: 'programme/:id',
+        path: 'programmes',
+        name: 'programmes',
         component: ProgrammeDetailed
       },
       {

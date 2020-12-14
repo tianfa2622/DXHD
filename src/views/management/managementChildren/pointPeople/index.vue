@@ -1,15 +1,11 @@
 <template>
   <div class="pointPeople">
-    <div class="t">
-      <div class="ring">
-        <Ring></Ring>
-      </div>
-      <div class="line">
-        <BrokenLine></BrokenLine>
-      </div>
-    </div>
     <Elsearch :searchSettings="searchSettings" :searchBtn="searchBtn" @add="add"></Elsearch>
-    <Eltable :tableHead="tableHead" :tableDatas="tableDatas" :tableSettings="tableSettings" @modify="modify" @del="del" @detailed="detailed"></Eltable>
+    <Elsearch class="message" :searchSettings="mainMessage"></Elsearch>
+    <el-radio-group v-model="radio" v-for="(li, index) in lis" :key="index" @change="clickRadio">
+      <el-radio :label="li.path">{{ li.label }}</el-radio>
+    </el-radio-group>
+    <router-view></router-view>
     <el-dialog :title="title" :visible.sync="isShow" center>
       <h3>基础信息</h3>
       <el-form ref="form" :model="form" label-width="auto">
@@ -33,13 +29,11 @@
 </template>
 <script>
 import Elsearch from '@/components/search'
-import Eltable from '@/components/table'
-import Ring from '@/components/management_com/pointPeople/ring'
-import BrokenLine from '@/components/management_com/pointPeople/line'
 export default {
   data: () => ({
     title: '',
     h3: '',
+    radio: '/management/pointPeople/pointPeopleAviation',
     Show: false,
     isShow: false,
     readOnly: true,
@@ -47,25 +41,20 @@ export default {
       { placeholder: '公民身份证号码', type: 'input' },
       { placeholder: '姓名', type: 'input' }
     ],
+    mainMessage: [
+      { label: '常用证件号码', type: 'input' },
+      { label: '姓名', type: 'input' },
+      { label: '民族代码', type: 'input' },
+      { label: '公民身份证号码', type: 'input' },
+      { label: '性别代码', type: 'input' },
+      { label: '国籍代码', type: 'input' },
+      { label: '证件号码', type: 'input' }
+    ],
+    messages: [],
+    btns: [],
     searchBtn: [
       { name: '查询', type: 'search' },
       { name: '新增', type: 'add' }
-    ],
-    tableHead: [
-      { label: '常用证件号码', prop: 'input' },
-      { label: '证件号码', prop: 'input' },
-      { label: '公民身份证号码', prop: 'input' },
-      { label: '姓名', prop: 'input' },
-      { label: '性别代码', prop: 'input' },
-      { label: '民航出行', prop: 'input' }
-    ],
-    tableDatas: Array(5).fill({
-      input: '123'
-    }),
-    tableSettings: [
-      { name: '修改', type: 'modify' },
-      { name: '删除', type: 'delete' },
-      { name: '详情', type: 'detailed' }
     ],
     dialogsTitle: [
       { label: '常用证件代码', type: 'input' },
@@ -124,6 +113,16 @@ export default {
       value: '15',
       label: '人像识别'
     }],
+    lis: [
+      { label: '民航旅客信息', path: '/management/pointPeople/pointPeopleAviation' },
+      { label: '铁路信息', path: '/management/pointPeople/pointPeopleRailway' },
+      { label: '公路客运购票信息', path: '/management/pointPeople/pointPeopleBus' },
+      { label: '公安检查站人员检查', path: '/management/pointPeople/pointPeopleCheckpoint' },
+      { label: '旅馆住宿信息', path: '/management/pointPeople/pointPeopleHotel' },
+      { label: '轮渡信息', path: '/management/pointPeople/pointPeopleShip' },
+      { label: '网吧上网', path: '/management/pointPeople/pointPeopleInternetBar' },
+      { label: '人像识别', path: '/management/pointPeople/pointPeoplePortrait' }
+    ],
     form: {}
   }),
   created () { },
@@ -133,18 +132,11 @@ export default {
       this.readOnly = false
       this.isShow = true
     },
-    modify () {
-      this.title = '重点人员信息修改'
-      this.readOnly = false
-      this.isShow = true
+    clickLi (path) {
+      this.$router.push(path)
     },
-    del (row) {
-      console.log(row)
-    },
-    detailed () {
-      this.title = '重点人员信息详情'
-      this.readOnly = true
-      this.isShow = true
+    clickRadio (path) {
+      this.$router.push(path)
     },
     clickSelect () {
       console.log(this.form.lx)
@@ -278,7 +270,7 @@ export default {
       }
     }
   },
-  components: { Elsearch, Eltable, Ring, BrokenLine }
+  components: { Elsearch }
 }
 </script>
 <style lang="scss">
@@ -286,20 +278,6 @@ export default {
   width: 100%;
   padding-right: 0.2rem;
   box-sizing: border-box;
-  .t {
-    width: 100%;
-    height: 4rem;
-    display: flex;
-    justify-content: space-between;
-    .ring {
-      width: 45%;
-      border: 1px solid #797979;
-    }
-    .line {
-      width: 45%;
-    }
-  }
-  .el-form,
   .table {
     margin-top: 0.2rem;
   }
@@ -307,6 +285,50 @@ export default {
     border: 1px solid #797979;
     padding: 0.2rem;
     box-sizing: border-box;
+  }
+  .message {
+    flex-wrap: wrap;
+    border: 1px solid #3e5568;
+    padding: 0.2rem;
+    box-sizing: border-box;
+    margin-top: 0.2rem;
+    .el-form-item {
+      width: 30%;
+      margin-bottom: 0.2rem;
+      .el-form-item__content {
+        width: auto;
+      }
+    }
+  }
+  .el-radio-group {
+    margin-top: 0.2rem;
+    margin-right: 0.2rem;
+    .el-radio {
+      .el-radio__label {
+        color: #fff;
+      }
+    }
+    .is-checked {
+      .el-radio__label {
+        color: #409eff !important;
+      }
+    }
+  }
+  .children {
+    border: 1px solid #3e5568;
+    padding: 0.2rem;
+    box-sizing: border-box;
+    .el-form {
+      flex-wrap: wrap;
+      margin-top: 0.2rem;
+      .el-form-item {
+        width: 30%;
+        margin-bottom: 0.2rem;
+        .el-form-item__content {
+          width: auto;
+        }
+      }
+    }
   }
   .el-dialog__wrapper {
     .el-dialog {

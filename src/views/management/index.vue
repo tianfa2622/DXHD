@@ -16,10 +16,10 @@ export default {
     adminLeft: [
       { title: '警力展示', id: 0, path: '/management/policeDisplay/policeDisplayCar' },
       { title: '安保路线管理', id: 1, path: '/management/policeRoute' },
-      { title: '重点人员管理', id: 2, path: '/management/pointPeople' },
+      { title: '重点人员管理', id: 2, path: '/management/pointPeople/pointPeopleAviation' },
       { title: '安保人员管理', id: 3, path: '/management/policeMan' },
       { title: '重点车辆信息管理', id: 4, path: '/management/stressCar/statisticsCar' },
-      { title: '社会车辆管理', id: 5, path: '/management/sociologyCar' },
+      { title: '涉会车辆管理', id: 5, path: '/management/sociologyCar' },
       { title: '警情数据信息', id: 6, path: '/management/policeDatas' },
       { title: '人员背审信息', id: 7, path: '/management/peopleTrial' },
       { title: '参会人员信息', id: 8, path: '/management/meeting' }

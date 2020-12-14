@@ -39,7 +39,7 @@ export default {
                 textStyle: {
                   fontSize: 14 // 文字的字体大小
                 },
-                formatter: '{c}'
+                formatter: '{d}%'
               }
             },
             data: [

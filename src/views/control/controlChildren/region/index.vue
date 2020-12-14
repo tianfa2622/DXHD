@@ -60,12 +60,12 @@ export default {
   created () { },
   methods: {
     add (row) {
-      this.title = '民警信息新增'
+      this.title = '被布控区域新增'
       this.readOnly = false
       this.isShow = true
     },
     modify () {
-      this.title = '民警信息修改'
+      this.title = '被布控区域修改'
       this.readOnly = false
       this.isShow = true
     },
@@ -73,7 +73,7 @@ export default {
       console.log(row)
     },
     detailed () {
-      this.title = '民警信息详情'
+      this.title = '被布控区域详情'
       this.readOnly = true
       this.isShow = true
     },

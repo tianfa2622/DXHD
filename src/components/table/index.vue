@@ -55,7 +55,6 @@ export default {
   },
   methods: {
     isShow () {
-      console.log(this.tableDatas)
       if (this.operateShow !== undefined) {
         this.operationShow = this.operateShow
       }

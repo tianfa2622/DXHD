@@ -2,7 +2,7 @@
   <div class="control_car">
     <Elsearch :searchSettings="searchSettings" :searchBtn="searchBtn" @add="add"></Elsearch>
     <Eltable :tableHead="tableHead" :tableDatas="tableDatas" :tableSettings="tableSettings" @modify="modify" @del="del" @detailed="detailed"></Eltable>
-    <el-dialog :title="title" :visible.sync="isShow" center>
+    <el-dialog :title="title" :visible.sync="isShow" center width="60%">
       <el-form ref="form" :model="form" label-width="auto">
         <el-form-item :label="item.label" v-for="(item, index) in dialogs" :key="index">
           <el-input v-if="item.type" v-model="form.name" :readonly="readOnly" :type="item.type"></el-input>
@@ -79,7 +79,9 @@ export default {
       { label: '联系人电话一', type: 'input' },
       { label: '联系人二', type: 'input' },
       { label: '', type: '' },
-      { label: '联系人电话二', type: 'input' }
+      { label: '联系人电话二', type: 'input' },
+      { label: '绰号', type: 'input' },
+      { label: '', type: '' }
     ],
     form: {}
   }),
