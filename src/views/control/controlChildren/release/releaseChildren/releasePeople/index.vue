@@ -13,7 +13,7 @@ export default {
   data: () => ({
     title: '',
     isShow: false,
-    readOnly: true,
+    readOnly: false,
     searchSettings: [
       { placeholder: '请输入被布控人姓名', type: 'input' },
       { placeholder: '', type: 'datas' },
@@ -58,6 +58,8 @@ export default {
   methods: {
     del (row) {
       console.log(row)
+      this.title = '人员布控解控'
+      this.isShow = true
     },
     close () {
       this.isShow = false
@@ -72,6 +74,17 @@ export default {
   margin-top: 0.2rem;
   .table {
     margin-top: 0.2rem;
+  }
+  .el-dialog__wrapper {
+    .el-dialog {
+      .el-dialog__body {
+        .el-form {
+          .el-form-item:last-child {
+            width: 100% !important;
+          }
+        }
+      }
+    }
   }
 }
 </style>

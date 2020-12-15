@@ -268,7 +268,6 @@ $pa: absolute;
           font-weight: bold;
           color: #6aeff4;
           font-size: 0.28rem;
-          height: 0.5rem;
           display: block;
           position: relative;
           top: 50%;

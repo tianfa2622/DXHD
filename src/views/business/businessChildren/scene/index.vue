@@ -19,10 +19,7 @@
           </el-form-item>
         </el-form>
         <div class="img">
-          <img
-            src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1606817112832&di=0265c14b52911cc9cefe03d0d1af4571&imgtype=0&src=http%3A%2F%2Fimg-blog.csdnimg.cn%2F2020102321020124.jpg%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzUwNjk5ODg3%2Csize_16%2Ccolor_FFFFFF%2Ct_70%23pic_center"
-            alt=""
-          />
+          <img src="@/assets/1.gif" alt="" />
         </div>
       </div>
       <div class="card scene_data">
@@ -39,10 +36,7 @@
           </el-form-item>
         </el-form>
         <div class="img">
-          <img
-            src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1606817112832&di=0265c14b52911cc9cefe03d0d1af4571&imgtype=0&src=http%3A%2F%2Fimg-blog.csdnimg.cn%2F2020102321020124.jpg%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzUwNjk5ODg3%2Csize_16%2Ccolor_FFFFFF%2Ct_70%23pic_center"
-            alt=""
-          />
+          <img src="@/assets/1.gif" alt="" />
         </div>
       </div>
       <div class="bill scene_data">
@@ -59,10 +53,7 @@
           </el-form-item>
         </el-form>
         <div class="img">
-          <img
-            src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1606817112832&di=0265c14b52911cc9cefe03d0d1af4571&imgtype=0&src=http%3A%2F%2Fimg-blog.csdnimg.cn%2F2020102321020124.jpg%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzUwNjk5ODg3%2Csize_16%2Ccolor_FFFFFF%2Ct_70%23pic_center"
-            alt=""
-          />
+          <img src="@/assets/1.gif" alt="" />
         </div>
       </div>
     </div>
