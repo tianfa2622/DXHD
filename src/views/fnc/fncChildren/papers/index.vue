@@ -73,10 +73,7 @@ export default {
   padding-right: 0.2rem;
   box-sizing: border-box;
   .table {
-    border: 1px solid #3e5568;
     margin-top: 0.2rem;
-    padding: 0.2rem;
-    box-sizing: border-box;
   }
 }
 </style>

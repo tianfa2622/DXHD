@@ -188,9 +188,6 @@ export default {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    border: 1px dashed #797979;
-    padding: 0.2rem;
-    box-sizing: border-box;
     .el-form {
       margin-bottom: 0.2rem;
     }
@@ -250,9 +247,6 @@ export default {
     .table {
       width: 100%;
       margin-top: 0.2rem;
-      padding: 0.2rem;
-      box-sizing: border-box;
-      border: 1px solid #797979;
       .table {
         border: none;
         padding: 0;
@@ -265,9 +259,6 @@ export default {
     display: flex;
     margin-top: 0.2rem;
     justify-content: space-between;
-    border: 1px dashed #797979;
-    padding: 0.2rem;
-    box-sizing: border-box;
     .bar,
     .ring {
       width: 45%;

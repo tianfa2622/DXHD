@@ -6,6 +6,13 @@
         :icon="{ url: 'http://developer.baidu.com/map/jsdemo/img/fox.gif', size: { width: 300, height: 157 } }"
         @click="clickMarker"
       />
+      <bm-marker
+        v-for="(item, index) in position"
+        :key="index"
+        :position="item"
+        :icon="{ url: 'http://developer.baidu.com/map/jsdemo/img/fox.gif', size: { width: 300, height: 157 } }"
+        @click="clickMarkers(index)"
+      />
       <div class="clickTopTitle" v-if="Show">
         <div>
           <div class="img">
@@ -54,29 +61,31 @@
           </el-form>
           <video controls autoplay src="http://vjs.zencdn.net/v/oceans.mp4"></video>
         </div>
-        <div class="clickTopLeftBox" style="margin-top: 0.2rem" v-for="(item, index) in 2" :key="index">
-          <div class="clickTopLeftBoxTitle">
-            <h3>重点人员列表</h3>
-            <span>X</span>
-          </div>
-          <div class="peopleTable">
-            <div>
-              <p>布控人员</p>
-              <p>摄像头001</p>
-              <p>2020-08-26 12:30:25</p>
+        <div class="clickTopLeftBoxs">
+          <div class="clickTopLeftBox" v-for="(item, index) in 99" :key="index">
+            <div class="clickTopLeftBoxTitle">
+              <h3>重点人员列表</h3>
+              <span>X</span>
             </div>
-            <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3291729759,2295753587&fm=26&gp=0.jpg" alt="" />
-            <div>
-              <p>相似度</p>
-              <p>98.55%</p>
+            <div class="peopleTable">
+              <div>
+                <p>布控人员</p>
+                <p>摄像头001</p>
+                <p>2020-08-26 12:30:25</p>
+              </div>
+              <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3291729759,2295753587&fm=26&gp=0.jpg" alt="" />
+              <div>
+                <p>相似度</p>
+                <p>98.55%</p>
+              </div>
+              <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2370914011,2125569209&fm=26&gp=0.jpg" alt="" />
             </div>
-            <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2370914011,2125569209&fm=26&gp=0.jpg" alt="" />
-          </div>
-          <div class="clickTopLeftBoxFoot">
-            <span>李小小</span>
-            <span>女</span>
-            <span>汉族</span>
-            <el-button type="primary">详情</el-button>
+            <div class="clickTopLeftBoxFoot">
+              <span>李小小</span>
+              <span>女</span>
+              <span>汉族</span>
+              <el-button type="primary">详情</el-button>
+            </div>
           </div>
         </div>
       </div>
@@ -91,7 +100,7 @@
           <img src="@/assets/situation/4.png" alt="" />
           <p>安保路线</p>
         </div>
-        <div class="menu_right menuOpacity">
+        <div class="menu_right menuOpacity" @click="clickMenuRight">
           <img src="@/assets/situation/5.png" alt="" />
           <p>事件态势</p>
         </div>
@@ -369,6 +378,45 @@
         </div>
       </div>
     </div>
+    <div class="clickRight" v-if="menuRightShow">
+      <div class="clickRightLeft" v-if="clickMenuRightMapShow">
+        <div class="clickRightLeftTitle">
+          <h3>警情展示</h3>
+          <span @click="clickMenuRightMapShow = false">X</span>
+        </div>
+        <div class="clickRightLeftBody">
+          <div class="clickRightLeftbox" v-for="(item, index) in 99" :key="index">
+            <p>
+              <span>案发事件：抢劫事件</span>
+              <span>案发时间：2020-05-16 09:00</span>
+            </p>
+            <p>
+              <span>报案人：刘海霞</span>
+              <span>联系电话：15973613989</span>
+            </p>
+            <p>
+              <span>案发地点：长沙市天心区贺龙体育馆</span>
+              <span></span>
+            </p>
+            <p>
+              <span></span>
+              <el-button type="text" @click="clickRightLeftboxMore">更多></el-button>
+            </p>
+          </div>
+        </div>
+        <Dialog :title="title" :isShow="isClickRightShow" :readOnly="readOnly" :dialogs="clickRightDialogs" @close="clickRightClose"></Dialog>
+      </div>
+      <div class="clickRightTop">
+        <el-button type="primary">布控区域</el-button>
+        <el-button type="primary" @click="clickMenuRightMap">事件地图</el-button>
+      </div>
+      <div class="video" v-if="videoShow">
+        <video controls autoplay src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"></video>
+        <p>
+          <span>芙蓉路监控1号</span>
+        </p>
+      </div>
+    </div>
     <div class="clickRightTop" v-if="menuRightTopShow">
       <div class="clickRightTopLeft">
         <div class="clickRightTopLeftTitle">
@@ -520,6 +568,9 @@ export default {
     menuShow: false,
     videoShow: false,
     menuRightTopShow: false,
+    menuRightShow: false,
+    isClickRightShow: false,
+    clickMenuRightMapShow: false,
     zoom: 15,
     center: {
       lng: 112.96819817184979,
@@ -539,8 +590,48 @@ export default {
     dialogsTableSettings: [
       { name: '查看', type: 'detailed' }
     ],
+    clickRightDialogs: [
+      { label: '警情标识', type: 'input' },
+      { label: '姓名', type: 'input' },
+      { label: '警情视频信息', type: 'input' },
+      { label: '联系电话', type: 'input' },
+      { label: '视屏设备编码', type: 'input' },
+      { label: '警情数据来源', type: 'input' },
+      { label: '报警时间', type: 'input' },
+      { label: '视频文件格式代码', type: 'input' },
+      { label: '警情级别', type: 'input' },
+      { label: '处理人', type: 'input' },
+      { label: '开始时间', type: 'input' },
+      { label: '案事件发生开始时间', type: 'input' },
+      { label: '姓名', type: 'input' },
+      { label: '结束时间', type: 'input' },
+      { label: '治安警情代码', type: 'input' },
+      { label: '接警时间', type: 'input' },
+      { label: '警情音频信息', type: 'input' },
+      { label: '涉案场所类别代码', type: 'input' },
+      { label: '到达时间', type: 'input' },
+      { label: '音频设备编码', type: 'input' },
+      { label: '涉案场所', type: 'input' },
+      { label: '处理', type: 'input' },
+      { label: '音频编码格式代码', type: 'input' },
+      { label: '地址名称', type: 'input' },
+      { label: '处理时间', type: 'input' },
+      { label: '开始时间', type: 'input' },
+      { label: '地区经度', type: 'input' },
+      { label: '警情处理结果代码', type: 'input' },
+      { label: '结束时间', type: 'input' },
+      { label: '地球纬度', type: 'input' },
+      { label: '备注', type: 'input' },
+      { label: '案由', type: 'input' },
+      { label: '处理图片', type: 'input' },
+      { label: '备注', type: 'input' },
+      { label: '数据来源_行政区划代码', type: 'input' },
+      { label: '公安机关机构代码', type: 'input' },
+      { label: '嫌疑人标记列表', type: 'input' }
+    ],
     innerVisibleDiologs: [],
-    form: {}
+    form: {},
+    position: []
   }),
   created () { },
   methods: {
@@ -554,12 +645,14 @@ export default {
       this.Show = false
       this.menuShow = false
       this.menuRightTopShow = false
+      this.menuRightShow = false
     },
     clickMenuLeft () {
       this.title = '安保路线'
       this.$refs.map_map.$el.style.width = '100%'
       this.Show = false
       this.menuLeftTopShow = false
+      this.menuRightShow = false
       this.menuRightTopShow = false
       this.isShow = true
     },
@@ -567,6 +660,7 @@ export default {
       this.$refs.map_map.$el.style.width = '100%'
       this.Show = false
       this.menuRightTopShow = false
+      this.menuRightShow = false
       this.z1Show = true
       this.z2Show = true
       this.yInputShow = true
@@ -575,6 +669,7 @@ export default {
     clickMenuTop () {
       this.menuLeftTopShow = false
       this.menuRightTopShow = false
+      this.menuRightShow = false
       this.$refs.map_map.$el.style.width = '80%'
       this.Show = true
     },
@@ -582,7 +677,16 @@ export default {
       this.$refs.map_map.$el.style.width = '100%'
       this.menuLeftTopShow = false
       this.Show = false
+      this.menuRightShow = false
       this.menuRightTopShow = true
+    },
+    clickMenuRight () {
+      this.$refs.map_map.$el.style.width = '100%'
+      this.menuLeftTopShow = false
+      this.Show = false
+      this.menuRightTopShow = false
+      this.videoShow = false
+      this.menuRightShow = true
     },
     clickMarker (e) {
       this.$refs.map_map.$el.style.width = '100%'
@@ -596,6 +700,9 @@ export default {
     },
     close (e) {
       this.isShow = false
+    },
+    clickRightClose (e) {
+      this.isClickRightShow = false
     },
     closeZ1 () {
       this.z1Show = false
@@ -619,6 +726,30 @@ export default {
         { label: '地球纬度', type: 'input' }
       ]
       this.innerVisible = true
+    },
+    clickRightLeftboxMore () {
+      this.title = '警情数据信息展示详情'
+      this.isClickRightShow = true
+    },
+    clickMenuRightMap () {
+      const position = [
+        {
+          lng: 112.98957504351412,
+          lat: 28.183875822796317
+        },
+        {
+          lng: 112.98987225531602,
+          lat: 28.18424223656135
+        }
+      ]
+      this.position = position
+      this.clickMenuRightMapShow = true
+    },
+    clickMarkers (index) {
+      console.log(index)
+      if (index === 0) {
+        this.videoShow = !this.videoShow
+      }
     }
   },
   watch: {
@@ -677,11 +808,20 @@ export default {
       left: 5%;
       top: 5%;
       width: 4rem;
+      .clickTopLeftBoxs {
+        width: 100%;
+        height: 4rem;
+        overflow: auto;
+        margin-top: 0.2rem;
+        .clickTopLeftBox {
+          margin-bottom: 0.2rem;
+        }
+      }
       .clickTopLeftBox {
         width: 100%;
         padding: 0.1rem;
         box-sizing: border-box;
-        background-color: rgba(11, 25, 54, 0.6);
+        background-color: rgba(11, 25, 54, 0.9);
         .clickTopLeftBoxTitle {
           width: 100%;
           height: 0.3rem;
@@ -924,7 +1064,7 @@ export default {
     left: 0.2rem;
     top: 10%;
     width: 2rem;
-    background-color: rgba(8, 22, 51, 0.5);
+    background-color: rgba(8, 22, 51, 0.9);
     padding: 0.1rem;
     box-sizing: border-box;
     .z1Title {
@@ -965,7 +1105,7 @@ export default {
     left: 0.2rem;
     bottom: 20%;
     width: 2rem;
-    background-color: rgba(8, 22, 51, 0.5);
+    background-color: rgba(8, 22, 51, 0.9);
     padding: 0.1rem;
     box-sizing: border-box;
     .z2Title {
@@ -1294,6 +1434,83 @@ export default {
         display: flex;
         justify-content: space-between;
         text-align: center;
+        padding: 0 0.2rem;
+        box-sizing: border-box;
+        span:first-child {
+          width: 90%;
+          color: #fff;
+        }
+        span:last-child {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .clickRight {
+    .clickRightTop {
+      position: absolute;
+      top: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    .clickRightLeft {
+      position: absolute;
+      left: 5%;
+      top: 10%;
+      background-color: rgba(6, 20, 51, 0.9);
+      width: 4rem;
+      padding: 0.1rem;
+      box-sizing: border-box;
+      .clickRightLeftTitle {
+        width: 100%;
+        color: #00ffff;
+        display: flex;
+        justify-content: space-between;
+        span {
+          cursor: pointer;
+        }
+      }
+      .clickRightLeftBody {
+        width: 100%;
+        height: 4rem;
+        overflow: auto;
+        .clickRightLeftbox {
+          width: 100%;
+          background-color: #010a1f;
+          padding: 0.1rem;
+          margin: 0.1rem 0;
+          box-sizing: border-box;
+          p {
+            color: #01d9f1;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.1rem;
+          }
+          p:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+    .video {
+      width: 2rem;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      video {
+        width: 100%;
+        display: block;
+      }
+      p {
+        height: 0.4rem;
+        line-height: 0.4rem;
+        background-color: #052149;
+        display: flex;
+        justify-content: space-between;
         padding: 0 0.2rem;
         box-sizing: border-box;
         span:first-child {

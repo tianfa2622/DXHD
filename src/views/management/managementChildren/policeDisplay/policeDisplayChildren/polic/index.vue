@@ -96,9 +96,6 @@ export default {
 .polic {
   width: 100%;
   margin-top: 0.2rem;
-  border: 1px solid #3e5568;
-  padding: 0.2rem;
-  box-sizing: border-box;
   .table {
     margin-top: 0.2rem;
   }

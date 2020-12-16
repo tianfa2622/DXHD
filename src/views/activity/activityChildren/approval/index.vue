@@ -124,12 +124,12 @@ export default {
   box-sizing: border-box;
   .el-form {
     height: 0.4rem;
+    .btn {
+      margin-right: 0;
+    }
   }
   .approval_body {
     width: 100%;
-    padding: 0.2rem;
-    box-sizing: border-box;
-    border: 1px solid #3e5568;
     margin-top: 0.2rem;
   }
   .el-dialog__wrapper {

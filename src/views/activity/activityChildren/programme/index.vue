@@ -80,12 +80,14 @@ export default {
   width: 100%;
   padding-right: 0.2rem;
   box-sizing: border-box;
+  .el-form {
+    .btn:last-child {
+      margin-right: 0;
+    }
+  }
   .table {
     margin-top: 0.2rem;
     width: 100%;
-    padding: 0.2rem;
-    box-sizing: border-box;
-    border: 1px solid #3e5568;
   }
 }
 </style>

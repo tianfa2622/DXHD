@@ -90,8 +90,7 @@ export default {
 <style lang="scss">
 .policeRoute {
   width: 100%;
-  border: 1px solid #3e5568;
-  padding: 0.2rem;
+  padding-right: 0.2rem;
   box-sizing: border-box;
   .table {
     margin: 0.2rem 0;

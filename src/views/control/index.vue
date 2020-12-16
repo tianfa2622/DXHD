@@ -14,9 +14,11 @@
 export default {
   data: () => ({
     adminLeft: [
-      { title: '短信设置', id: 0, path: '/control/note' },
+      { title: '短信设置', id: 0, path: '/control/personnel' },
       { title: '车辆布控', id: 1, path: '/control/car' },
-      { title: '人员布控', id: 2, path: '/control/personnel' },
+      {
+        title: '人员布控', id: 2, path: '/control/note'
+      },
       { title: '区域布控', id: 3, path: '/control/region' },
       { title: '布控解控', id: 4, path: '/control/release/releaseCar' }
     ]

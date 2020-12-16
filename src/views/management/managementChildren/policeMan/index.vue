@@ -8,9 +8,6 @@
         <Eltable :tableHead="tableHead" :tableSettings="tableSettings" :tableDatas="tableDatas" @modify="modify" @del="del" @detailed="detailed"></Eltable>
       </div>
     </div>
-    <div class="policeMan_right">
-      <Ring></Ring>
-    </div>
     <el-dialog :title="title" :visible.sync="isShow" center width="60%">
       <el-form ref="form" :model="form" label-width="auto">
         <el-form-item :label="item.label" v-for="(item, index) in dialogs" :key="index">
@@ -34,7 +31,6 @@
 <script>
 import Eltable from '@/components/table'
 import Elsearch from '@/components/search'
-import Ring from '@/components/management_com/policeMan'
 export default {
   data: () => ({
     input: '',
@@ -147,19 +143,18 @@ export default {
     }
   },
   components: {
-    Eltable, Ring, Elsearch
+    Eltable, Elsearch
   }
 }
 </script>
 <style lang="scss">
 .policeMan {
-  border: 1px solid rgb(62, 85, 104);
-  width: 98%;
-  padding: 0.3rem 0.2rem;
+  width: 100%;
+  padding-right: 0.2rem;
   box-sizing: border-box;
   display: flex;
   .policeMan_left {
-    width: 80%;
+    width: 100%;
     height: 100%;
     .policeMan_head {
       width: 100%;

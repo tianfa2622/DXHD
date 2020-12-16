@@ -141,11 +141,6 @@ export default {
   .table {
     margin-top: 0.2rem;
   }
-  .table {
-    border: 1px solid #797979;
-    padding: 0.2rem;
-    box-sizing: border-box;
-  }
   .el-dialog__wrapper {
     .el-dialog {
       .el-dialog__body {

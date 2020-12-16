@@ -57,9 +57,6 @@ export default {
   .table {
     margin-top: 0.2rem;
     width: 100%;
-    padding: 0.2rem;
-    box-sizing: border-box;
-    border: 1px solid #3e5568;
   }
 }
 </style>

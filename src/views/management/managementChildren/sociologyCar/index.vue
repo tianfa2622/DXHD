@@ -95,9 +95,8 @@ export default {
 </script>
 <style lang="scss">
 .sociologyCar {
-  border: 1px solid rgb(62, 85, 104);
-  width: 98%;
-  padding: 0.3rem 0.2rem;
+  width: 100%;
+  padding-right: 0.2rem;
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;

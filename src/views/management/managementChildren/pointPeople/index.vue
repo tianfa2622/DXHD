@@ -288,9 +288,6 @@ export default {
   }
   .message {
     flex-wrap: wrap;
-    border: 1px solid #3e5568;
-    padding: 0.2rem;
-    box-sizing: border-box;
     margin-top: 0.2rem;
     .el-form-item {
       width: 30%;
@@ -315,9 +312,6 @@ export default {
     }
   }
   .children {
-    border: 1px solid #3e5568;
-    padding: 0.2rem;
-    box-sizing: border-box;
     .el-form {
       flex-wrap: wrap;
       margin-top: 0.2rem;
@@ -338,10 +332,6 @@ export default {
         }
         .el-form {
           margin-top: 0;
-          border: 1px solid #ccc;
-          margin-bottom: 0.1rem;
-          padding: 0.1rem;
-          box-sizing: border-box;
           justify-content: flex-start;
           .el-form-item {
             width: 30% !important;
