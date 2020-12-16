@@ -1,10 +1,10 @@
 <template>
   <div class="policeRoute">
     <Elsearch :searchSettings="searchSettings" :searchBtn="searchBtn" @add="add"></Elsearch>
-    <Eltable :tableHead="tableHead" :tableDatas="tableDatas" :tableSettings="tableSettings" @modify="modify" @del="del" @detailed="detailed"></Eltable>
+    <Eltable :tableHead="tableHead" :tableDatas="tableDatas" :tableSettings="tableSettings" @modify="modify" @del="del" @detailed="detailed" @download="download"></Eltable>
     <div class="policeRoute_foot" v-show="isShow">
-      <BdMap :center="center" :zoom="zoom"></BdMap>
-      <div class="foot_table">
+      <BdMap :center="center" :zoom="zoom" v-if="mapSHow"></BdMap>
+      <div class="foot_table" v-if="tableShow">
         <h3>{{ title }}</h3>
         <Elsearch :searchSettings="dialogs" :readOnly="readOnly"></Elsearch>
         <el-button type="primary" v-show="!readOnly" @click="isShow = false">保存</el-button>
@@ -21,6 +21,8 @@ export default {
     title: '',
     isShow: false,
     readOnly: true,
+    mapSHow: false,
+    tableShow: false,
     searchSettings: [
       { placeholder: '安保路线编号', type: 'select' },
       { placeholder: '公安机关机构代码', type: 'input' },
@@ -67,11 +69,15 @@ export default {
       this.title = '安保路线新增'
       this.readOnly = false
       this.isShow = true
+      this.mapSHow = true
+      this.tableShow = true
     },
     modify () {
       this.title = '安保路线修改'
       this.readOnly = false
       this.isShow = true
+      this.mapSHow = true
+      this.tableShow = true
     },
     del (row) {
       console.log(row)
@@ -80,9 +86,13 @@ export default {
       this.title = '安保路线详情'
       this.readOnly = true
       this.isShow = true
+      this.mapSHow = true
+      this.tableShow = true
     },
-    close () {
-      this.isShow = false
+    download () {
+      this.isShow = true
+      this.mapSHow = true
+      this.tableShow = false
     }
   }
 }
@@ -100,6 +110,9 @@ export default {
     height: 4rem;
     display: flex;
     justify-content: space-between;
+    border: 1px solid #797979;
+    padding: 0.2rem;
+    box-sizing: border-box;
     .bm-view,
     .foot_table {
       width: 45%;

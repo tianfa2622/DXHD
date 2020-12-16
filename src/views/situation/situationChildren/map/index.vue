@@ -203,9 +203,9 @@
         </div>
       </div>
       <div class="yInput" v-show="yInputShow">
-        <el-input v-model="title" placeholder="请输入安保人员姓名或身份证号码"></el-input>
-        <el-input v-model="title" placeholder="请输入警员姓名或身份证号码"></el-input>
-        <el-input v-model="title" placeholder="请输入警车车牌号码"></el-input>
+        <el-input v-model="title" prefix-icon="el-icon-search" placeholder="请输入安保人员姓名或身份证号码"></el-input>
+        <el-input v-model="title" prefix-icon="el-icon-search" placeholder="请输入警员姓名或身份证号码"></el-input>
+        <el-input v-model="title" prefix-icon="el-icon-search" placeholder="请输入警车车牌号码"></el-input>
       </div>
     </div>
     <div class="clickTop" v-if="Show">
@@ -1442,6 +1442,7 @@ export default {
         }
         span:last-child {
           cursor: pointer;
+          color: #fff;
         }
       }
     }

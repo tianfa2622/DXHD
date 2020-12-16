@@ -17,12 +17,12 @@
             <el-checkbox v-for="Two in Twos" :label="Two" :key="Two">{{ Two }}</el-checkbox>
           </el-checkbox-group>
         </el-form-item>
-        <el-form-item label="">
+        <!-- <el-form-item label="">
           <el-checkbox v-model="checkAllThree" @change="handleCheckAllChangeThree">战果统计</el-checkbox>
           <el-checkbox-group v-model="checkedCitiesThree" @change="handleCheckedCitiesChangeThree">
             <el-checkbox v-for="Three in Threes" :label="Three" :key="Three">{{ Three }}</el-checkbox>
           </el-checkbox-group>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="">
           <el-checkbox v-model="checkAllFour" @change="handleCheckAllChangeFour">业务协同</el-checkbox>
           <el-checkbox-group v-model="checkedCitiesFour" @change="handleCheckedCitiesChangeFour">
@@ -53,6 +53,7 @@
             <el-checkbox v-for="Eight in Eights" :label="Eight" :key="Eight">{{ Eight }}</el-checkbox>
           </el-checkbox-group>
         </el-form-item>
+        <el-form-item label=""> </el-form-item>
         <el-button type="primary" @click="jurisdictionSubmit">保存</el-button>
       </el-form>
     </el-dialog>
@@ -63,11 +64,11 @@ import Elsearch from '@/components/search'
 import Eltable from '@/components/table'
 import Dialog from '@/components/dialog'
 const OptionsOne = ['安保路线', '警力态势', '人员态势', '事件态势', '车辆态势']
-const OptionsTwo = ['活动申请', '活动审批', '安保方案', '人员背审', '活动归档']
+const OptionsTwo = ['活动申请', '活动审批', '安保方案', '人员背审', '活动归档', '战果统计']
 const OptionsThree = ['接入检查站', '圈层防控', '街面巡防']
 const OptionsFour = ['现场管理', '情报研判', '低慢小管理', '圈层管理']
 const OptionsFive = ['票务数据接入', '证件数据接入', '视频数据接入']
-const OptionsSix = ['警力展示', '安保路线管理', '重点人员信息', '安保人员信息', '重点车辆信息', '涉会车辆管理', '警情数据信息', '人员背审信息']
+const OptionsSix = ['警力展示', '安保路线管理', '重点人员信息', '安保人员信息', '重点车辆信息', '涉会车辆管理', '警情数据信息', '人员背审信息', '参会人员']
 const OptionsSeven = ['人员布控', '车辆布控', '短信设置', '布控解控', '区域布控']
 const OptionsEight = ['角色管理', '用户管理', '日志查询']
 export default {

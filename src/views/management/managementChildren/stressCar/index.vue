@@ -69,7 +69,7 @@ export default {
         margin-top: 0.2rem;
         width: 100%;
         height: calc(100% - 0.6rem);
-        border: 0.04rem solid #797979;
+        border: 0.02rem solid #797979;
         border-radius: 20px;
       }
     }

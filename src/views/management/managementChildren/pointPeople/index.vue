@@ -289,6 +289,9 @@ export default {
   .message {
     flex-wrap: wrap;
     margin-top: 0.2rem;
+    border: 1px solid #797979;
+    padding: 0.2rem;
+    box-sizing: border-box;
     .el-form-item {
       width: 30%;
       margin-bottom: 0.2rem;
@@ -312,6 +315,9 @@ export default {
     }
   }
   .children {
+    border: 1px solid #797979;
+    padding: 0.2rem;
+    box-sizing: border-box;
     .el-form {
       flex-wrap: wrap;
       margin-top: 0.2rem;

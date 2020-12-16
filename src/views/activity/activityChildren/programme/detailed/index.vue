@@ -43,6 +43,9 @@
       >
         <el-button size="small" type="primary">点击上传</el-button>
       </el-upload>
+      <p style="text-align:center">
+        <el-button type="text">提交</el-button>
+      </p>
     </div>
     <div v-else>
       <div class="addDiv" v-if="isModify">
@@ -187,7 +190,6 @@ export default {
   height: 100%;
   border: 0.01rem solid #3e5568;
   padding: 0.1rem;
-  padding-bottom: 1rem;
   box-sizing: border-box;
   overflow: auto;
   .detailed_titleDiv {

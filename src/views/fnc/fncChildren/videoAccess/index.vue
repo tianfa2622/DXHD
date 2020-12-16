@@ -3,7 +3,7 @@
     <h3>查看设备</h3>
     <Elsearch :searchSettings="searchSettings[0]" :searchBtn="searchBtn"></Elsearch>
     <div class="videoAccess_videos">
-      <div class="video">
+      <div class="video" v-for="(i, index) in 3" :key="index">
         <div class="video_title">
           <h3>贺龙体育馆一号设备</h3>
           <div class="video_state">
@@ -18,45 +18,7 @@
           />
         </div>
         <div class="video_foot">
-          <el-button>详情</el-button>
-          <h3 class="video_site">贺龙体育馆天网一号</h3>
-        </div>
-      </div>
-      <div class="video">
-        <div class="video_title">
-          <h3>贺龙体育馆一号设备</h3>
-          <div class="video_state">
-            <img src="@/assets/business/u6975.png" alt="" />
-            正常
-          </div>
-        </div>
-        <div class="video_body">
-          <img
-            src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1606817112832&di=0265c14b52911cc9cefe03d0d1af4571&imgtype=0&src=http%3A%2F%2Fimg-blog.csdnimg.cn%2F2020102321020124.jpg%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzUwNjk5ODg3%2Csize_16%2Ccolor_FFFFFF%2Ct_70%23pic_center"
-            alt=""
-          />
-        </div>
-        <div class="video_foot">
-          <el-button>详情</el-button>
-          <h3 class="video_site">贺龙体育馆天网一号</h3>
-        </div>
-      </div>
-      <div class="video">
-        <div class="video_title">
-          <h3>贺龙体育馆一号设备</h3>
-          <div class="video_state">
-            <img src="@/assets/business/u6975.png" alt="" />
-            正常
-          </div>
-        </div>
-        <div class="video_body">
-          <img
-            src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1606817112832&di=0265c14b52911cc9cefe03d0d1af4571&imgtype=0&src=http%3A%2F%2Fimg-blog.csdnimg.cn%2F2020102321020124.jpg%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzUwNjk5ODg3%2Csize_16%2Ccolor_FFFFFF%2Ct_70%23pic_center"
-            alt=""
-          />
-        </div>
-        <div class="video_foot">
-          <el-button>详情</el-button>
+          <el-button @click="isShow = true">详情</el-button>
           <h3 class="video_site">贺龙体育馆天网一号</h3>
         </div>
       </div>
