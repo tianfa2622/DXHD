@@ -43,7 +43,7 @@
       >
         <el-button size="small" type="primary">点击上传</el-button>
       </el-upload>
-      <p style="text-align:center">
+      <p class="footP" style="text-align: center">
         <el-button type="text">提交</el-button>
       </p>
     </div>
@@ -270,6 +270,14 @@ export default {
     .upload-demo {
       width: 30%;
       margin: 0.2rem;
+    }
+    .footP {
+      border-top: 1px solid #3e5568;
+      .el-button {
+        span {
+          color: #fff;
+        }
+      }
     }
   }
   .downloadTable {

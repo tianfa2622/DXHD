@@ -55,7 +55,7 @@ export default {
       { label: '车辆出发时间', type: 'input' },
       { label: '英文品牌名称', type: 'input' },
       { label: '车辆出发地', type: 'input' },
-      { label: '机动车车身代码', type: 'input' },
+      { label: '机动车车身颜色代码', type: 'input' },
       { label: '车辆目的地', type: 'input' },
       { label: '车辆型号', type: 'input' }
     ],
@@ -66,13 +66,13 @@ export default {
     add (row) {
       console.log(row)
       this.readOnly = false
-      this.title = '社会车辆管理新增'
+      this.title = '涉会车辆管理新增'
       this.isShow = true
     },
     modify (row) {
       console.log(row)
       this.readOnly = false
-      this.title = '社会车辆管理修改'
+      this.title = '涉会车辆管理修改'
       this.isShow = true
     },
     del (row) {
@@ -81,7 +81,7 @@ export default {
     detailed (row) {
       console.log(row)
       this.readOnly = true
-      this.title = '社会车辆管理详情'
+      this.title = '涉会车辆管理详情'
       this.isShow = true
     },
     close () {

@@ -7,7 +7,7 @@
       </div>
     </div>
     <Eltable :tableHead="tableHead" :tableDatas="tableDatas" :tableSettings="tableSettings" @detailed="detailed"></Eltable>
-    <el-dialog :title="title" :visible.sync="isShow" center>
+    <el-dialog :title="title" :visible.sync="isShow" center width="60%">
       <el-form ref="form" :model="form" label-width="auto">
         <el-form-item :label="item.label" v-for="(item, index) in dialogs" :key="index">
           <el-input v-if="item.type" v-model="form.name" :readonly="readOnly" :type="item.type"></el-input>
@@ -61,44 +61,46 @@ export default {
       { name: '详情', type: 'detailed' }
     ],
     dialogs: [
-      { label: '信息标识', type: 'input' },
-      { label: '省市县（区）', type: 'input' },
-      { label: '安保人员图片', upload: 'upload' },
-      { label: '出生日期', type: 'input' },
       { label: '姓名', type: 'input' },
-      { label: '', type: '' },
-      { label: '区划内详细地址', type: 'input' },
-      { label: '联系电话', type: 'input' },
-      { label: '', type: '' },
       { label: '曾用名', type: 'input' },
-      { label: '实际居住地', type: 'input' },
-      { label: '', type: '' },
-      { label: '婚姻状态代码', type: 'input' },
-      { label: '性别代码', type: 'input' },
-      { label: '', type: '' },
-      { label: '地址编码', type: 'input' },
-      { label: '宗教信仰代码', type: 'input' },
-      { label: '', type: '' },
-      { label: '单位名称', type: 'input' },
-      { label: '省市县（区）', type: 'input' },
-      { label: '', type: '' },
-      { label: '政治面貌代码', type: 'input' },
+      { label: '照片', upload: 'upload' },
       { label: '常用证件代码', type: 'input' },
-      { label: '', type: '' },
-      { label: '区划内详细地址', type: 'input' },
-      { label: '配偶', type: 'input' },
-      { label: '', type: '' },
       { label: '证件号码', type: 'input' },
-      { label: '保安证件', type: 'input' },
       { label: '', type: '' },
-      { label: '姓名', type: 'input' }
+      { label: '性别代码', type: 'input' },
+      { label: '民族代码', type: 'input' },
+      { label: '', type: '' },
+      { label: '国籍代码', type: 'input' },
+      { label: '籍贯/地区代码', type: 'input' },
+      { label: '', type: '' },
+      { label: '职业', type: 'input' },
+      { label: '服务处所', type: 'input' },
+      { label: '', type: '' },
+      { label: '地址名称', type: 'input' },
+      { label: '移动电话', type: 'input' },
+      { label: '', type: '' },
+      { label: '是否前科人员', type: 'input' },
+      { label: '是否在逃人员', type: 'input' },
+      { label: '', type: '' },
+      { label: '是否极端分子', type: 'input' },
+      { label: '是否非访人员', type: 'input' },
+      { label: '', type: '' },
+      { label: '是否涉恐人员', type: 'input' },
+      { label: '是否吸毒人员', type: 'input' },
+      { label: '', type: '' },
+      { label: '是否精神病人', type: 'input' },
+      { label: '重点人员编号', type: 'input' },
+      { label: '', type: '' },
+      { label: '审查时间', type: 'input' },
+      { label: '案件编号', type: 'input' },
+      { label: '', type: '' }
     ],
     form: {}
   }),
   created () { },
   methods: {
     detailed () {
-      this.title = '安保人员信息详情'
+      this.title = '安保人员信息背审'
       this.readOnly = true
       this.isShow = true
     },

@@ -3,7 +3,7 @@
     <Elsearch :searchSettings="searchSettings" :searchBtn="searchBtn" @add="add"></Elsearch>
     <Eltable :tableHead="tableHead" :tableDatas="tableDatas" :tableSettings="tableSettings" @modify="modify" @del="del" @detailed="detailed" @download="download"></Eltable>
     <div class="policeRoute_foot" v-show="isShow">
-      <BdMap :center="center" :zoom="zoom" v-if="mapSHow"></BdMap>
+      <BdMap :center="center" :zoom="zoom" v-if="mapSHow" ref="bdMap"></BdMap>
       <div class="foot_table" v-if="tableShow">
         <h3>{{ title }}</h3>
         <Elsearch :searchSettings="dialogs" :readOnly="readOnly"></Elsearch>
@@ -71,6 +71,9 @@ export default {
       this.isShow = true
       this.mapSHow = true
       this.tableShow = true
+      this.$nextTick(() => {
+        this.$refs.bdMap.$el.style.width = '45%'
+      })
     },
     modify () {
       this.title = '安保路线修改'
@@ -78,6 +81,9 @@ export default {
       this.isShow = true
       this.mapSHow = true
       this.tableShow = true
+      this.$nextTick(() => {
+        this.$refs.bdMap.$el.style.width = '45%'
+      })
     },
     del (row) {
       console.log(row)
@@ -88,11 +94,17 @@ export default {
       this.isShow = true
       this.mapSHow = true
       this.tableShow = true
+      this.$nextTick(() => {
+        this.$refs.bdMap.$el.style.width = '45%'
+      })
     },
     download () {
       this.isShow = true
       this.mapSHow = true
       this.tableShow = false
+      this.$nextTick(() => {
+        this.$refs.bdMap.$el.style.width = '100%'
+      })
     }
   }
 }

@@ -93,7 +93,7 @@ export default {
       console.log(row)
     },
     detailed () {
-      this.title = '详情'
+      this.title = '视屏功能接入详情'
       this.readOnly = true
       this.isShow = true
     },

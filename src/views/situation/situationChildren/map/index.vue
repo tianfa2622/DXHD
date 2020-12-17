@@ -1093,7 +1093,7 @@ export default {
         margin: 0.02rem 0;
       }
       .s1 {
-        color: #6aefd5;
+        color: rgb(0, 157, 217);
       }
       .s3 {
         color: #fff;

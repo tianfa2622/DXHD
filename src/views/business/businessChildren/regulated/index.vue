@@ -138,7 +138,8 @@ export default {
       { label: '品牌名称', type: 'input' },
       { label: '姓名', type: 'input' },
       { label: '设备序列号', type: 'input' },
-      { label: '公民身份证号码', type: 'input' }
+      { label: '公民身份证号码', type: 'input' },
+      { label: '飞行高度', type: 'input' }
     ]
   }),
   created () { },

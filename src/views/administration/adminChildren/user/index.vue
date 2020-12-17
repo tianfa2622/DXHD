@@ -38,14 +38,14 @@ export default {
       { name: '详情', type: 'detailed' }
     ],
     dialogs: [
-      { label: '角色编号', type: 'input' },
-      { label: '角色编号', type: 'input' },
-      { label: '角色名称', type: 'input' },
-      { label: '角色名称', type: 'input' },
-      { label: '角色备注', type: 'input' },
-      { label: '角色备注', type: 'input' },
+      { label: '所属角色', type: 'input' },
+      { label: '所属单位', type: 'input' },
+      { label: '警号', type: 'input' },
+      { label: '用户姓名', type: 'input' },
+      { label: '身份证号', type: 'input' },
+      { label: '联系电话', type: 'input' },
       { label: '用户密码', type: 'input' },
-      { label: '用户密码', type: 'input' }
+      { label: '确认密码', type: 'input' }
     ]
   }),
   created () { },

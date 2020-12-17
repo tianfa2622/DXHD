@@ -14,7 +14,7 @@ export default {
       Bar.setOption({
         color: ['#333366'],
         title: {
-          text: '设\n备\n在\n线\n率\n统\n计',
+          text: '设\n备\n总\n数\n量\n统\n计',
           textVerticalAlign: 'top',
           top: 100,
           textStyle: {

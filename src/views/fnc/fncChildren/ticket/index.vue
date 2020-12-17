@@ -56,7 +56,7 @@ export default {
       console.log(row)
     },
     detailed () {
-      this.title = '详情'
+      this.title = '票务数据接入详情'
       this.readOnly = true
       this.isShow = true
     },

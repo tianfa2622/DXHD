@@ -1,7 +1,7 @@
 <template>
-  <div class="peopleTrial">
+  <div class="meeting">
     <Elsearch :searchSettings="searchSettings" :searchBtn="searchBtn" @add="add"></Elsearch>
-    <div class="peopleTrial_table">
+    <div class="meeting_table">
       <h3>参会人员信息表</h3>
       <Eltable :tableHead="tableHead" :tableDatas="tableDatas" :tableSettings="tableSettings" @modify="modify" @del="del" @detailed="detailed"></Eltable>
     </div>
@@ -97,11 +97,11 @@ export default {
 }
 </script>
 <style lang="scss">
-.peopleTrial {
+.meeting {
   width: 100%;
   padding-right: 0.2rem;
   box-sizing: border-box;
-  .peopleTrial_table {
+  .meeting_table {
     margin-top: 0.2rem;
     h3 {
       color: #00ffff;
