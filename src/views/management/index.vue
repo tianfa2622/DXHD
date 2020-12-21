@@ -15,7 +15,7 @@ export default {
   data: () => ({
     adminLeft: [
       { title: '警力展示', id: 0, path: '/management/policeDisplay/policeDisplayCar' },
-      { title: '安保路线管理', id: 1, path: '/management/policeRoute' },
+      { title: '安保路线管理', id: 1, path: '/management/policeRoutes/policeRoute' },
       { title: '重点人员管理', id: 2, path: '/management/pointPeople/pointPeopleAviation' },
       { title: '安保人员管理', id: 3, path: '/management/policeMan' },
       { title: '重点车辆信息管理', id: 4, path: '/management/stressCar/statisticsCar' },

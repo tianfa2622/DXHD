@@ -2,7 +2,7 @@
   <div class="policDisplay">
     <div class="policDisplay_titleBtn">
       <el-button type="primary" @click="goCar">警车基本数据信息</el-button>
-      <el-button type="primary" @click="goPolic">民警数据信息</el-button>
+      <el-button type="primary" @click="goPolic">民警基本数据信息</el-button>
     </div>
     <div class="policDisplay_body">
       <router-view></router-view>

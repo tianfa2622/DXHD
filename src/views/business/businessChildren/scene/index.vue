@@ -126,9 +126,6 @@ export default {
 .scene {
   width: 98%;
   margin: 0 auto;
-  border-top: 0.03rem solid #3e5568;
-  padding: 0.1rem;
-  box-sizing: border-box;
   .scene_title {
     width: 98%;
     margin: 0 auto;

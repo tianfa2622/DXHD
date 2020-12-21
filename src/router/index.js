@@ -24,7 +24,9 @@ import Management from '../views/management'
 import PoliceDisplay from '../views/management/managementChildren/policeDisplay'
 import PoliceDisplayCar from '../views/management/managementChildren/policeDisplay/policeDisplayChildren/car'
 import PoliceDisplayPolic from '../views/management/managementChildren/policeDisplay/policeDisplayChildren/polic'
-import PoliceRoute from '../views/management/managementChildren/policeRoute'
+import PoliceRoutes from '../views/management/managementChildren/policeRoute'
+import PoliceRoute from '../views/management/managementChildren/policeRoute/policeRouterChildren/route.vue'
+import PoliceRouteTrail from '../views/management/managementChildren/policeRoute/policeRouterChildren/trail.vue'
 import PointPeople from '../views/management/managementChildren/pointPeople'
 import PointPeopleAviation from '../views/management/managementChildren/pointPeople/pointPeopleChildren/aviation.vue'
 import PointPeopleRailway from '../views/management/managementChildren/pointPeople/pointPeopleChildren/railway.vue'
@@ -181,8 +183,19 @@ const routes = [
           ]
       },
       {
-        path: 'policeRoute',
-        component: PoliceRoute
+        path: 'policeRoutes',
+        component: PoliceRoutes,
+        children:
+          [
+            {
+              path: 'policeRoute',
+              component: PoliceRoute
+            },
+            {
+              path: 'policeRouteTrail',
+              component: PoliceRouteTrail
+            }
+          ]
       },
       {
         path: 'pointPeople',
