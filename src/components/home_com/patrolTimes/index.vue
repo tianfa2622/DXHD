@@ -52,7 +52,7 @@ export default {
     color: #3294bb;
     font-style: normal;
     font-weight: bold;
-    margin-bottom: 0.2rem;
+    margin-bottom:0.1rem;
   }
   table {
     margin: auto;
@@ -61,7 +61,7 @@ export default {
     width: 80%;
     .table_title {
       td {
-        height: 0.6rem;
+        height: 0.4rem;
       }
     }
     tr:nth-child(2n) {

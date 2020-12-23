@@ -1,7 +1,7 @@
 <template>
   <div class="releaseCar">
-    <Elsearch :searchSettings="searchSettings" :searchBtn="searchBtn"></Elsearch>
-    <Eltable :tableHead="tableHead" :tableDatas="tableDatas" :tableSettings="tableSettings" @del="del"></Eltable>
+    <Elsearch :searchSettings="searchSettings" :searchBtn="searchBtn" @add="add"></Elsearch>
+    <Eltable :tableHead="tableHead" :tableDatas="tableDatas" :tableSettings="tableSettings" @modify="modify" @del="del" @detailed="detailed"></Eltable>
     <el-dialog :title="title" :visible.sync="isShow" center width="60%">
       <el-form ref="form" :model="form" label-width="auto">
         <el-form-item :label="item.label" v-for="(item, index) in dialogs" :key="index">
@@ -32,25 +32,30 @@ export default {
     isShow: false,
     readOnly: true,
     searchSettings: [
-      { placeholder: '请输入被布控人姓名', type: 'input' },
-      { placeholder: '布控时间', type: 'datas' },
-      { placeholder: '请输人布控人姓名', type: 'input' }
+      { placeholder: '车辆牌号', type: 'input' },
+      { placeholder: '电话号码', type: 'input' },
+      { placeholder: '姓名', type: 'input' },
+      { placeholder: '请输入车辆牌号，车辆型号', type: 'input' }
     ],
     searchBtn: [
-      { name: '查询', type: 'search' }
+      { name: '查询', type: 'search' },
+      { name: '新增', type: 'add' }
     ],
     tableHead: [
-      { label: '序号', prop: 'input' },
-      { label: '被布控人姓名', prop: 'input' },
-      { label: '被布控人证件号', prop: 'input' },
-      { label: '布控时间', prop: 'input' },
-      { label: '布控人姓名', prop: 'input' }
+      { label: '车辆牌号', prop: 'input' },
+      { label: '发动机型号', prop: 'input' },
+      { label: '车身颜色', prop: 'input' },
+      { label: '机动车品牌', prop: 'input' },
+      { label: '车牌号码', prop: 'input' },
+      { label: '车辆型号', prop: 'input' }
     ],
     tableDatas: Array(5).fill({
       input: '123'
     }),
     tableSettings: [
-      { name: '解控', type: 'delete' }
+      { name: '修改', type: 'modify' },
+      { name: '删除', type: 'delete' },
+      { name: '详情', type: 'detailed' }
     ],
     dialogs: [
       { label: '车辆号码', type: 'input' },
@@ -76,16 +81,28 @@ export default {
       { label: '', type: '' },
       { label: '联系人电话二', type: 'input' },
       { label: '绰号', type: 'input' },
-      { label: '', type: '' },
-      { label: '请输入车辆解控原因', type: 'textarea' }
+      { label: '', type: '' }
     ],
     form: {}
   }),
   created () { },
   methods: {
+    add (row) {
+      this.title = '新增车辆布控'
+      this.readOnly = false
+      this.isShow = true
+    },
+    modify () {
+      this.title = '车辆布控修改'
+      this.readOnly = false
+      this.isShow = true
+    },
     del (row) {
       console.log(row)
-      this.title = '车辆布控解控'
+    },
+    detailed () {
+      this.title = '车辆布控详情'
+      this.readOnly = true
       this.isShow = true
     },
     close () {
@@ -115,7 +132,9 @@ export default {
   width: 100%;
   padding-right: 0.2rem;
   box-sizing: border-box;
-  margin-top: 0.2rem;
+  .el-form {
+    margin-top: 0.2rem;
+  }
   .table {
     margin-top: 0.2rem;
   }
@@ -132,9 +151,6 @@ export default {
                 z-index: 100;
               }
             }
-          }
-          .el-form-item:last-child {
-            width: 100% !important;
           }
         }
       }

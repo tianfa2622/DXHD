@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <header>
+    <header v-if="!isLogin">
       <div class="header_left">
         <ul class="header_menu">
           <li class="menu_list">
@@ -39,10 +39,10 @@
               <button class="btn_home" @click="goHome">
                 <img src="./assets/app_img/u40.svg" alt="" />
               </button>
-              <button class="btn_me">
+              <button class="btn_me" @click="userDataShow = true">
                 <img src="./assets/app_img/u44.svg" alt="" />
               </button>
-              <button class="btn_esc">
+              <button class="btn_esc" @click="$router.push('/login')">
                 <img src="./assets/app_img/u48.svg" alt="" />
               </button>
             </div>
@@ -50,9 +50,15 @@
         </ul>
       </div>
     </header>
-    <main>
+    <main :class="{ login: isLogin }">
       <router-view></router-view>
     </main>
+    <el-dialog class="userDialog" title="个人信息" :visible.sync="userDataShow" center width="30%">
+      <p v-for="(i, index) in userData" :key="index">
+        <span>{{ i.label }}</span>
+        <span>{{ i.value }}</span>
+      </p>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -66,7 +72,17 @@ export default {
       isManagement: false,
       isActivity: false,
       isSituation: false,
-      routerName: this.$store.state.routerName
+      isLogin: false,
+      userDataShow: false,
+      routerName: this.$store.state.routerName,
+      userData: [
+        {
+          label: '所属角色', value: '02'
+        },
+        { label: '警号', value: '02' },
+        { label: '用户名', value: '02' },
+        { label: '登录时间', value: '02' }
+      ]
     }
   },
   created () {
@@ -148,14 +164,19 @@ export default {
     },
     whoClick (name) {
       if (name === '系统管理') {
+        this.isLogin = false
         this.isAdmin = true
       } else if (name === '接入功能') {
+        this.isLogin = false
         this.isFnc = true
       } else if (name === '布控管理') {
+        this.isLogin = false
         this.isControl = true
       } else if (name === '数据管理') {
+        this.isLogin = false
         this.isManagement = true
       } else if (name === '业务协同') {
+        this.isLogin = false
         this.isBusiness = true
       } else if (name === '首页') {
         this.isFnc = false
@@ -163,10 +184,17 @@ export default {
         this.isBusiness = false
         this.isManagement = false
         this.isAdmin = false
+        this.isSituation = false
+        this.isActivity = false
+        this.isLogin = false
       } else if (name === '活动管理') {
+        this.isLogin = false
         this.isActivity = true
       } else if (name === '态势感知') {
+        this.isLogin = false
         this.isSituation = true
+      } else if (name === '登录') {
+        this.isLogin = true
       }
     }
   },
@@ -280,13 +308,36 @@ $pa: absolute;
   }
   main {
     width: $hundred;
-    flex: auto;
     box-sizing: border-box;
-    height: $hundred;
+    height: calc(100% - 0.94rem);
+  }
+  .login {
+    height: 100% !important;
   }
   .li_hover {
     background: rgb(31, 116, 194);
     border-radius: 0.1rem;
+  }
+  .userDialog {
+    .el-dialog {
+      .el-dialog__body {
+        p {
+          width: 50%;
+          height: 0.4rem;
+          line-height: 0.4rem;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-around;
+          span {
+            color: #fff;
+            width: 30%;
+          }
+          span:first-child {
+            text-align: right;
+          }
+        }
+      }
+    }
   }
 }
 </style>

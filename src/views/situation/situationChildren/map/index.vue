@@ -65,7 +65,6 @@
           <div class="clickTopLeftBox" v-for="(item, index) in 99" :key="index">
             <div class="clickTopLeftBoxTitle">
               <h3>重点人员列表</h3>
-              <span>X</span>
             </div>
             <div class="peopleTable">
               <div>
@@ -81,14 +80,15 @@
               <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2370914011,2125569209&fm=26&gp=0.jpg" alt="" />
             </div>
             <div class="clickTopLeftBoxFoot">
-              <span>李小小</span>
-              <span>女</span>
-              <span>汉族</span>
-              <el-button type="primary">详情</el-button>
+              <span class="span">李小小</span>
+              <span class="span">女</span>
+              <span class="span">汉族</span>
+              <el-button type="primary" @click="$router.push('/management/pointPeople/pointPeopleAviation')">详情</el-button>
             </div>
           </div>
         </div>
       </div>
+      <el-input class="searchInput" v-if="searchShow" placeholder="请输入场馆名称、活动名称" v-model="title" prefix-icon="el-icon-search"></el-input>
     </baidu-map>
     <div class="map_foot" v-show="menuShow">
       <div class="menus" ref="menus">
@@ -433,7 +433,7 @@
         <video controls autoplay src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"></video>
         <p>
           <span>芙蓉路监控1号</span>
-          <span @click="videoShow = false" style="color:#fff">X</span>
+          <span @click="videoShow = false" style="color: #fff">X</span>
         </p>
       </div>
     </div>
@@ -576,6 +576,7 @@ export default {
     input: '',
     title: '',
     innerVisibleTitle: '',
+    searchShow: true,
     Show: false,
     menuLeftTopShow: false,
     isShow: false,
@@ -676,6 +677,7 @@ export default {
       this.menuShow = false
       this.menuRightTopShow = false
       this.menuRightShow = false
+      this.searchShow = true
     },
     clickMenuLeft () {
       this.title = '安保路线'
@@ -721,6 +723,7 @@ export default {
     clickMarker (e) {
       this.$refs.map_map.$el.style.width = '100%'
       this.Show = false
+      this.searchShow = false
       this.center = {
         lng: 112.98948073412699,
         lat: 28.183879451580328
@@ -797,6 +800,17 @@ export default {
     width: 100%;
     height: 100%;
     position: relative;
+    .searchInput {
+      position: absolute;
+      top: 5%;
+      right: 5%;
+      width: 3rem;
+      input {
+        color: #000 !important;
+        background-color: #0d2e60;
+        border: none;
+      }
+    }
     .clickTopTitle {
       position: absolute;
       top: 5%;
@@ -913,11 +927,11 @@ export default {
           height: 0.4rem;
           line-height: 0.4rem;
           margin-top: 0.2rem;
-          span {
+          .span {
             width: 0.6rem;
             text-align: center;
             color: #fff;
-            background-color: #169bd5;
+            background-color: rgb(6, 47, 128);
           }
         }
       }
@@ -1525,26 +1539,26 @@ export default {
           }
         }
       }
-       .el-dialog__wrapper {
-    .el-dialog {
-      .el-dialog__body {
-        h3 {
-          color: #fff;
-          border-top: 1px solid rgb(48, 61, 88);
-          border-bottom: 1px solid rgb(84, 91, 104);
-          height: 0.3rem;
-          line-height: 0.3rem;
-          margin-bottom: 0.2rem;
-        }
-        .el-form {
-          margin-top: 0;
-          .el-form-item {
-            width: 30% !important;
+      .el-dialog__wrapper {
+        .el-dialog {
+          .el-dialog__body {
+            h3 {
+              color: #fff;
+              border-top: 1px solid rgb(48, 61, 88);
+              border-bottom: 1px solid rgb(84, 91, 104);
+              height: 0.3rem;
+              line-height: 0.3rem;
+              margin-bottom: 0.2rem;
+            }
+            .el-form {
+              margin-top: 0;
+              .el-form-item {
+                width: 30% !important;
+              }
+            }
           }
         }
       }
-    }
-  }
     }
     .video {
       width: 2rem;

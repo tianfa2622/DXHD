@@ -32,8 +32,8 @@ export default {
         },
         legend: {
           orient: 'vertical',
-          right: 60,
-          top: 140,
+          right: '8%',
+          bottom: '16%',
           itemWidth: 10,
           itemHeight: 10,
           formatter: '{name}',
@@ -49,7 +49,7 @@ export default {
           {
             name: '战果统计数量',
             type: 'pie',
-            radius: [50, 100], // 饼图的半径大小
+            radius: [40, 80], // 饼图的半径大小
             center: ['50%', '45%'], // 饼图的位置
             label: { // 饼图图形上的文本标签
               normal: {

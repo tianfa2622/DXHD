@@ -25,7 +25,7 @@
           <RingRt></RingRt>
         </li>
         <li class="menu_list">
-          <DataSummary></DataSummary>
+          <DataSummary :number="number"></DataSummary>
         </li>
       </ul>
     </div>
@@ -49,9 +49,13 @@ import DataSummary from '@/components/home_com/dataSummary'
 import Map from '@/components/home_com/map'
 export default {
   data () {
-    return {}
+    return {
+      number: 0
+    }
   },
-  created () { },
+  created () {
+    this.testNumber()
+  },
   methods: {
     resize () {
       window.addEventListener('resize', () => {
@@ -64,6 +68,10 @@ export default {
         bar.resize()
         barRt.resize()
       })
+    },
+    testNumber () {
+      this.number++
+      setTimeout(this.testNumber, 1)
     }
   },
   mounted () {
@@ -83,11 +91,12 @@ export default {
   flex-wrap: wrap;
   .home_left,
   .home_right {
-    height: 100%;
+    height: calc(100% - 0.4rem);
     width: 25%;
   }
   .home_center {
     width: 50%;
+    height: calc(100% - 0.4rem);
   }
   .home_menu {
     width: 100%;
@@ -102,7 +111,7 @@ export default {
     }
   }
   footer {
-    height: 0.5rem;
+    height: 0.4rem;
     width: 100%;
     text-align: center;
     .footer_menu {

@@ -26,9 +26,8 @@ export default {
         },
         legend: {
           orient: 'vertical',
-          y: 'top',
-          top: 180,
-          right: 60,
+          right: '8%',
+          bottom: '16%',
           itemWidth: 10,
           itemHeight: 10,
           formatter: '{name}',
@@ -44,7 +43,7 @@ export default {
           {
             name: '预警',
             type: 'pie',
-            radius: 100, // 饼图的半径大小
+            radius: 80, // 饼图的半径大小
             center: ['45%', '45%'], // 饼图的位置
             label: { // 饼图图形上的文本标签
               normal: {

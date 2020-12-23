@@ -16,6 +16,7 @@
 </template>
 <script>
 export default {
+  props: ['number'],
   data: () => ({
     datas: [{
       title: '业务系统数据',
@@ -54,8 +55,24 @@ export default {
       Bits: '0'
     }]
   }),
-  created () { },
-  methods: {}
+  created () {
+  },
+  methods: {
+    testNumber (val) {
+      this.datas.forEach(el => {
+        el.Bits = parseInt(val % 10)
+        el.Ten = parseInt((val % 100) / 10)
+        el.hundred = parseInt((val % 1000) / 100)
+        el.thousand = parseInt((val % 10000) / 1000)
+        el.wan = parseInt((val % 100000) / 10000)
+      })
+    }
+  },
+  watch: {
+    number (val) {
+      this.testNumber(val)
+    }
+  }
 }
 </script>
 <style lang="scss">
@@ -72,7 +89,7 @@ export default {
     color: #3294bb;
     font-style: normal;
     font-weight: bold;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.1rem;
   }
   p {
     margin: 0.1rem;
@@ -82,8 +99,8 @@ export default {
       display: inline-block;
       white-space: nowrap;
     }
-    span:last-child{
-      margin-right: 0
+    span:last-child {
+      margin-right: 0;
     }
     .start {
       text-align: right;
@@ -97,6 +114,7 @@ export default {
     text-align: center;
     margin: 0 0.04rem;
     cursor: pointer;
+    color: #000 !important;
   }
 }
 </style>

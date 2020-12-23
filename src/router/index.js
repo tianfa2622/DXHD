@@ -67,6 +67,7 @@ import PreventionControl from '../views/activity/activityChildren/statistics/sta
 import Watchman from '../views/activity/activityChildren/statistics/statisticsChildren/watchman'
 import Situation from '../views/situation'
 import SituationMap from '../views/situation/situationChildren/map'
+import Login from '../views/login'
 Vue.use(VueRouter)
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push (location) {
@@ -75,7 +76,12 @@ VueRouter.prototype.push = function push (location) {
 const routes = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/login'
+  },
+  {
+    path: '/login',
+    name: '登录',
+    component: Login
   },
   {
     path: '/home',
@@ -387,11 +393,13 @@ const router = new VueRouter({
 })
 router.beforeEach((to, from, next) => {
   store.commit('setRouterName', to.matched[0].name)
+  document.title = to.matched[0].name
   // showLoading()
   // setTimeout(() => {
   //   hideLoading()
   // }, 888)
   next()
+  console.log('%c ', 'background: url(https://pic4.zhimg.com/v2-bb497f3b4eba1e7ec95b4b859bc51054_r.jpg?source=1940ef5chttps://pic4.zhimg.com/v2-bb497f3b4eba1e7ec95b4b859bc51054_r.jpg?source=1940ef5c) no-repeat center;padding-left:800px;padding-bottom: 500px;background-size: 100% 100%;')
   console.log('%c ', 'background: url(https://pic1.zhimg.com/v2-edd414d01c4c0d838f5fd6530c91ea09_r.jpg?source=1940ef5c) no-repeat center;padding-left:800px;padding-bottom: 500px;background-size: 100% 100%;')
 })
 export default router

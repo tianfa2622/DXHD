@@ -24,11 +24,11 @@ export default {
       { name: '查询', type: 'search' }
     ],
     tableHead: [
-      { label: '序号', prop: 'input' },
+      { label: '信息主键编号', prop: 'input' },
       { label: '活动编号', prop: 'input' },
-      { label: '购票信息', prop: 'input' },
       { label: '购票编号', prop: 'input' },
-      { label: '购票时间', prop: 'input' }
+      { label: '购票时间', prop: 'input' },
+      { label: '姓名', prop: 'input' }
     ],
     tableDatas: Array(5).fill({
       input: '123'
