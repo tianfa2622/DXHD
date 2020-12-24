@@ -1,6 +1,6 @@
 <template>
   <div class="situation">
-    <router-view ></router-view>
+    <router-view></router-view>
   </div>
 </template>
 <script>
@@ -16,7 +16,7 @@ export default {
 .situation {
   width: 100%;
   height: 100%;
-  padding:0 0.2rem;
+  padding: 0 0.2rem;
   box-sizing: border-box;
 }
 </style>

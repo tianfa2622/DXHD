@@ -3,14 +3,20 @@
     <baidu-map class="map_map" ref="map_map" :center="center" :zoom="zoom" :scroll-wheel-zoom="true">
       <bm-marker
         :position="{ lng: 112.97749565607255, lat: 28.166659397929035 }"
-        :icon="{ url: 'http://developer.baidu.com/map/jsdemo/img/fox.gif', size: { width: 300, height: 157 } }"
+        :icon="{
+          url: 'http://developer.baidu.com/map/jsdemo/img/fox.gif',
+          size: { width: 300, height: 157 },
+        }"
         @click="clickMarker"
       />
       <bm-marker
         v-for="(item, index) in position"
         :key="index"
         :position="item"
-        :icon="{ url: 'http://developer.baidu.com/map/jsdemo/img/fox.gif', size: { width: 300, height: 157 } }"
+        :icon="{
+          url: 'http://developer.baidu.com/map/jsdemo/img/fox.gif',
+          size: { width: 300, height: 157 },
+        }"
         @click="clickMarkers(index)"
       />
       <div class="clickTopTitle" v-if="Show">
@@ -43,7 +49,7 @@
         </div>
       </div>
       <div class="clickTopLeft" v-if="Show">
-        <div class="clickTopLeftBox">
+        <!-- <div class="clickTopLeftBox">
           <div class="clickTopLeftBoxTitle">
             <h3>现场视频</h3>
             <span>X</span>
@@ -60,7 +66,7 @@
             </el-form-item>
           </el-form>
           <video controls autoplay src="http://vjs.zencdn.net/v/oceans.mp4"></video>
-        </div>
+        </div> -->
         <div class="clickTopLeftBoxs">
           <div class="clickTopLeftBox" v-for="(item, index) in 99" :key="index">
             <div class="clickTopLeftBoxTitle">
@@ -83,8 +89,9 @@
               <span class="span">李小小</span>
               <span class="span">女</span>
               <span class="span">汉族</span>
-              <el-button type="primary" @click="$router.push('/management/pointPeople/pointPeopleAviation')">详情</el-button>
+              <el-button type="primary" @click="clickTopLeftBoxFootDetailed">详情</el-button>
             </div>
+            <Dialog :title="title" :isShow="clickTopLeftBoxFootClickShow" :readOnly="true" :dialogs="clickTopLeftBoxFootDialogs" @close="closeTopLeftBoxFootDialogs"></Dialog>
           </div>
         </div>
       </div>
@@ -430,7 +437,7 @@
         <el-button type="primary" @click="clickMenuRightMap">事件地图</el-button>
       </div>
       <div class="video" v-if="videoShow">
-        <video controls autoplay src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"></video>
+        <video controls autoplay src="https://vdn1.vzuu.com/SD/50c96ec2-239f-11eb-b5ec-26dca4907b8b.mp4?disable_local_cache=1&bu=pico&expiration=1608781278&auth_key=1608781278-0-0-1a109c16d146adc5ea435d72568d7ef6&f=mp4&v=hw"></video>
         <p>
           <span>芙蓉路监控1号</span>
           <span @click="videoShow = false" style="color: #fff">X</span>
@@ -545,7 +552,7 @@
         </div>
       </div>
       <div class="video" v-if="videoShow">
-        <video controls autoplay src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"></video>
+        <video controls autoplay src="https://vdn1.vzuu.com/SD/50c96ec2-239f-11eb-b5ec-26dca4907b8b.mp4?disable_local_cache=1&bu=pico&expiration=1608781278&auth_key=1608781278-0-0-1a109c16d146adc5ea435d72568d7ef6&f=mp4&v=hw"></video>
         <p>
           <span>芙蓉路监控1号</span>
           <span @click="videoShow = false">X</span>
@@ -592,6 +599,7 @@ export default {
     menuRightShow: false,
     isClickRightShow: false,
     clickMenuRightMapShow: false,
+    clickTopLeftBoxFootClickShow: false,
     zoom: 15,
     center: {
       lng: 112.96819817184979,
@@ -659,6 +667,15 @@ export default {
         { label: '开始时间', type: 'input' },
         { label: '结束时间', type: 'input' }
       ]
+    ],
+    clickTopLeftBoxFootDialogs: [
+      { label: '常用证件号码', type: 'input' },
+      { label: '姓名', type: 'input' },
+      { label: '公民身份证号码', type: 'input' },
+      { label: '性别代码', type: 'input' },
+      { label: '证件号码', type: 'input' },
+      { label: '民族代码', type: 'input' },
+      { label: '国籍代码', type: 'input' }
     ],
     innerVisibleDiologs: [],
     form: {},
@@ -743,6 +760,9 @@ export default {
     closeZ2 () {
       this.z2Show = false
     },
+    closeTopLeftBoxFootDialogs () {
+      this.clickTopLeftBoxFootClickShow = false
+    },
     innerClose (e) {
       this.innerVisible = false
     },
@@ -759,6 +779,10 @@ export default {
         { label: '地球纬度', type: 'input' }
       ]
       this.innerVisible = true
+    },
+    clickTopLeftBoxFootDetailed () {
+      this.title = '重点人员详情'
+      this.clickTopLeftBoxFootClickShow = true
     },
     clickRightLeftboxMore () {
       this.title = '警情数据信息展示详情'
@@ -849,14 +873,13 @@ export default {
     }
     .clickTopLeft {
       position: absolute;
-      left: 5%;
+      left: 1%;
       top: 5%;
       width: 4rem;
       .clickTopLeftBoxs {
         width: 100%;
         height: 4rem;
         overflow: auto;
-        margin-top: 0.2rem;
         .clickTopLeftBox {
           margin-bottom: 0.2rem;
         }
@@ -932,6 +955,17 @@ export default {
             text-align: center;
             color: #fff;
             background-color: rgb(6, 47, 128);
+          }
+        }
+        .el-dialog__wrapper{
+          .el-dialog{
+            .el-dialog__body{
+              .el-form{
+                .el-form-item__content{
+                  width: auto;
+                }
+              }
+            }
           }
         }
       }

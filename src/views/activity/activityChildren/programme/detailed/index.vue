@@ -20,7 +20,7 @@
       <h3>执行警力列表</h3>
       <Eltable :tableHead="tableHead[1]" :operateShow="false" :tableDatas="tableDatas"></Eltable>
     </div>
-    <Elsearch :searchSettings="searchSettings[2]" :searchLabelWidth="searchLabelWidth"></Elsearch>
+    <Elsearch class="policeSearch" :searchSettings="searchSettings[2]" :searchLabelWidth="searchLabelWidth"></Elsearch>
     <h3 class="detailed_title body_title">
       <span>应急处置预案</span>
     </h3>
@@ -98,6 +98,7 @@ export default {
       ],
       [
         { placeholder: '任务内容', type: 'textarea', label: '任务内容' },
+        { placeholder: '任务类型', type: 'input', label: '任务类型' },
         { placeholder: '数据更新时间', type: 'input', label: '数据更新时间' }
       ],
       [
@@ -113,7 +114,9 @@ export default {
       [
         { label: '任务执行区标识', prop: 'input' },
         { label: '巡逻区域名称', prop: 'input' },
+        { label: '公安机关机构代码', prop: 'input' },
         { label: '公安机关名称', prop: 'input' },
+        { label: '巡逻区域边界坐标', prop: 'input' },
         { label: '巡区行政区代码', prop: 'input' },
         { label: '必巡点存在标识', prop: 'input' },
         { label: '巡区类型', prop: 'input' }
@@ -233,10 +236,17 @@ export default {
   .body_title {
     border-top: 0.01rem solid #3e5568;
   }
+  .policeSearch {
+    .el-form-item:first-child {
+      width: 100% !important;
+    }
+  }
   .el-form {
     margin-top: 0.2rem;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
+    padding: 0 0.2rem;
+    box-sizing: border-box;
     .el-form-item {
       width: 40%;
       margin-bottom: 0.2rem;

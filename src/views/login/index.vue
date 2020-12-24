@@ -12,7 +12,9 @@
         <el-form-item>
           <el-button @click="onSubmit">登录</el-button>
         </el-form-item>
-        <el-radio v-model="radio" label="true" @click.native.prevent="clickRadio('true')">记住密码</el-radio>
+        <el-radio v-model="radio" label="true" @click.native.prevent="clickRadio('true')"
+          >记住密码</el-radio
+        >
       </el-form>
     </div>
   </div>

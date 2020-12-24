@@ -1,6 +1,5 @@
 <template>
   <div class="checkpoint">
-    <Eltable :tableHead="tableHead" :operateShow="false" :tableDatas="tableDatas"></Eltable>
     <div class="bar">
       <h3>危险品数量</h3>
       <Bar></Bar>
@@ -12,37 +11,28 @@
   </div>
 </template>
 <script>
-import Eltable from '@/components/table'
 import Bar from '@/components/activity_com/statistics/bar'
 import Pie from '@/components/activity_com/statistics/pie'
 export default {
   data: () => ({
-    tableHead: [
-      { label: '时间', prop: 'input' },
-      { label: '警报次数', prop: 'input' },
-      { label: '在线设备', prop: 'input' },
-      { label: '离线设备', prop: 'input' }
-    ],
-    tableDatas: []
   }),
   created () { },
   methods: {
 
   },
-  components: { Eltable, Bar, Pie }
+  components: { Bar, Pie }
 }
 </script>
 <style lang="scss">
 .checkpoint {
   width: 100%;
-  .table {
-    margin-top: 0.2rem;
-  }
+  display: flex;
+  border: 1px solid rgb(62, 85, 104);
+  padding: 0.2rem;
+  box-sizing: border-box;
   .bar {
     width: 50%;
     height: 4rem;
-    margin-top: 0.2rem;
-    float: left;
     h3 {
       color: #fff;
       width: 2rem;
@@ -53,7 +43,9 @@ export default {
     }
   }
   .pie {
-    float: right;
+    #Pie_rt {
+      height: calc(100% - 0.4rem) !important;
+    }
   }
 }
 </style>

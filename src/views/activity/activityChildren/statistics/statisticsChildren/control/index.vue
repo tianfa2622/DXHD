@@ -5,10 +5,6 @@
         <Bar></Bar>
         <h3>A区出现异常次数<span>0</span>次</h3>
       </div>
-      <div class="bar">
-        <Bar1></Bar1>
-        <h3>B区出现异常次数<span>0</span>次</h3>
-      </div>
     </div>
     <div class="control_r">
       <div class="map">
@@ -19,7 +15,6 @@
 </template>
 <script>
 import Bar from '@/components/activity_com/statistics/control/bar'
-import Bar1 from '@/components/activity_com/statistics/control/bar1'
 import BdMap from '@/components/management_com/map'
 export default {
   data: () => ({
@@ -28,13 +23,17 @@ export default {
   }),
   created () { },
   methods: {},
-  components: { Bar, Bar1, BdMap }
+  components: { Bar, BdMap }
 }
 </script>
 <style lang="scss">
 .control {
   width: 100%;
   display: flex;
+  border: 1px solid rgb(62, 85, 104);
+  padding: 0.2rem;
+  box-sizing: border-box;
+  margin-top: 0.2rem;
   .control_l,
   .control_r {
     width: 50%;
@@ -56,7 +55,7 @@ export default {
   }
   .control_r {
     .map {
-      height: 6rem;
+      height: 3rem;
     }
   }
 }

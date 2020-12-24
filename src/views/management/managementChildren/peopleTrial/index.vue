@@ -2,7 +2,6 @@
   <div class="peopleTrial">
     <Elsearch :searchSettings="searchSettings" :searchBtn="searchBtn" @add="add"></Elsearch>
     <div class="peopleTrial_table">
-      <h3>参加活动人员背审信息</h3>
       <Eltable :tableHead="tableHead" :tableDatas="tableDatas" :tableSettings="tableSettings" @modify="modify" @del="del" @detailed="detailed"></Eltable>
     </div>
     <el-dialog :title="title" :visible.sync="isShow" center width="60%">
