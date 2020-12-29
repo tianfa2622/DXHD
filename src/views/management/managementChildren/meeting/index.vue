@@ -6,7 +6,7 @@
     </div>
     <Dialog :title="title" :isShow="isShow" :readOnly="readOnly" :dialogs="dialogs" @close="close"></Dialog>
   </div>
-</template>
+</template>yarn this.$isServer
 <script>
 import Elsearch from '@/components/search'
 import Eltable from '@/components/table'

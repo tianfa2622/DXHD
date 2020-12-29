@@ -77,11 +77,11 @@ export default {
       routerName: this.$store.state.routerName,
       userData: [
         {
-          label: '所属角色', value: '02'
+          label: '用户编号：', value: '02'
         },
-        { label: '警号', value: '02' },
-        { label: '用户名', value: '02' },
-        { label: '登录时间', value: '02' }
+        { label: '用户姓名：', value: '02' },
+        { label: '用户权限：', value: '02' },
+        { label: '登录时间：', value: '02' }
       ]
     }
   },
@@ -117,7 +117,7 @@ export default {
       this.isActivity = false
       this.isSituation = false
       this.isControl = true
-      this.$router.push('/control/note')
+      this.$router.push('/control/personnel')
     },
     goManagement () {
       this.isFnc = false

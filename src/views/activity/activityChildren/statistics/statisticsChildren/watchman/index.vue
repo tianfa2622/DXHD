@@ -43,10 +43,19 @@ export default {
   .map {
     margin-top: 0.1rem;
     h3 {
-      width: 1rem;
+      width: 1.2rem;
+      height: 0.2rem;
       color: #fff;
       border-bottom: 1px solid #ccc;
       text-align: center;
+      font-size: 0.16rem;
+    }
+    #Line {
+      height: calc(100% - 0.21rem) !important;
+    }
+    .bm-view {
+      height: calc(100% - 0.21rem) !important;
+      margin-top: 0.2rem;
     }
   }
 }

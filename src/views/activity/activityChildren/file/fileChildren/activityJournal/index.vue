@@ -9,11 +9,12 @@ export default {
   data: () => ({
     tableHead: [
       { label: '序号', prop: 'input' },
-      { label: '活动名称', prop: 'input' },
+      { label: '活动日志编码', prop: 'input' },
+      { label: '活动日志名称', prop: 'input' },
       { label: '操作内容', prop: 'input' },
       { label: '操作时间', prop: 'input' },
       { label: '操作账号', prop: 'input' },
-      { label: '备注', prop: 'input' }
+      { label: '日志详述', prop: 'input' }
     ],
     tableDatas: []
   }),

@@ -25,6 +25,9 @@
       <el-form-item label="审批人">
         <el-input v-model="form.name" placeholder="请输入内容"></el-input>
       </el-form-item>
+      <el-form-item label="审批时间">
+        <el-date-picker v-model="form.time" type="datetime" placeholder="选择日期时间"> </el-date-picker>
+      </el-form-item>
       <el-form-item label="审批意见">
         <el-button type="primary">审批通过</el-button>
         <el-button type="primary" @click="examineNo">审批不通过</el-button>
@@ -67,9 +70,6 @@ export default {
       } else {
         this.tableShow = false
       }
-    },
-    examineNo () {
-      this.$refs.textarea.focus()
     },
     handleRemove (file, fileList) {
       console.log(file, fileList)
