@@ -55,7 +55,7 @@ export default {
     }
   }
   .activity_right {
-     overflow: auto;
+    overflow: auto;
     width: calc(100% - 10%);
     margin: 0.3rem 0 0 0.2rem;
   }

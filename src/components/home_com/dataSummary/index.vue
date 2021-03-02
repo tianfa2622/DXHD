@@ -94,8 +94,8 @@ export default {
   p {
     margin: 0.1rem;
     span {
-      margin: 0 4%;
-      width: 33%;
+      margin: 0 2%;
+      width: 37%;
       display: inline-block;
       white-space: nowrap;
     }

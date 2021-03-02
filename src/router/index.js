@@ -399,7 +399,7 @@ router.beforeEach((to, from, next) => {
   //   hideLoading()
   // }, 888)
   next()
-  console.log('%c ', 'background: url(https://pic4.zhimg.com/v2-bb497f3b4eba1e7ec95b4b859bc51054_r.jpg?source=1940ef5chttps://pic4.zhimg.com/v2-bb497f3b4eba1e7ec95b4b859bc51054_r.jpg?source=1940ef5c) no-repeat center;padding-left:800px;padding-bottom: 500px;background-size: 100% 100%;')
-  console.log('%c ', 'background: url(https://pic1.zhimg.com/v2-edd414d01c4c0d838f5fd6530c91ea09_r.jpg?source=1940ef5c) no-repeat center;padding-left:800px;padding-bottom: 500px;background-size: 100% 100%;')
+  // console.log('%c ', 'background: url(https://pic4.zhimg.com/v2-bb497f3b4eba1e7ec95b4b859bc51054_r.jpg?source=1940ef5chttps://pic4.zhimg.com/v2-bb497f3b4eba1e7ec95b4b859bc51054_r.jpg?source=1940ef5c) no-repeat center;padding-left:800px;padding-bottom: 500px;background-size: 100% 100%;')
+  // console.log('%c ', 'background: url(https://pic1.zhimg.com/v2-edd414d01c4c0d838f5fd6530c91ea09_r.jpg?source=1940ef5c) no-repeat center;padding-left:800px;padding-bottom: 500px;background-size: 100% 100%;')
 })
 export default router

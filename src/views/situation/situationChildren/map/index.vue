@@ -49,7 +49,7 @@
         </div>
       </div>
       <div class="clickTopLeft" v-if="Show">
-        <!-- <div class="clickTopLeftBox">
+        <div class="clickTopLeftBox">
           <div class="clickTopLeftBoxTitle">
             <h3>现场视频</h3>
             <span>X</span>
@@ -66,9 +66,9 @@
             </el-form-item>
           </el-form>
           <video controls autoplay src="http://vjs.zencdn.net/v/oceans.mp4"></video>
-        </div> -->
+        </div>
         <div class="clickTopLeftBoxs">
-          <div class="clickTopLeftBox" v-for="(item, index) in 99" :key="index">
+          <div class="clickTopLeftBox" v-for="(item, index) in 10" :key="index">
             <div class="clickTopLeftBoxTitle">
               <h3>重点人员列表</h3>
             </div>
@@ -695,6 +695,7 @@ export default {
       this.menuRightTopShow = false
       this.menuRightShow = false
       this.searchShow = true
+      this.menuLeftTopShow = false
     },
     clickMenuLeft () {
       this.title = '安保路线'
@@ -706,6 +707,7 @@ export default {
       this.isShow = true
     },
     clickMenuLeftTop () {
+      this.title = ''
       this.$refs.map_map.$el.style.width = '100%'
       this.Show = false
       this.menuRightTopShow = false
@@ -830,7 +832,7 @@ export default {
       right: 5%;
       width: 3rem;
       input {
-        color: #000 !important;
+        color: #fff !important;
         background-color: #0d2e60;
         border: none;
       }
@@ -878,7 +880,8 @@ export default {
       width: 4rem;
       .clickTopLeftBoxs {
         width: 100%;
-        height: 4rem;
+        // height: 4rem;
+        height: 4.4rem;
         overflow: auto;
         .clickTopLeftBox {
           margin-bottom: 0.2rem;
@@ -886,6 +889,7 @@ export default {
       }
       .clickTopLeftBox {
         width: 100%;
+        margin-bottom: 10px;
         padding: 0.1rem;
         box-sizing: border-box;
         background-color: rgba(11, 25, 54, 0.9);
@@ -1141,13 +1145,14 @@ export default {
     position: absolute;
     left: 0.2rem;
     top: 10%;
-    width: 2rem;
+    width: 2.5rem;
     background-color: rgba(8, 22, 51, 0.9);
     padding: 0.1rem;
     box-sizing: border-box;
     .z1Title {
       display: flex;
       justify-content: space-between;
+      padding-bottom: 0.1rem;
       h4 {
         color: #6aefd5;
         font-size: 0.14rem;
@@ -1161,19 +1166,22 @@ export default {
       margin: 0.1rem 0;
       .s2 {
         height: 0.02rem;
-        background-color: #242323;
+        // background-color: #242323;
+        background-color: #797979;
       }
       .s1,
       .s2,
       .s3 {
         width: 100%;
         display: block;
-        margin: 0.02rem 0;
+        // margin: 0.02rem 0;
+        margin: 0.12rem 0;
       }
       .s1 {
         color: rgb(0, 157, 217);
       }
       .s3 {
+        text-align: center;
         color: #fff;
       }
     }
@@ -1182,7 +1190,7 @@ export default {
     position: absolute;
     left: 0.2rem;
     bottom: 20%;
-    width: 2rem;
+    width: 2.5rem;
     background-color: rgba(8, 22, 51, 0.9);
     padding: 0.1rem;
     box-sizing: border-box;
