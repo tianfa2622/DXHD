@@ -1,11 +1,14 @@
 <template>
   <div class="mapp">
-    <baidu-map class="map_map" ref="map_map" :center="center" :zoom="zoom" :scroll-wheel-zoom="true">
+    <baidu-map  class="map_map" ref="map_map" :center="center" :zoom="zoom" :scroll-wheel-zoom="true" @ready='handler'>
+      <!-- <bm-circle v-if="isPolygon" :center="circlePath.center" :radius="circlePath.radius" stroke-color="blue" :stroke-opacity="0.3" :stroke-weight="2" @lineupdate="updateCirclePath" :editing="false" fill-color="#2e62cd" :fill-opacity="0.3"></bm-circle> -->
+      <bm-polygon v-if="isPolygon" :path="polygonPath" stroke-color="blue" :stroke-opacity="0.5" :stroke-weight="2" :editing="false" fill-color="#2e62cd" :fill-opacity="0.3" @lineupdate="updatePolygonPath"/>
       <bm-marker
         :position="{ lng: 112.97749565607255, lat: 28.166659397929035 }"
         :icon="{
-          url: 'http://developer.baidu.com/map/jsdemo/img/fox.gif',
-          size: { width: 300, height: 157 },
+          url: require('@/assets/situation/u528.svg'),
+          opts:{imageSize:{width:30,height:60}},
+          size: { width: 30, height: 60 },
         }"
         @click="clickMarker"
       />
@@ -19,6 +22,15 @@
         }"
         @click="clickMarkers(index)"
       />
+      <template v-if="bticon">
+        <bm-marker v-for="(bt,index) in points" :key="index" :position="bt.site" :dragging="true" animation="BMAP_ANIMATION_BOUNCE" :icon="{url: bt.url,opts:{imageSize:{width:32,height:30}}, size: {width: 32, height: 32}}"></bm-marker>
+      </template>
+      <template v-else-if="clicon">
+        <bm-marker v-for="(cl,index) in vehicle" :key="index" :position="cl.site" :dragging="true" animation="BMAP_ANIMATION_BOUNCE" :icon="{url: cl.url,opts:{imageSize:{width:32,height:30}}, size: {width: 32, height: 32}}"></bm-marker>
+      </template>
+      <template v-if="jkicon">
+        <bm-marker v-for="(jk,index) in monitor" :key="`${index} + ${1}`" :position="jk.site" :dragging="true" animation="BMAP_ANIMATION_BOUNCE" :icon="{url: require('@/assets/situation/u1626.svg'),opts:{imageSize:{width:32,height:30}}, size: {width: 32, height: 32}}"></bm-marker>
+      </template>
       <div class="clickTopTitle" v-if="Show">
         <div>
           <div class="img">
@@ -603,7 +615,7 @@ export default {
     zoom: 15,
     center: {
       lng: 112.96819817184979,
-      lat: 28.191863196869612
+      lat: 28.166659397929035
     },
     dialogsTableHead: [
       { label: '信息主键编号', prop: 'input' },
@@ -679,16 +691,121 @@ export default {
     ],
     innerVisibleDiologs: [],
     form: {},
-    position: []
+    position: [],
+    BMap: null,
+    map: null,
+    isPolygon: false, // 显示覆盖物
+    // circlePath: { // 圆形覆盖物
+    //   center: {
+    //     lng: 0,
+    //     lat: 0
+    //   },
+    //   radius: 160
+    // },
+    polygonPath: [// 多边形覆盖物数据
+      {
+        lng: 112.98948073412333,
+        lat: 28.183879451580222
+      },
+      {
+        lng: 112.98948073412666,
+        lat: 28.183879451580111
+      },
+      {
+        lng: 112.98948073412888,
+        lat: 28.183879451580999
+      }
+    ],
+    bticon: false, // 显示不同的图标
+    points: [// 不同图标的地址数据
+      {
+        site: { lng: 112.987574, lat: 28.18483 },
+        id: 3,
+        url: ''
+      },
+      {
+        site: { lng: 112.990215, lat: 28.184926 },
+        id: 2,
+        url: ''
+      },
+      {
+        site: { lng: 112.991727, lat: 28.182821 },
+        id: 1,
+        url: ''
+      },
+      {
+        site: { lng: 112.988753, lat: 28.18239 },
+        id: 4,
+        url: ''
+      },
+      {
+        site: { lng: 112.989788, lat: 28.183506 },
+        id: 2,
+        url: ''
+      },
+      {
+        site: { lng: 112.992052, lat: 28.184421 },
+        id: 1,
+        url: ''
+      },
+      {
+        site: { lng: 112.989429, lat: 28.185292 },
+        id: 3,
+        url: ''
+      },
+      {
+        site: { lng: 112.991153, lat: 28.183629 },
+        id: 4,
+        url: ''
+      }
+    ],
+    jkicon: false, // 显示监控
+    monitor: [ // 监控的经纬度数据
+      { site: { lat: 28.184584, lng: 112.990473 } },
+      { site: { lat: 28.184799, lng: 112.989072 } },
+      { site: { lat: 28.183541, lng: 112.988398 } },
+      { site: { lat: 28.183263, lng: 112.989665 } },
+      { site: { lat: 28.182339, lng: 112.99147 } },
+      { site: { lat: 28.183923, lng: 112.991794 } }
+    ],
+    clicon: false, // 显示车辆态势图标点
+    vehicle: [ // 不同车辆图标的经纬数据
+      {
+        site: { lng: 112.987574, lat: 28.18483 },
+        clid: 1,
+        url: ''
+      },
+      {
+        site: { lng: 112.990215, lat: 28.184926 },
+        clid: 2,
+        url: ''
+      },
+      {
+        site: { lng: 112.991727, lat: 28.182821 },
+        clid: 1,
+        url: ''
+      },
+      {
+        site: { lng: 112.988753, lat: 28.18239 },
+        clid: 2,
+        url: ''
+      }
+    ]
   }),
   created () { },
   methods: {
+    handler({ BMap, map }) {
+      console.log('handler')
+      // const _this = this
+      this.BMap = BMap
+      this.map = map
+    },
     clickMenu () {
-      this.zoom = 15
-      this.center = {
-        lng: 112.96819817184979,
-        lat: 28.191863196869612
-      }
+      // this.zoom = 15
+      // this.center = {
+      //   lng: 112.96819817184979,
+      //   lat: 28.166659397929035
+      // }
       this.$refs.map_map.$el.style.width = '100%'
       this.Show = false
       this.menuShow = false
@@ -696,6 +813,17 @@ export default {
       this.menuRightShow = false
       this.searchShow = true
       this.menuLeftTopShow = false
+      this.isPolygon = false
+      this.bticon = false
+      this.jkicon = false
+      this.clicon = false
+      setTimeout(() => {
+        this.zoom = 15
+        this.center = {
+          lng: 112.96819817184979,
+          lat: 28.166659397929035
+        }
+      }, 100)
     },
     clickMenuLeft () {
       this.title = '安保路线'
@@ -705,6 +833,10 @@ export default {
       this.menuRightShow = false
       this.menuRightTopShow = false
       this.isShow = true
+      this.isPolygon = false
+      this.bticon = false
+      this.clicon = false
+      this.jkicon = false
     },
     clickMenuLeftTop () {
       this.title = ''
@@ -716,6 +848,72 @@ export default {
       this.z2Show = true
       this.yInputShow = true
       this.menuLeftTopShow = true
+      this.clicon = false
+      this.jkicon = false
+      // 延时加载覆盖物
+      setTimeout(() => {
+        this.isPolygon = true
+        this.bticon = true
+        this.polygonPath = []
+        const polygonData = [
+          {
+            lat: 28.18544,
+            lng: 112.987397
+          },
+          {
+            lat: 28.184484,
+            lng: 112.986337
+          },
+          {
+            lat: 28.182829,
+            lng: 112.988439
+          },
+          {
+            lat: 28.182248,
+            lng: 112.990208
+          },
+          {
+            lat: 28.181364,
+            lng: 112.991664
+          },
+          {
+            lat: 28.182924,
+            lng: 112.992472
+          },
+          {
+            lat: 28.184715,
+            lng: 112.992822
+          },
+          {
+            lat: 28.18466,
+            lng: 112.990927
+          },
+          {
+            lat: 28.185225,
+            lng: 112.990145
+          }
+        ]
+        this.polygonPath = polygonData
+        // 根据id区别图标，相对路径要使用require()
+        for (const item of this.points) {
+          let path = ''
+          switch (item.id) {
+            case 1:
+              path = require('@/assets/situation/Police force/u864.svg')
+              break
+            case 2:
+              path = require('@/assets/situation/Police force/u884.svg')
+              break
+            case 3:
+              path = require('@/assets/situation/Police force/u920.svg')
+              break
+            case 4:
+              path = require('@/assets/situation/Police force/u1287.png')
+              break
+          }
+          item.url = path
+        }
+      }, 100)
     },
     clickMenuTop () {
       this.menuLeftTopShow = false
@@ -723,6 +921,41 @@ export default {
       this.menuRightShow = false
       this.$refs.map_map.$el.style.width = '80%'
       this.Show = true
+      this.clicon = false
+      // 延时加载覆盖物
+      setTimeout(() => {
+        this.isPolygon = true
+        this.jkicon = true
+        this.bticon = false
+        this.polygonPath = []
+        const polygonData = [
+          {
+            lat: 28.18466,
+            lng: 112.991664
+          },
+          {
+            lat: 28.183402,
+            lng: 112.991385
+          },
+          {
+            lat: 28.1822,
+            lng: 112.990253
+          },
+          {
+            lat: 28.18138,
+            lng: 112.991735
+          },
+          {
+            lat: 28.182976,
+            lng: 112.992468
+          },
+          {
+            lat: 28.184707,
+            lng: 112.992849
+          }
+        ]
+        this.polygonPath = polygonData
+      }, 100)
     },
     clickMenuRightTop () {
       this.$refs.map_map.$el.style.width = '100%'
@@ -730,6 +963,25 @@ export default {
       this.Show = false
       this.menuRightShow = false
       this.menuRightTopShow = true
+      this.isPolygon = false
+      // 延时加载标注点
+      setTimeout(() => {
+        this.jkicon = true
+        this.clicon = true
+        // 根据id区别图标，相对路径要使用require()
+        for (const item1 of this.vehicle) {
+          let path = ''
+          switch (item1.clid) {
+            case 1:
+              path = require('@/assets/situation/Vehicle analysis/u1920.svg')
+              break
+            case 2:
+              path = require('@/assets/situation/Vehicle analysis/u2202.png')
+              break
+          }
+          item1.url = path
+        }
+      }, 100)
     },
     clickMenuRight () {
       this.$refs.map_map.$el.style.width = '100%'
@@ -738,6 +990,9 @@ export default {
       this.menuRightTopShow = false
       this.videoShow = false
       this.menuRightShow = true
+      this.isPolygon = false
+      this.jkicon = true
+      this.clicon = false
     },
     clickMarker (e) {
       this.$refs.map_map.$el.style.width = '100%'
@@ -747,8 +1002,20 @@ export default {
         lng: 112.98948073412699,
         lat: 28.183879451580328
       }
-      this.zoom = 19
+      this.zoom = 18
       this.menuShow = true
+      // this.circlePath.center = this.center
+      this.isPolygon = false
+    },
+    // 编辑圆形场地覆盖物的函数
+    // updateCirclePath(e) {
+    //   this.circlePath.center = e.target.getCenter()
+    //   this.circlePath.radius = e.target.getRadius()
+    // },
+    // 编辑多边形场地覆盖物的函数
+    updatePolygonPath (e) {
+      this.polygonPath = e.target.getPath()
+      console.log('🚀 ~ file: index.vue ~ line 919 ~ this.polygonPath', this.polygonPath)
     },
     close (e) {
       this.isShow = false
