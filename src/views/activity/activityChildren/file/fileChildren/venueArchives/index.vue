@@ -28,7 +28,8 @@ export default {
       { label: '场馆名称', type: 'input' },
       { label: '地址名称', type: 'input' },
       { label: '建成日期', type: 'input' },
-      { label: '活动人数上限', type: 'input' }
+      { label: '活动人数上限', type: 'input' },
+      { label: '支持活动类型', type: 'input' }
     ]
   }),
   created () { },

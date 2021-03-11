@@ -90,15 +90,16 @@ export default {
         { label: '姓名', type: 'input' },
         { label: '联系电话', type: 'input' },
         { label: '报警时间', type: 'input' },
-        { label: '处理人', type: 'input' },
-        { label: '姓名', type: 'input' },
+        { label: '处理人姓名', type: 'input' },
+        // { label: '姓名', type: 'input' },
         { label: '接警时间', type: 'input' },
         { label: '到达时间', type: 'input' },
-        { label: '处理', type: 'input' },
+        // { label: '处理', type: 'input' },
         { label: '处理时间', type: 'input' },
         { label: '警情处理结果代码', type: 'input' },
         { label: '备注', type: 'input' },
-        { label: '处理图片', type: 'input' }
+        { label: '处理图片', type: 'input' },
+        { label: '', type: '' }
       ],
       [
         { label: '数据来源_行政区划代码', type: 'input' },
@@ -107,13 +108,13 @@ export default {
         { label: '警情视频信息', type: 'input' },
         { label: '视屏设备编码', type: 'input' },
         { label: '视频文件格式代码', type: 'input' },
-        { label: '开始时间', type: 'input' },
-        { label: '结束时间', type: 'input' },
+        { label: '视屏设备开始时间', type: 'input' },
+        { label: '视屏设备结束时间', type: 'input' },
         { label: '警情音频信息', type: 'input' },
         { label: '音频设备编码', type: 'input' },
         { label: '音频编码格式代码', type: 'input' },
-        { label: '开始时间', type: 'input' },
-        { label: '结束时间', type: 'input' }
+        { label: '音频设备开始时间', type: 'input' },
+        { label: '音频设备结束时间', type: 'input' }
       ]
     ],
     form: {}
@@ -121,12 +122,12 @@ export default {
   created () { },
   methods: {
     add (row) {
-      this.title = '民警信息新增'
+      this.title = '警情数据信息新增'
       this.readOnly = false
       this.isShow = true
     },
     modify () {
-      this.title = '民警信息修改'
+      this.title = '警情数据信息修改'
       this.readOnly = false
       this.isShow = true
     },
@@ -134,7 +135,7 @@ export default {
       console.log(row)
     },
     detailed () {
-      this.title = '民警信息详情'
+      this.title = '警情数据信息详情'
       this.readOnly = true
       this.isShow = true
     },

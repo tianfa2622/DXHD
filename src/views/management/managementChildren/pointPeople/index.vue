@@ -42,13 +42,13 @@ export default {
       { placeholder: '姓名', type: 'input' }
     ],
     mainMessage: [
-      { label: '常用证件号码', type: 'input' },
+      { label: '常用证件代码', type: 'input' },
       { label: '姓名', type: 'input' },
       { label: '民族代码', type: 'input' },
       { label: '公民身份证号码', type: 'input' },
       { label: '性别代码', type: 'input' },
       { label: '国籍代码', type: 'input' },
-      { label: '证件号码', type: 'input' }
+      { label: '常用证件号码', type: 'input' }
     ],
     messages: [],
     btns: [],

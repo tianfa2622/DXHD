@@ -42,7 +42,7 @@ export default {
       { label: '姓名', type: 'input' },
       { label: '活动编号', type: 'input' },
       { label: '联系电话', type: 'input' },
-      { label: '证件信息', type: 'input' },
+      // { label: '证件信息', type: 'input' },
       { label: '公民身份证号码', type: 'input' },
       { label: '证件编号', type: 'input' },
       { label: '是否入场', type: 'input' },

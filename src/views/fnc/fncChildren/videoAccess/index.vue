@@ -39,9 +39,9 @@ export default {
     readOnly: true,
     searchSettings: [
       [
-        { placeholder: '请输入活动场地', type: 'input' },
-        { placeholder: '请输入圈层地区', type: 'input' },
-        { placeholder: '请输入具体圈层', type: 'input' }
+        { placeholder: '请输入活动场地', type: 'select' },
+        { placeholder: '请输入圈层地区', type: 'select' },
+        { placeholder: '请输入具体圈层', type: 'select' }
       ],
       [
         { placeholder: '视频设备编号', type: 'input' },
@@ -82,7 +82,7 @@ export default {
       { label: '监视方向', type: 'input' },
       { label: '地球纬度', type: 'input' },
       { label: '监视区域说明', type: 'input' },
-      { label: '安装地点', type: 'input' },
+      // { label: '安装地点', type: 'input' },
       { label: '摄像机位置类型', type: 'input' },
       { label: '摄像机用途', type: 'input' }
     ]

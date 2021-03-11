@@ -23,7 +23,7 @@
         @click="clickMarkers(index)"
       />
       <template v-if="bticon">
-        <bm-marker v-for="(bt,index) in points" :key="index" :position="bt.site" :dragging="true" animation="BMAP_ANIMATION_BOUNCE" :icon="{url: bt.url,opts:{imageSize:{width:32,height:30}}, size: {width: 32, height: 32}}"></bm-marker>
+        <bm-marker v-for="(bt,index) in points" :key="index" :position="bt.site" :dragging="true" animation="BMAP_ANIMATION_BOUNCE" :icon="{url: bt.url,opts:{imageSize:{width:32,height:30}}, size: {width: 32, height: 32}}" @click="clickBtIcon(bt)"></bm-marker>
       </template>
       <template v-else-if="clicon">
         <bm-marker v-for="(cl,index) in vehicle" :key="index" :position="cl.site" :dragging="true" animation="BMAP_ANIMATION_BOUNCE" :icon="{url: cl.url,opts:{imageSize:{width:32,height:30}}, size: {width: 32, height: 32}}"></bm-marker>
@@ -226,6 +226,7 @@
         <el-input v-model="title" prefix-icon="el-icon-search" placeholder="请输入警员姓名或身份证号码"></el-input>
         <el-input v-model="title" prefix-icon="el-icon-search" placeholder="请输入警车车牌号码"></el-input>
       </div>
+      <Dialog :title="title" :isShow="clickLeftTopBtIcon" :readOnly="true" :dialogs="PolicePosture" @close="clickLeftTopBtIconsClose"></Dialog>
     </div>
     <div class="clickTop" v-if="Show">
       <div>
@@ -654,11 +655,9 @@ export default {
         { label: '姓名', type: 'input' },
         { label: '联系电话', type: 'input' },
         { label: '报警时间', type: 'input' },
-        { label: '处理人', type: 'input' },
-        { label: '姓名', type: 'input' },
+        { label: '处理姓名', type: 'input' },
         { label: '接警时间', type: 'input' },
         { label: '到达时间', type: 'input' },
-        { label: '处理', type: 'input' },
         { label: '处理时间', type: 'input' },
         { label: '警情处理结果代码', type: 'input' },
         { label: '备注', type: 'input' },
@@ -671,23 +670,96 @@ export default {
         { label: '警情视频信息', type: 'input' },
         { label: '视屏设备编码', type: 'input' },
         { label: '视频文件格式代码', type: 'input' },
-        { label: '开始时间', type: 'input' },
-        { label: '结束时间', type: 'input' },
+        { label: '视频设备开始时间', type: 'input' },
+        { label: '视频设备结束时间', type: 'input' },
         { label: '警情音频信息', type: 'input' },
         { label: '音频设备编码', type: 'input' },
         { label: '音频编码格式代码', type: 'input' },
-        { label: '开始时间', type: 'input' },
-        { label: '结束时间', type: 'input' }
+        { label: '音频设备开始时间', type: 'input' },
+        { label: '音频设备结束时间', type: 'input' }
       ]
     ],
     clickTopLeftBoxFootDialogs: [
-      { label: '常用证件号码', type: 'input' },
+      { label: '常用证件代码', type: 'input' },
       { label: '姓名', type: 'input' },
       { label: '公民身份证号码', type: 'input' },
       { label: '性别代码', type: 'input' },
-      { label: '证件号码', type: 'input' },
+      { label: '常用证件号码', type: 'input' },
       { label: '民族代码', type: 'input' },
       { label: '国籍代码', type: 'input' }
+    ],
+    // 警力态势数据壳
+    PolicePosture: [],
+    // 是否显示警力态势弹出框
+    clickLeftTopBtIcon: false,
+    // 民警信息dialog
+    Policeinformation: [
+      { label: '执勤民警标识', type: 'input' },
+      { label: '民警姓名', type: 'input' },
+      { label: '执勤区域', type: 'input' },
+      { label: '民警类别代码', type: 'input' },
+      { label: '警员编号', type: 'input' },
+      { label: '警龄', type: 'input' },
+      { label: '警衔与文职级别代码', type: 'input' },
+      { label: '勤务装备类型', type: 'input' },
+      // { label: '勤务装备', type: 'input' },
+      { label: '勤务装备纬度', type: 'input' },
+      { label: '勤务装备经度', type: 'input' },
+      { label: '公安机关名称', type: 'input' },
+      { label: '公安机构代码', type: 'input' },
+      { label: '身份证号码', type: 'input' },
+      { label: '公安部门类别代码', type: 'input' },
+      { label: '民族代码', type: 'input' },
+      { label: '年龄', type: 'input' },
+      { label: '性别代码', type: 'input' },
+      { label: '籍贯代码', type: 'input' },
+      { label: '学历代码', type: 'input' },
+      { label: '地址名称', type: 'input' },
+      { label: '政治面貌', type: 'input' },
+      { label: '婚姻状况', type: 'input' }
+    ],
+    // 警车信息dialog
+    PoliceCarInformation: [
+      { label: '巡逻车标识', type: 'input' },
+      { label: '公安机关机构代码', type: 'input' },
+      { label: '机动车车牌号码', type: 'input' },
+      { label: '公安机关名称', type: 'input' },
+      { label: '行政区划代码', type: 'input' },
+      { label: '机动车车辆类型代码', type: 'input' }
+    ],
+    // 安保人员信息dialog
+    SecurityPersonnel: [
+      { label: '信息标识', type: 'input' },
+      { label: '姓名', type: 'input' },
+      { label: '曾用名', type: 'input' },
+      { label: '性别代码', type: 'input' },
+      { label: '单位名称', type: 'input' },
+      { label: '常用证件代码', type: 'input' },
+      { label: '证件号码', type: 'input' },
+      { label: '国籍代码', type: 'input' },
+      { label: '民族代码', type: 'input' },
+      // { label: '籍贯', type: 'input' },
+      { label: '籍贯国家（地区）', type: 'input' },
+      { label: '籍贯省市县（区）', type: 'input' },
+      { label: '籍贯区域内详细地址', type: 'input' },
+      // { label: '实际居住地址', type: 'input' },
+      { label: '实际居住地地址编码', type: 'input' },
+      { label: '实际居住地省市县（区）', type: 'input' },
+      { label: '实际居住地区划内详细地址', type: 'input' },
+      { label: '保安证件证件号码', type: 'input' },
+      { label: '保安证件有效截止日期', type: 'input' },
+      { label: '学历代码', type: 'input' },
+      { label: '特殊身份代码', type: 'input' },
+      { label: '出生日期', type: 'input' },
+      { label: '联系电话', type: 'input' },
+      { label: '婚姻状况代码', type: 'input' },
+      { label: '宗教信仰代码', type: 'input' },
+      { label: '政治面貌代码', type: 'input' },
+      { label: '配偶姓名', type: 'input' },
+      { label: '配偶公民身份证号码', type: 'input' },
+      { label: '配偶联系电话', type: 'input' },
+      { label: '更新时间', type: 'input' },
+      { label: '信息来源描述', type: 'input' }
     ],
     innerVisibleDiologs: [],
     form: {},
@@ -1043,7 +1115,6 @@ export default {
         { label: '信息主键编号', type: 'input' },
         { label: '安保路线编号', type: 'input' },
         { label: '路线顶点编号', type: 'input' },
-        { label: '路线顶点信息', type: 'input' },
         { label: '地球经度', type: 'input' },
         { label: '地球纬度', type: 'input' }
       ]
@@ -1056,6 +1127,27 @@ export default {
     clickRightLeftboxMore () {
       this.title = '警情数据信息展示详情'
       this.isClickRightShow = true
+    },
+    // 警力态势不同图标dialog关闭
+    clickLeftTopBtIconsClose() {
+      this.clickLeftTopBtIcon = false
+    },
+    // 点击不同图标显示警力态势dialog
+    clickBtIcon(bt) {
+      console.log('🚀 ~ file: index.vue ~ line 1137 ~ bt', bt)
+      if (bt.id === 1) {
+        this.title = '民警信息'
+        this.PolicePosture = this.Policeinformation
+        this.clickLeftTopBtIcon = true
+      } else if (bt.id === 2) {
+        this.title = '安保人员信息'
+        this.PolicePosture = this.SecurityPersonnel
+        this.clickLeftTopBtIcon = true
+      } else if (bt.id === 3) {
+        this.title = '警车信息'
+        this.PolicePosture = this.PoliceCarInformation
+        this.clickLeftTopBtIcon = true
+      }
     },
     clickMenuRightMap () {
       const position = [

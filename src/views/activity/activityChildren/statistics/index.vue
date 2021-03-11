@@ -50,7 +50,7 @@ export default {
     dialogs: [
       { label: '活动编号', type: 'input' },
       { label: '活动名称', type: 'input' },
-      { label: '战果编号', type: 'input' },
+      { label: '战果编码', type: 'input' },
       { label: '战果名称', type: 'input' },
       { label: '战果级别', type: 'input' },
       { label: '活动类型', type: 'input' },
